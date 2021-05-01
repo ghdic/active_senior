@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="active_senior:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/active_senior_war_exploded</output-path>
+  <artifact type="exploded-war" name="active_senior">
+    <output-path>$PROJECT_DIR$/out/artifacts/active_senior</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="active_senior/web/Web" />
       <element id="directory" name="WEB-INF">
@@ -8,7 +8,7 @@
           <element id="module-output" name="active_senior" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="jstl" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.24" />
         </element>
       </element>
     </root>
