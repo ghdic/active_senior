@@ -17,6 +17,12 @@
 스마트폰을 사용하지 못하던 시니어들을 갔다. 신규 시니어들은 50대때부터 스마트폰을 사용해왔던 세대이기 때문에 시니어 대상 플랫폼을 만들어도 충분히 참여 가능할 수 있을거라 생각한다.
 
 
+## 환경
+* Window10 64bit
+* Intellij Ultimate 2021.1
+* java 1.8.0_281
+* Tomcat 8.5
+
 ## 생각하는 사이트 구성
 
 ![Active Senior Structure](imagas/Active%20Senior%20Site%20Structure.png)
