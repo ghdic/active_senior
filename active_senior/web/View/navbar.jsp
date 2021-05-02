@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%
 	String title = request.getParameter("title");
-//	String userID = null;
-//	if (session.getAttribute("userID") != null) {
-//		userID = (String) session.getAttribute("userID");
-//	}
+	String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -36,20 +36,20 @@
 				</div>
 				<!-- Navbar Right Side -->
 				<div class="navbar-nav">
-<%--					<%--%>
-<%--						if(userID == null) {--%>
-<%--					%>--%>
+					<%
+						if(userID == null) {
+					%>
 					<a class="nav-item nav-link" href="/login.jsp">Login</a>
 					<a class="nav-item nav-link" href="/register.jsp">Register</a>
-<%--					<%--%>
-<%--					} else {--%>
-<%--					%>--%>
+					<%
+					} else {
+					%>
 					<a class="nav-item nav-link" href="/new_post.jsp">New Post</a>
 					<a class="nav-item nav-link" href="/account.jsp">Account</a>
 					<a class="nav-item nav-link" href="/logoutAction.jsp">Logout</a>
-<%--					<%--%>
-<%--						}--%>
-<%--					%>--%>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</div>
