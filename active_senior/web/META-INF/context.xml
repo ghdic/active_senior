@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Connection Pool-->
+<Context>
+    <Resource
+            name="jdbc/mysql"
+            type="javax.sql.DataSource"
+            auth="Container"
+            maxActive="30"
+            maxIdle="3"
+            maxWait="3000"
+            username="root"
+            password="root"
+            testonBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedTimeout="60"
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/active_senior?autoReconnect=true"
+    />
+</Context>
