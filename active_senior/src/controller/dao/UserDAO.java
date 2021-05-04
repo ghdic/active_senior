@@ -2,7 +2,7 @@ package controller.dao;
 
 
 import model.dto.User;
-
+import controller.tool.PasswordAuthentication;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -15,6 +15,7 @@ public class UserDAO {
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
+    private PasswordAuthentication pwAuth;
 
     public UserDAO() {
         try {
@@ -24,6 +25,7 @@ public class UserDAO {
             dataSource = (DataSource) context.lookup("jdbc/mysql");
             System.out.println(dataSource);
             conn = dataSource.getConnection();
+            pwAuth = new PasswordAuthentication();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,7 +39,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
 
             if(rs.next()) {
-                if(rs.getString(1).equals(userPW)) {
+                if(pwAuth.authenticate(userPW, rs.getString(1))) {
                     return 1; // 로그인 성공
                 } else {
                     return 0; // 비밀번호 불일치
@@ -55,7 +57,7 @@ public class UserDAO {
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, user.getUserID());
-            pstmt.setString(2, user.getUserPW());
+            pstmt.setString(2, pwAuth.hash(user.getUserPW()));
             pstmt.setString(3, user.getUserName());
             pstmt.setString(4, user.getUserGender());
             pstmt.setString(5, user.getUserEmail());
