@@ -14,6 +14,9 @@ create table user (
 
 insert into user values('test', 'test', 'testname', '남자', 'test@test.com', 'sample_profile.png', 1);
 
+/* 특정 행 삭제 */
+-- delete from user where userID="test"
+
 /* 컬럼 추가 */
 -- alter table user add userAuthority int not null default 1;
 

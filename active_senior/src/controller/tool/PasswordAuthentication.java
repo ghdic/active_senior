@@ -91,13 +91,12 @@ public final class PasswordAuthentication
         }
     }
 
-    @Deprecated
+
     public String hash(String password)
     {
         return hash(password.toCharArray());
     }
 
-    @Deprecated
     public boolean authenticate(String password, String token)
     {
         return authenticate(password.toCharArray(), token);
