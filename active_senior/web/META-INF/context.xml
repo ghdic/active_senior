@@ -13,7 +13,7 @@
             testonBorrow="true"
             removeAbandoned="true"
             removeAbandonedTimeout="60"
-            driverClassName="com.mysql.jdbc.Driver"
+            driverClassName="com.mysql.cj.jdbc.Driver"
             url="jdbc:mysql://localhost:3306/active_senior?autoReconnect=true"
     />
 </Context>
