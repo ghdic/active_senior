@@ -13,7 +13,7 @@ create table user (
 );
 
 insert into user values('test', 'test', 'testname', '남자', 'test@test.com', 'sample_profile.png', 1);
-
+insert into user values('won', '1234', 'G1', '남자', 'kusa1230@naver.com', '이지원_싸인.png', 1);
 /* 특정 행 삭제 */
 -- delete from user where userID="test"
 

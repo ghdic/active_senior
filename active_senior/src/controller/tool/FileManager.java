@@ -1,8 +1,9 @@
 package controller.tool;
-
+import java.io.File;
 public class FileManager {
 
     public int fileDownload(String filename) {
+
         return 0; // 다운로드 성공
         // return -1; // 다운로드 실패
     }

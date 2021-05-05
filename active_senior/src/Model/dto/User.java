@@ -1,4 +1,4 @@
-package model.dto;
+package Model.dto;
 
 
 public class User {
