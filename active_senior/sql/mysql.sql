@@ -41,14 +41,19 @@ alter table [테이블명] rename [변경할테이블명];
 drop table [테이블명];
 */
 
-use bbs;
-create table bbs
+
+create table hire_bbs
 (
-    bbsID        int,
-    bbsTitle     varchar(50),
-    userID       varchar(20),
-    bbsDate      datetime,
-    bbsContent   varchar(2048),
-    bbsAvailable int,
-    primary key (bbsID)
+    bbsID        int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    bbsTitle     text, /* 64kb */
+    userID       varchar(20) not null,
+    bbsDate      datetime default now(),
+    bbsContent   mediumtext, /* ~ 16mb */
+    eventState   int not null default 0, /* 0: 아무것도아님 1: 종료 2: 진행중 3: 마감 4: 공지  */
+    bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    bbsView int not null default 0,
+    bbsRecommend int not null default 0,
+    bbsThumbnail varchar(50) not null default 'default_thumbnail.png'
 );
+
+insert into hire_bbs (bbsTitle, userID, bbsContent, eventState, bbsAvailable) values ("test_title", "test", "<h1>My first post</h1>", 0, 1);
