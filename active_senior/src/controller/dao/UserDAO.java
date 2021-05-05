@@ -13,17 +13,13 @@ import java.sql.ResultSet;
 public class UserDAO {
     private DataSource dataSource;
     private Connection conn;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
     private PasswordAuthentication pwAuth;
 
     public UserDAO() {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
-            System.out.println(context);
             dataSource = (DataSource) context.lookup("jdbc/mysql");
-            System.out.println(dataSource);
             conn = dataSource.getConnection();
             pwAuth = new PasswordAuthentication();
         } catch (Exception e) {
@@ -34,9 +30,9 @@ public class UserDAO {
     public int login(String userID, String userPW) {
         String SQL = "select userPW from user where userID = ?";
         try {
-            pstmt = conn.prepareStatement(SQL);
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
 
             if(rs.next()) {
                 if(pwAuth.authenticate(userPW, rs.getString(1))) {
@@ -55,7 +51,7 @@ public class UserDAO {
     public int register(User user) {
         String SQL = "insert into user values (?, ?, ?, ?, ?, ?, Default)";
         try {
-            pstmt = conn.prepareStatement(SQL);
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, user.getUserID());
             pstmt.setString(2, pwAuth.hash(user.getUserPW()));
             pstmt.setString(3, user.getUserName());
