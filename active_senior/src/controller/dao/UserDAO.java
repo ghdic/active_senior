@@ -64,4 +64,59 @@ public class UserDAO {
         }
         return -1;
     }
+
+    public int update_info(User user) {
+        String SQL = "update user set ";
+        if (user.getUserPW() != null) {
+            SQL += String.format("userPW='%s', ", pwAuth.hash(user.getUserPW()));
+        }
+        if (user.getUserName() != null) {
+            SQL += String.format("userName='%s', ", user.getUserName());
+        }
+        if (user.getUserGender() != null) {
+            SQL += String.format("userGender='%s', ", user.getUserGender());
+        }
+        if (user.getUserEmail() != null) {
+            SQL += String.format("userEmail='%s', ", user.getUserEmail());
+        }
+        if (user.getUserProfile() != null) {
+            SQL += String.format("userProfile='%s'", user.getUserProfile());
+        }
+        if (SQL.substring(SQL.length()-2, SQL.length()).equals(", ")) {
+            SQL = SQL.substring(0, SQL.length() - 2);
+        }
+
+        SQL += String.format(" where userID='%s'", user.getUserID());
+        System.out.println(SQL);
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public User getInfo(String userID) {
+        String SQL = "select * from user where userID=?";
+        try{
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                User user = new User();
+                user.setUserID(rs.getString(1));
+                user.setUserPW(rs.getString(2));
+                user.setUserName(rs.getString(3));
+                user.setUserGender(rs.getString(4));
+                user.setUserEmail(rs.getString(5));
+                user.setUserProfile(rs.getString(6));
+                user.setUserAuthority(rs.getInt(7));
+                return user;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
