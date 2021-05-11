@@ -1,0 +1,42 @@
+
+.rink_button > div{
+  float: left;
+  
+}
+a#employee{
+  display: inline-block;
+  width: 150px;
+  height: 300px;
+  overflow: hidden;
+  background: url('/web/img/slide.jpg') no-repeat;
+  padding: 5px;
+
+}
+a#employee:hover{
+  background: url('/web/img/work.jpg') no-repeat;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+a#hobby{
+  display: inline-block;
+  width: 150px;
+  height: 300px;
+  background: url('/web/img/slide.jpg') no-repeat;
+  padding: 5px;
+}
+a#hobby:hover{
+  background: url('/web/img/hobby.jpg') no-repeat;
+  transition: all 0.3s ease-in-out;
+}
+
+a#info{
+  display: inline-block;
+  width: 150px;
+  height: 300px;
+  background: url('/web/img/slide.jpg') no-repeat;
+}
+a#info:hover{
+  background: url('/web/img/info.jpg') no-repeat;
+  transition: all 0.3s ease-in-out;
+}
