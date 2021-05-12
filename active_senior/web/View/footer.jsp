@@ -9,6 +9,7 @@
 			<a href="/logoutAction.jsp">Logout</a>
 			<a href="/register.jsp">Register</a>
 			<a href="/account.jsp">Account</a>
+			<a href="/admin.jsp">Admin</a>
 		</p>
 		<p class="footer-company-name">Company Name © 2021</p>
 	</div>

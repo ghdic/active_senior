@@ -27,5 +27,6 @@
     <orderEntry type="library" exported="" name="mysql-connector-java-8.0.24" level="project" />
     <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" exported="" name="cos" level="project" />
+    <orderEntry type="library" name="tomcat:servlet:4.1.36" level="project" />
   </component>
 </module>

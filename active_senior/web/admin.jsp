@@ -7,23 +7,24 @@
     <title>JSP AJAX</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-        var searchRequest = new XMLHttpRequest();
-        var registerRequest = new XMLHttpRequest();
+        const searchRequest = new XMLHttpRequest();
+        const registerRequest = new XMLHttpRequest();
+
         function searchFunction(){
             searchRequest.open("POST", "./UserSearchServlet?userName=" + encodeURIComponent(document.getElementById("userID").value), true);
             searchRequest.onreadystatechange = searchProcess;
             searchRequest.send(null);
         }
         function searchProcess(){					//검색 하는 함수
-            var table = document.getElementById("ajaxTable");
+            const table = document.getElementById("ajaxTable");
             table.innerHTML = "";
             if(searchRequest.readyState == 4 && searchRequest.status == 200){ //성공적 통신 묻는 것
-                var object = eval('(' + searchRequest.responseText + ')');
-                var result = object.result;
-                for(var i=0; i<result.length; i++){
-                    var row = table.insertRow(0);
-                    for(var j=0; j<result[i].length; j++){
-                        var cell = row.insertCell(j);
+                const object = eval('(' + searchRequest.responseText + ')');
+                const result = object.result;
+                for(let i=0; i<result.length; i++){
+                    const row = table.insertRow(0);
+                    for(let j=0; j<result[i].length; j++){
+                        const cell = row.insertCell(j);
                         cell.innerHTML = result[i][j].value;
                     }
                 }
@@ -41,15 +42,15 @@
 
         function registerProcess(){
             if(registerRequest.readyState == 4 && registerRequest.status == 200){
-                var result = registerRequest.responseText;
+                const result = registerRequest.responseText;
                 if(result != 1){
                     alert('등록에 실패했습니다.');
                 }
                 else{
-                    var userName = document.getElementById("userName");
-                    var registerName = document.getElementById("registerName");
-                    var registerAge = document.getElementById("registerAge");
-                    var registerEmail = document.getElementById("registerEmail");
+                    const userName = document.getElementById("userName");
+                    const registerName = document.getElementById("registerName");
+                    const registerAge = document.getElementById("registerAge");
+                    const registerEmail = document.getElementById("registerEmail");
                     userName.value = "";
                     registerName.value = "";
                     registerAge.value = "";

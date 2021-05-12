@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class UserDAO {
     private DataSource dataSource;
@@ -118,5 +119,40 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public ArrayList<User> search(String userID){					//검색 기능
+        String SQL = "select * from user where userName LIKE ?";
+        ArrayList<User> userList = new ArrayList<User>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, "%" + userID + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                User user = new User();
+                user.setUserID(rs.getString(1));
+                user.setUserName(rs.getString(2));
+                user.setUserGender(rs.getString(3));
+                user.setUserEmail(rs.getString(4));
+                userList.add(user);
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public int Adminregister(User user) {								//등록 기능
+        String SQL = "insert into user values (?, ?, ?, ?)";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, user.getUserID());
+            pstmt.setString(2, user.getUserName());
+            pstmt.setString(3, user.getUserGender());
+            pstmt.setString(4, user.getUserEmail());
+            return pstmt.executeUpdate();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // 데이터베이스 오류
     }
 }
