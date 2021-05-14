@@ -1,16 +1,28 @@
 package model.dto;
 
+import controller.dao.HireBbsDAO;
+import controller.tool.DateManger;
+
+import java.text.ParseException;
+import java.util.Date;
+
 public class HireBbs{
-    private int bbsID;
+    private int bbsID = -1;
     private String bbsTitle;
     private String userID;
     private String bbsDate;
     private String bbsContent;
-    private int bbsEventState;
-    private int bbsAvailable;
-    private int bbsView;
-    private int bbsRecommend;
+    private int bbsEventState = -1;
+    private int bbsAvailable = -1;
+    private int bbsView = -1;
+    private int bbsRecommend = -1;
     private String bbsThumbnail;
+    private String bbsInstitution;
+    private String bbsContactInformation;
+    private int bbsRecruitmentNumber = -1;
+    private String bbsStartDate;
+    private String bbsEndDate;
+
 
     public int getBbsID() {
         return bbsID;
@@ -90,5 +102,45 @@ public class HireBbs{
 
     public void setBbsThumbnail(String bbsThumbnail) {
         this.bbsThumbnail = bbsThumbnail;
+    }
+
+    public String getBbsInstitution() {
+        return bbsInstitution;
+    }
+
+    public void setBbsInstitution(String bbsInstitution) {
+        this.bbsInstitution = bbsInstitution;
+    }
+
+    public String getBbsContactInformation() {
+        return bbsContactInformation;
+    }
+
+    public void setBbsContactInformation(String bbsContactInformation) {
+        this.bbsContactInformation = bbsContactInformation;
+    }
+
+    public int getBbsRecruitmentNumber() {
+        return bbsRecruitmentNumber;
+    }
+
+    public void setBbsRecruitmentNumber(int bbsRecruitmentNumber) {
+        this.bbsRecruitmentNumber = bbsRecruitmentNumber;
+    }
+
+    public String getBbsStartDate() {
+        return bbsStartDate;
+    }
+
+    public void setBbsStartDate(String bbsStartDate) {
+        this.bbsStartDate = bbsStartDate;
+    }
+
+    public String getBbsEndDate() {
+        return bbsEndDate;
+    }
+
+    public void setBbsEndDate(String bbsEndDate) {
+        this.bbsEndDate = bbsEndDate;
     }
 }
