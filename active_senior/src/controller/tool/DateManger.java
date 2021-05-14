@@ -6,10 +6,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateManger {
-    public String getSimpleDate(String d) throws ParseException {
+    public static String getSimpleDate(String d) throws ParseException {
+        if (d == null) return "";
         Date date =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
         DateFormat dateFormat  = new SimpleDateFormat("MM-dd HH");
         String sd = dateFormat.format(date);
         return sd;
+    }
+
+    public static String getSimpleDate(Date d) throws ParseException {
+        if(d == null) return "";
+        DateFormat dateFormat  = new SimpleDateFormat("MM-dd HH");
+        String sd = dateFormat.format(d);
+        return sd;
+    }
+
+    public static Date stringToDate(String d) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date to = sdf.parse(d);
+        return to;
     }
 }
