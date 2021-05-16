@@ -45,8 +45,8 @@
 	</tr>
 	<% if(userID != null && userID.equals(hireBbs.getUserID())) { %>
 	<tr>
-		<td>게시글 수정</td>
-		<td>게시글 삭제</td>
+		<td><button onclick="location.href='hireBbsUpdate.jsp?bbsID=<%= bbsID %>'">게시글 수정</button></td>
+		<td><button onclick="location.href='hireBbsDeleteAction.jsp?bbsID=<%= bbsID %>'">게시글 삭제</button></td>
 	</tr>
 	<% } %>
 	</tbody>

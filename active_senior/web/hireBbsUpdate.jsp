@@ -1,6 +1,8 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="model.dto.HireBbs" %>
 <%@ page import="controller.dao.HireBbsDAO" %>
+<%@ page import="controller.tool.DateManger" %>
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="View/navbar.jsp">
 	<jsp:param name="title" value="고용 게시판 수정하기"/>
@@ -8,12 +10,13 @@
 <%
 	String userID = null;
 	PrintWriter script = response.getWriter();
-	script.println("<script>");
+
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
 
 	if (userID == null) {
+		script.println("<script>");
 		script.println("alert('글을 수정하려면 로그인을 해주세요!')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
@@ -44,28 +47,29 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td><input type="text " placeholder="글 제목" name="bbsTitle"></td>
+			<td><input type="text " placeholder="글 제목" name="bbsTitle" value="<%= hireBbs.getBbsTitle() %>"></td>
 		</tr>
 		<tr>
 			<td><textarea id="summernote" name="bbsContent"></textarea></td>
 		</tr>
 		<tr>
 			<td>
-				<input type="radio" name="bbsEventState" value="0">아무것도아님
-				<input type="radio" name="bbsEventState" value="1">종료
-				<input type="radio" name="bbsEventState" value="2">진행중
-				<input type="radio" name="bbsEventState" value="3">마감
-				<input type="radio" name="bbsEventState" value="4">공지
+<%--				셀렉트로 고치기--%>
+				<input type="radio" name="bbsEventState" value="0" <%= hireBbs.getBbsEventState() == 0 ? "checked":"" %>>아무것도아님
+				<input type="radio" name="bbsEventState" value="1" <%= hireBbs.getBbsEventState() == 1 ? "checked":"" %>>종료
+				<input type="radio" name="bbsEventState" value="2" <%= hireBbs.getBbsEventState() == 2 ? "checked":"" %>>진행중
+				<input type="radio" name="bbsEventState" value="3" <%= hireBbs.getBbsEventState() == 3 ? "checked":"" %>>마감
+				<input type="radio" name="bbsEventState" value="4" <%= hireBbs.getBbsEventState() == 4 ? "checked":"" %>>공지
 			</td>
 		</tr>
 		<tr>
 			<td><label for="thumbnail">썸네일:</label><input type="file" id="thumbnail" name="bbsThumbnail" accept="image/*"></td>
 		</tr>
 		<tr>
-			<td><label for="recruitmentNumber">모집 인원 :</label><input type="text" id="recruitmentNumber" name="bbsRecruitmentNumber"></td>
+			<td><label for="recruitmentNumber">모집 인원 :</label><input type="text" id="recruitmentNumber" name="bbsRecruitmentNumber" value="<%= hireBbs.getBbsRecruitmentNumber() %>"></td>
 		</tr>
 		<tr>
-			<td><label for="start">Start date:</label><input type="date" id="start" name="bbsStartDate"><label for="end">End date:</label><input type="date" id="end" name="bbsEndDate"></td>
+			<td><label for="start">Start date:</label><input type="date" id="start" name="bbsStartDate" value="<%= DateManger.getDate(hireBbs.getBbsStartDate()) %>"><label for="end">End date:</label><input type="date" id="end" name="bbsEndDate" value="<%= DateManger.getDate(hireBbs.getBbsEndDate()) %>"></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="완료"></td>

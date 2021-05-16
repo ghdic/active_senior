@@ -27,8 +27,8 @@
 	}
 
 	if (hirebbs.getBbsTitle() == null || hirebbs.getBbsContent() == null || hirebbs.getBbsEventState() == 0 ||
-		hirebbs.getBbsThumbnail() == null || hirebbs.getBbsRecruitmentNumber() == 0 || hirebbs.getBbsStartDate().equals(null) ||
-		hirebbs.getBbsEndDate().equals(null)) {
+			hirebbs.getBbsThumbnail() == null || hirebbs.getBbsRecruitmentNumber() == 0 || hirebbs.getBbsStartDate().equals(null) ||
+			hirebbs.getBbsEndDate().equals(null)) {
 		script.println("alert('입력이 안 된 사항이 있습니다')");
 		script.println("history.back()");
 	} else if (DateManger.compareDate(hirebbs.getBbsStartDate(), hirebbs.getBbsEndDate()) > 0){

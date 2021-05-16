@@ -6,19 +6,21 @@
 <%
 	String userID = null;
 	PrintWriter script = response.getWriter();
-	script.println("<script>");
+
 	if (session.getAttribute("userID") != null) {
 	    userID = (String) session.getAttribute("userID");
 	}
 
 	if (userID == null) {
+		script.println("<script>");
 		script.println("alert('글을 쓰려면 로그인을 해주세요!')");
 		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
 	}
-	script.println("</script>");
+
 %>
 
-<form action="hireBbsWriteAction.jsp" method="post">
+<form action="hireBbsWriteAction.jsp" id="form" method="post">
 	<table style="border: 1px solid #dddddd">
 		<thead>
 			<tr>
@@ -31,6 +33,12 @@
 			</tr>
 			<tr>
 				<td><textarea id="summernote" name="bbsContent"></textarea></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" value="임시 저장" onclick="setContent()">
+					<input type="button" value="불러오기" onclick="getContent()">
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -74,10 +82,53 @@
         ]
     });
 
+
+
     $(document).ready(function() {
         $('#summernote').summernote({
             lang: 'ko-KR' // default: 'en-US'
         });
     });
+
+    $(window).on('beforeunload', () => {
+        return '변경사항이 저장되지 않을 수 있습니다.';
+    })
+
+    $('#form').submit(() => {
+        $(window).unbind('beforeunload');
+    })
+
+
+	// window.addEventListener('beforeunload', (e) => {
+	//     e.preventDefault()
+	// 	console.log($('#summernote').summernote('code'))
+    //     localStorage.setItem("hirebbsWrite", $('#summernote').summernote('code'))
+    //     alert("hi")
+	// })
+
+
+    // $(window).on('beforeunload' ,(e) => {
+    //     localStorage.setItem("hirebbsWrite", $('#summernote').summernote('code'))
+    //     alert("hi")
+    // })
+
+    function setContent() {
+        console.log($('#summernote').summernote('code'))
+        localStorage.setItem("hirebbsWrite", $('#summernote').summernote('code'))
+    }
+
+    function getContent() {
+        let getValue = localStorage.getItem("hirebbsWrite")
+	    console.log(getValue)
+        $('#summernote').summernote('pasteHTML', getValue)
+    }
+
+
+    // window.onload = (e) => {
+    //     let getValue = localStorage.getItem("hirebbsWrite")
+	//
+	//     console.log(getValue)
+    //     $('#summernote').summernote('pasteHTML', getValue)
+    // }
 </script>
 <jsp:include page="View/footer.jsp"/>

@@ -5,7 +5,7 @@ use active_senior;
 create table user (
                       userID varchar (30) not null PRIMARY KEY,
                       userPW varchar (255) not null, /* ID + 솔트 +해쉬64자리 */
-                      userName varchar (30) not null,
+                      userName varchar (30) not null unique,
                       userGender varchar (20) default '성별',
                       userEmail varchar (100) default '',
                       userProfile varchar (50) default 'default_profile.png',
@@ -44,6 +44,45 @@ drop table [테이블명];
 
 create table hire_bbs
 (
+    bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userName varchar(20) not null,
+    bbsDate datetime default now(),
+    bbsTitle text, /* 64kb */
+    bbsContent mediumtext, /* ~ 16mb */
+    bbsSummary text,
+    bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    bbsView int not null default 0,
+    bbsRecommend int not null default 0,
+    bbsThumbnail varchar(50) not null default 'default_thumbnail.png',
+    bbsState int not null default 0, /* 0: 아무것도아님 1: 종료 2: 진행중 3: 마감 4: 공지  */
+    recruit_num int,
+    agency varchar (50),
+    department varchar (50),
+    recruit_start datetime,
+    recruit_end datetime,
+    edu_start datetime,
+    edu_end datetime,
+    active_start datetime,
+    active_end datetime,
+    files text
+);
+
+insert into hire_bbs (bbsTitle, userID, bbsContent, eventState, bbsAvailable) values ("test_title", "test", "<h1>My first post</h1>", 0, 1);
+
+
+create table hire_event (
+    userID varchar (30),
+    bbsID int,
+    registerDate datetime default now(),
+    eventState int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    foreign key userID references user(userID) on delete cascade on update cascade,
+    foreign key bbsID references hire_bbs(bbsID) on delete cascade on update cascade
+)
+
+
+
+create table edu_bbs
+(
     bbsID        int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     bbsTitle     text, /* 64kb */
     userID       varchar(20) not null,
@@ -55,5 +94,3 @@ create table hire_bbs
     bbsRecommend int not null default 0,
     bbsThumbnail varchar(50) not null default 'default_thumbnail.png'
 );
-
-insert into hire_bbs (bbsTitle, userID, bbsContent, eventState, bbsAvailable) values ("test_title", "test", "<h1>My first post</h1>", 0, 1);
