@@ -39,4 +39,9 @@
         <res-type>javax.sql.DataSource</res-type><!-- 리턴 Type -->
         <res-auth>Container</res-auth><!-- 관리 계층 -->
     </resource-ref>
+    <listener>
+        <listener-class>
+            controller.listener.PathListener
+        </listener-class>
+    </listener>
 </web-app>
