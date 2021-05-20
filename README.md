@@ -75,7 +75,7 @@
 
 # 프로젝트 세팅 방법
 
-* [☆active_senior.sql다운★](https://drive.google.com/file/d/1p7VhhfQWtjt_iUCHmaerVBx78Uk3_q-z/view?usp=sharing)을 통해 데이터베이스 세팅
+* [☆active_senior.sql다운★](https://drive.google.com/file/d/1u0P8HjrmYIBIw9nW-ZeGk_hPRQbqMMaX/view?usp=sharing)을 통해 데이터베이스 세팅
     ```
     // mysqldump -uroot -proot active_senior > active_senior.sql (export database)
 
