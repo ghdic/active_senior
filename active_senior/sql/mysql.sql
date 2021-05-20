@@ -3,13 +3,13 @@ CREATE database active_senior;
 use active_senior;
 /* user 테이블 생성 */
 create table user (
-                      userID varchar (30) not null PRIMARY KEY,
-                      userPW varchar (255) not null, /* ID + 솔트 +해쉬64자리 */
-                      userName varchar (30) not null unique,
-                      userGender varchar (20) default '성별',
-                      userEmail varchar (100) default '',
-                      userProfile varchar (50) default 'default_profile.png',
-                      userAuthority int default 1 not null /* 0: 관리자, 1: 일반유저 */
+      userID varchar (30) not null PRIMARY KEY,
+      userPW varchar (255) not null, /* ID + 솔트 +해쉬64자리 */
+      userName varchar (30) not null unique,
+      userGender varchar (20) default '',
+      userEmail varchar (100) default '',
+      userProfile varchar (50) default '',
+      userAuthority int default 1 not null /* 0: 관리자, 1: 일반유저 */
 );
 
 insert into user values('test', 'test', 'testname', '남자', 'test@test.com', 'sample_profile.png', 1);
@@ -45,31 +45,32 @@ drop table [테이블명];
 create table hire_bbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userName varchar(20) not null,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
     bbsDate datetime default now(),
     bbsTitle text, /* 64kb */
     bbsContent mediumtext, /* ~ 16mb */
-    bbsSummary text,
     bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
     bbsView int not null default 0,
     bbsRecommend int not null default 0,
-    bbsThumbnail varchar(50) not null default 'default_thumbnail.png',
-    bbsState int not null default 0, /* 0: 아무것도아님 1: 종료 2: 진행중 3: 마감 4: 공지  */
-    recruit_num int,
+    bbsThumbnail varchar(50) not null default '',
+    bbsState varchar(20) not null default "", /* 종료, 신청·접수중, 마감, 공지  */
+    recruitNum int,
     agency varchar (50),
     department varchar (50),
-    recruit_start datetime,
-    recruit_end datetime,
-    edu_start datetime,
-    edu_end datetime,
-    active_start datetime,
-    active_end datetime,
-    files text
+    recruitStart datetime,
+    recruitEnd datetime,
+    eduStart datetime,
+    eduEnd datetime,
+    activeStart datetime,
+    activeEnd datetime,
+    realFileName text,
+    originalFileName text
 );
 
-insert into hire_bbs (bbsTitle, userID, bbsContent, eventState, bbsAvailable) values ("test_title", "test", "<h1>My first post</h1>", 0, 1);
+insert into hire_bbs (userID, userName, bbsDate, bbsTitle, bbsContent, bbsThumbnail, bbsState, recruitNum, agency, department, recruitStart, recruitEnd, eduStart, eduEnd, activeStart, activeEnd, realFileName, originalFileName) values ('test', 'test', '2011-11-11', 'hi', 'hello', '111.png', 'rere', 3, 'aaa', 'department', '2012-11-01', '2012-11-03', '2012-12-12', '2012-12-13', '2015-12-11', '2015-12-12', '111', '111');
 
-
+-- bbsSummary
 create table hire_event (
     userID varchar (30),
     bbsID int,
@@ -79,18 +80,96 @@ create table hire_event (
     foreign key bbsID references hire_bbs(bbsID) on delete cascade on update cascade
 )
 
-
-
 create table edu_bbs
 (
-    bbsID        int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    bbsTitle     text, /* 64kb */
-    userID       varchar(20) not null,
-    bbsDate      datetime default now(),
-    bbsContent   mediumtext, /* ~ 16mb */
-    eventState   int not null default 0, /* 0: 아무것도아님 1: 종료 2: 진행중 3: 마감 4: 공지  */
+    bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
+    bbsDate datetime default now(),
+    bbsTitle text, /* 64kb */
+    bbsContent mediumtext, /* ~ 16mb */
+    summary text,
     bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
     bbsView int not null default 0,
     bbsRecommend int not null default 0,
-    bbsThumbnail varchar(50) not null default 'default_thumbnail.png'
+    bbsThumbnail varchar(50) not null default '',
+    bbsCategory int default 0, /* 0:교육영상, 1:교육후기 */
+    tag text,
+    keyword text,
+    campus text
+);
+
+ALTER DATABASE [DB명] CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+ALTER TABLE [column명] CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+create table info_bbs
+(
+    bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
+    bbsDate datetime default now(),
+    bbsTitle text, /* 64kb */
+    bbsContent mediumtext, /* ~ 16mb */
+    summary text,
+    bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    bbsView int not null default 0,
+    bbsRecommend int not null default 0,
+    bbsThumbnail varchar(50) not null default '',
+    bbsCategory int default 0, /* 0:공지/채용정보, 1:지원사업, 2:이벤트 */
+    tag text,
+    keyword text,
+    realFileName text,
+    originalFileName text
+);
+
+create table hobby_bbs
+(
+    bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
+    bbsDate datetime default now(),
+    bbsTitle text, /* 64kb */
+    bbsContent mediumtext, /* ~ 16mb */
+    summary text,
+    bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    bbsView int not null default 0,
+    bbsRecommend int not null default 0,
+    bbsThumbnail varchar(50) not null default '',
+    bbsCategory int default 0, /* 0:사람책, 1:여행, 2:건강 3:재무 4:문화라이프*/
+    tag text,
+    keyword text
+);
+
+
+
+create table community_bbs
+(
+    bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
+    bbsDate datetime default now(),
+    bbsTitle text, /* 64kb */
+    bbsContent mediumtext, /* ~ 16mb */
+    summary text,
+    bbsAvailable int not null default 1, /* 0: 비활성화, 1: 활성화 */
+    bbsView int not null default 0,
+    bbsRecommend int not null default 0,
+    bbsThumbnail varchar(50) not null default '',
+    bbsCategory int default 0,
+    tag text,
+    keyword text,
+    realFileName text,
+    originalFileName text
+);
+
+create table community_comment
+(
+    commentID int AUTO_INCREMENT primary key,
+    bbsID int,
+    userID varchar(20) not null,
+    userName varchar(20) default '',
+    parentID int default 0,
+    commentDate datetime default now(),
+    comment text
 );

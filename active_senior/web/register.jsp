@@ -18,6 +18,6 @@
 	<label>이메일:</label> <input type="text" placeholder="이메일" name="userEmail" maxlength="50"><br>
 	<label>프로필사진:</label> <input type="file" name="userProfile" maxlength="50"><br>
 
-	<input type="submit" value="로그인">
+	<input type="submit" value="회원가입">
 </form>
 <jsp:include page="View/footer.jsp"/>
