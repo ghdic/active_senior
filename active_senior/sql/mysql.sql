@@ -42,7 +42,7 @@ drop table [테이블명];
 */
 
 
-create table hire_bbs
+create table hireBbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID varchar(20) not null,
@@ -68,10 +68,10 @@ create table hire_bbs
     originalFileName text
 );
 
-insert into hire_bbs (userID, userName, bbsDate, bbsTitle, bbsContent, bbsThumbnail, bbsState, recruitNum, agency, department, recruitStart, recruitEnd, eduStart, eduEnd, activeStart, activeEnd, realFileName, originalFileName) values ('test', 'test', '2011-11-11', 'hi', 'hello', '111.png', 'rere', 3, 'aaa', 'department', '2012-11-01', '2012-11-03', '2012-12-12', '2012-12-13', '2015-12-11', '2015-12-12', '111', '111');
+insert into hireBbs (userID, userName, bbsDate, bbsTitle, bbsContent, bbsThumbnail, bbsState, recruitNum, agency, department, recruitStart, recruitEnd, eduStart, eduEnd, activeStart, activeEnd, realFileName, originalFileName) values ('test', 'test', '2011-11-11', 'hi', 'hello', '111.png', 'rere', 3, 'aaa', 'department', '2012-11-01', '2012-11-03', '2012-12-12', '2012-12-13', '2015-12-11', '2015-12-12', '111', '111');
 
 -- bbsSummary
-create table hire_event (
+create table hireEvent (
     userID varchar (30),
     bbsID int,
     registerDate datetime default now(),
@@ -80,7 +80,7 @@ create table hire_event (
     foreign key bbsID references hire_bbs(bbsID) on delete cascade on update cascade
 )
 
-create table edu_bbs
+create table eduBbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID varchar(20) not null,
@@ -103,7 +103,7 @@ ALTER DATABASE [DB명] CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 ALTER TABLE [column명] CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
-create table info_bbs
+create table infoBbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID varchar(20) not null,
@@ -123,7 +123,7 @@ create table info_bbs
     originalFileName text
 );
 
-create table hobby_bbs
+create table hobbyBbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID varchar(20) not null,
@@ -143,7 +143,7 @@ create table hobby_bbs
 
 
 
-create table community_bbs
+create table communityBbs
 (
     bbsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID varchar(20) not null,
@@ -163,7 +163,7 @@ create table community_bbs
     originalFileName text
 );
 
-create table community_comment
+create table communityComment
 (
     commentID int AUTO_INCREMENT primary key,
     bbsID int,
