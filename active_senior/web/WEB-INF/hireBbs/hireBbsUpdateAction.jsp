@@ -26,20 +26,20 @@
 		script.println("location.href = 'login.jsp'");
 	}
 
-	if (hirebbs.getBbsTitle() == null || hirebbs.getBbsContent() == null || hirebbs.getBbsEventState() == 0 ||
-			hirebbs.getBbsThumbnail() == null || hirebbs.getBbsRecruitmentNumber() == 0 || hirebbs.getBbsStartDate().equals(null) ||
-			hirebbs.getBbsEndDate().equals(null)) {
-		script.println("alert('입력이 안 된 사항이 있습니다')");
-		script.println("history.back()");
-	} else if (DateManger.compareDate(hirebbs.getBbsStartDate(), hirebbs.getBbsEndDate()) > 0){
-		script.println("alert('시작 날짝 끝나는 날짜보다 큽니다')");
-		script.println("history.back()");
-	} else {
-
+//	if (hirebbs.getBbsTitle() == null || hirebbs.getBbsContent() == null || hirebbs.getBbsEventState() == 0 ||
+//			hirebbs.getBbsThumbnail() == null || hirebbs.getBbsRecruitmentNumber() == 0 || hirebbs.getBbsStartDate().equals(null) ||
+//			hirebbs.getBbsEndDate().equals(null)) {
+//		script.println("alert('입력이 안 된 사항이 있습니다')");
+//		script.println("history.back()");
+//	} else if (DateManger.compareDate(hirebbs.getBbsStartDate(), hirebbs.getBbsEndDate()) > 0){
+//		script.println("alert('시작 날짝 끝나는 날짜보다 큽니다')");
+//		script.println("history.back()");
+//	} else {
+	{
 		HireBbsDAO hireBbsDAO = new HireBbsDAO();
 		ImageManager imageManager = new ImageManager();
 		hirebbs.setUserID((String) session.getAttribute("userID"));
-		hirebbs.setBbsContent(imageManager.replaceBase64toImage(hirebbs.getBbsContent(), "static/images/hirebbs/content"));
+		hirebbs.setBbsContent(imageManager.replaceBase64toImage(hirebbs.getBbsContent(), "/static/hire_bbs/content"));
 		int result = hireBbsDAO.insertHireBbs(hirebbs);
 		if (result == -2) {
 			script.println("alert('글쓰기에 오류가 발생하였습니다.')");

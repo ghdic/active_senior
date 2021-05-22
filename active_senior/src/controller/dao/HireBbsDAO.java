@@ -1,6 +1,7 @@
 package controller.dao;
 
 import controller.listener.DtoListener;
+import controller.tool.DataBaseManager;
 import controller.tool.MethodManager;
 import model.dto.HireBbs;
 
@@ -8,6 +9,7 @@ import model.dto.HireBbs;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
@@ -40,7 +42,7 @@ public class HireBbsDAO{
             pstmt.setInt(2, require);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                HireBbs bbs = createHirebbs(rs);
+                HireBbs bbs = DataBaseManager.<HireBbs>getData(rs, "hireBbs", HireBbs.class);
                 list.add(bbs);
             }
         } catch (Exception e) {
@@ -72,7 +74,7 @@ public class HireBbsDAO{
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return createHirebbs(rs);
+                return DataBaseManager.<HireBbs>getData(rs, "hireBbs", HireBbs.class);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,46 +94,35 @@ public class HireBbsDAO{
         return -1;
     }
 
-    private HireBbs createHirebbs(ResultSet rs) throws SQLException, InvocationTargetException, IllegalAccessException {
-        HireBbs bbs = new HireBbs();
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int colCnt = rsmd.getColumnCount();
-        for (int i = 1; i <= colCnt; i++) {
-            Method method = DtoListener.setMethod.get("hireBbs").get(rsmd.getColumnName(i));
-            if(rsmd.getColumnTypeName(i).equals("INT")) {
-                method.invoke(bbs, rs.getInt(i));
-            } else {
-                method.invoke(bbs, rs.getString(i));
-            }
-        }
-        return bbs;
+    public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.<HireBbs>insertData(hireBbs, "hireBbs");
     }
 
-    public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
-        ArrayList<String> insert_attr = new ArrayList<String>();
-        ArrayList<String> insert_value = new ArrayList<String>();
-        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
-            if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
-            if(method.invoke(hireBbs) == null) continue;
-            Object obj = method.invoke(hireBbs);
-            if (obj instanceof Integer)
-                obj = Integer.toString((int)obj);
-            else
-                obj = "'" + obj + "'";
-            insert_attr.add(MethodManager.getParamName(method));
-            insert_value.add((String)obj);
-        }
-        String attr = String.join(", ", insert_attr);
-        String value = String.join(", ", insert_value);
-        String SQL = String.format("insert into hireBbs (%s) values (%s)", attr, value);
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -2; // db error
-    }
+//    public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
+//        ArrayList<String> insert_attr = new ArrayList<String>();
+//        ArrayList<String> insert_value = new ArrayList<String>();
+//        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
+//            if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
+//            if(method.invoke(hireBbs) == null) continue;
+//            Object obj = method.invoke(hireBbs);
+//            if (obj instanceof Integer)
+//                obj = Integer.toString((int)obj);
+//            else
+//                obj = "'" + obj + "'";
+//            insert_attr.add(MethodManager.getParamName(method));
+//            insert_value.add((String)obj);
+//        }
+//        String attr = String.join(", ", insert_attr);
+//        String value = String.join(", ", insert_value);
+//        String SQL = String.format("insert into hireBbs (%s) values (%s)", attr, value);
+//        try {
+//            PreparedStatement pstmt = conn.prepareStatement(SQL);
+//            return pstmt.executeUpdate();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return -2; // db error
+//    }
 
     public int updateHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
         if(hireBbs.getBbsID() == -1)
