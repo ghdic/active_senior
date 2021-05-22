@@ -13,6 +13,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>activeSenior</servlet-name>
+        <jsp-file>/WEB-INF/activeSenior.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>activeSenior</servlet-name>
+        <url-pattern>/activeSenior</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>login</servlet-name>
         <jsp-file>/WEB-INF/login.jsp</jsp-file>
     </servlet>
@@ -28,6 +37,15 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <jsp-file>/WEB-INF/register.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
     <servlet>

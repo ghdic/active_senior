@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
-<jsp:include page="View/navbar.jsp">
+<jsp:include page="/view/navbar">
 	<jsp:param name="title" value="Introduce - ActiveSenior"/>
 </jsp:include>
 <div id="section1" class="section">
 	<div id="text">
 		<div id="text1" class="drawsvg">
-			<svg version="1.1" viewBox="0 0 300 200">
+			<svg version="1.1" viewBox="0 0 300 230">
 				<symbol id="fade-text">
 					<text x="45%" y="30%" text-anchor="middle">Active</text>
 					<text x="55%" y="70%" text-anchor="middle">Senior</text>
@@ -17,26 +17,26 @@
 			</svg>
 		</div>
 	</div>
-	<video id="active_senior1" class="scroll-video" src="active_senior1.mp4"></video>
+	<video id="active_senior1" class="scroll-video" src="/static/video/active_senior1.mp4"></video>
 </div>
 <div id="section2" class="section">
 	<h2 id="text2">나이는 숫자에 불과하다!</h2>
-	<video id="active_senior2" class="scroll-video" src="active_senior2.mp4"></video>
+	<video id="active_senior2" class="scroll-video" src="/static/video/active_senior2.mp4"></video>
 </div>
 <div id="section3" class="section">
-	<video id="active_senior3" class="scroll-video" src="active_senior3.mp4"></video>
+	<video id="active_senior3" class="scroll-video" src="/static/video/active_senior3.mp4"></video>
 	<h2 id="text3">활동적인 생활을 가져보자</h2>
 </div>
 <div id="section4" class="section">
-	<video id="active_senior4" class="scroll-video" src="active_senior4.mp4"></video>
+	<video id="active_senior4" class="scroll-video" src="/static/video/active_senior4.mp4"></video>
 	<h2 id="text4">문화를 즐기자</h2>
 </div>
 <div id="section5" class="section">
-	<video id="active_senior5" class="scroll-video" src="active_senior5.mp4"></video>
+	<video id="active_senior5" class="scroll-video" src="/static/video/active_senior5.mp4"></video>
 	<h2 id="text5">추억을 쌓아가자</h2>
 </div>
 <div id="section6" class="section">
-	<video id="active_senior6" class="scroll-video" src="active_senior6.mp4"></video>
+	<video id="active_senior6" class="scroll-video" src="/static/video/active_senior6.mp4"></video>
 	<h2 id="text6">LIVE FOR YOUR LIFE</h2>
 </div>
 <section id="introduce_active_senior">
@@ -54,5 +54,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js" integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="introduce.js"></script>
-<jsp:include page="View/footer.jsp"/>
+<script src="static/introduce.js"></script>
+<jsp:include page="/view/footer"/>
