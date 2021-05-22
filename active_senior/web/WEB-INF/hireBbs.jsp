@@ -38,7 +38,7 @@
 
 			<tr>
 				<td><%= list.get(i).getBbsThumbnail() %></td>
-				<td><a href="/hireBbsView.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
+				<td><a href="/WEB-INF/hireBbsView.jspView.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
 				<td><%= list.get(i).getBbsInstitution() %></td>
 				<td><%= list.get(i).getBbsContactInformation() %></td>
 				<td><%= list.get(i).getBbsRecruitmentNumber() %></td>
