@@ -68,6 +68,29 @@
 # 프로젝트 구성
 
 
+# 프로젝트 페이지
+* main
+* login
+* logout
+* register
+* activeSenior
+
+# 사용 라이브러리 & API
+백엔드
+
+* java ee 6
+* servlet commons fileupload
+* mysql connector(jdbc)
+* jai
+* Naver Maps
+
+프론트엔드
+
+* jquery
+* summernote
+* scrollMagic
+* gasp
+* font-awesome
 
 
 # 프로젝트 기능별 설명
