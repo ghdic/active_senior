@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>appList</servlet-name>
-        <jsp-file>/WEB-INF/logoutAction.jsp</jsp-file>
+        <jsp-file>/WEB-INF/appList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>appList</servlet-name>

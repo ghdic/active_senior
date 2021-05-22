@@ -37,44 +37,44 @@
 		<li class="dropdown">
 			<a href="#" class="nav-item">소개</a>
 			<div class="dropdown-content">
-				<a href="introduce" class="nav-item">사이트 소개</a>
-				<a href="activeSenior" class="nav-item">액티브 시니어란?</a>
+				<a href="/introduce" class="nav-item">사이트 소개</a>
+				<a href="/activeSenior" class="nav-item">액티브 시니어란?</a>
 			</div>
 		</li>
 		<li><a href="/appList" class="nav-item active">구인 & 고용</a></li>
 		<li class="dropdown">
 			<a href="#" class="nav-item">교육</a>
 			<div class="dropdown-content">
-				<a href="eduVideoList.jsp">교육영상</a>
-				<a href="eduReviewList.jsp">교육후기</a>
+				<a href="/eduVideoList">교육영상</a>
+				<a href="/eduReviewList">교육후기</a>
 			</div>
 		</li>
 		<li class="dropdown">
 			<a href="#" class="nav-item">정보알리미</a>
 			<div class="dropdown-content">
-				<a href="noticeList.jsp">공지/채용정보</a>
-				<a href="supportList.jsp">지원사업</a>
-				<a href="eventList.jsp">이벤트/행사</a>
+				<a href="/noticeList">공지/채용정보</a>
+				<a href="/supportList">지원사업</a>
+				<a href="/eventList">이벤트/행사</a>
 			</div>
 		</li>
 		<li class="dropdown">
 			<a href="#" class="nav-item">취미</a>
 			<div class="dropdown-content">
-				<a href="peopleBookList.jsp">사람책</a>
-				<a href="tripList.jsp">여행</a>
-				<a href="healthList.jsp">건강</a>
-				<a href="financeList.jsp">재무</a>
-				<a href="cultureList.jsp">문화라이프</a>
+				<a href="/peopleBookList">사람책</a>
+				<a href="/tripList">여행</a>
+				<a href="/healthList">건강</a>
+				<a href="/financeList">재무</a>
+				<a href="/cultureList">문화라이프</a>
 			</div>
 		</li>
-		<li><a href="communityList.jsp" class="nav-item">커뮤니티</a></li>
+		<li><a href="/communityList" class="nav-item">커뮤니티</a></li>
 		<li style="float: right;" class="login">
 			<% if(userID == null) { %>
-			<i class="far fa-user"></i><a href="login.jsp" class="nav-item">로그인</a>
-			<a href="register.jsp" class="nav-item">회원가입</a>
+			<i class="far fa-user"></i><a href="/login" class="nav-item">로그인</a>
+			<a href="/register" class="nav-item">회원가입</a>
 			<% } else {%>
-			<i class="far fa-user"></i><a href="account.jsp" class="nav-item"><%= userID %>님 안녕하세요!</a>
-			<i class="fas fa-sign-out-alt"></i><a href="logoutAction.jsp" class="nav-item">로그아웃</a>
+			<i class="far fa-user"></i><a href="/account" class="nav-item"><%= userID %>님 안녕하세요!</a>
+			<i class="fas fa-sign-out-alt"></i><a href="/logoutAction" class="nav-item">로그아웃</a>
 			<% } %>
 		</li>
 
