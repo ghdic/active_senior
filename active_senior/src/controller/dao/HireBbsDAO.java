@@ -1,5 +1,6 @@
 package controller.dao;
 
+import controller.listener.DtoListener;
 import controller.tool.MethodManager;
 import model.dto.HireBbs;
 
@@ -9,10 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 
@@ -34,7 +32,7 @@ public class HireBbsDAO{
 
     // start 지점으로부터 require 개의 게시글 리스트를 가져옴
     public ArrayList<HireBbs> getPostList(int pageNumber, int require) {
-        String SQL = "select * from hire_bbs where bbsAvailable = 1 order by bbsID desc limit ?, ?";
+        String SQL = "select * from hireBbs where bbsAvailable = 1 order by bbsID desc limit ?, ?";
         ArrayList<HireBbs> list = new ArrayList<HireBbs>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -42,7 +40,7 @@ public class HireBbsDAO{
             pstmt.setInt(2, require);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                HireBbs bbs = getHireBbs(rs);
+                HireBbs bbs = createHirebbs(rs);
                 list.add(bbs);
             }
         } catch (Exception e) {
@@ -53,7 +51,7 @@ public class HireBbsDAO{
 
     // 다음 페이지 존재하는지 확인
     public boolean nextPage(int pageNumber, int require) {
-        String SQL = "select bbsID from hire_bbs where bbsAvailable = 1 order by bbsID desc limit ?, 1";
+        String SQL = "select bbsID from hireBbs where bbsAvailable = 1 order by bbsID desc limit ?, 1";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, pageNumber * require);
@@ -68,13 +66,13 @@ public class HireBbsDAO{
 
     // bbsID 로부터 post 가져옴
     public HireBbs getPost(int bbsID) {
-        String SQL = "select * from hire_bbs where bbsID = ?";
+        String SQL = "select * from hireBbs where bbsID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return getHireBbs(rs);
+                return createHirebbs(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,7 +81,7 @@ public class HireBbsDAO{
     }
 
     public int deletePost(int bbsID) {
-        String SQL = "update hire_bbs set bbsAvailable = 0 where bbsID = ?";
+        String SQL = "update hireBbs set bbsAvailable = 0 where bbsID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
@@ -94,31 +92,25 @@ public class HireBbsDAO{
         return -1;
     }
 
-    private HireBbs getHireBbs(ResultSet rs) throws SQLException {
+    private HireBbs createHirebbs(ResultSet rs) throws SQLException, InvocationTargetException, IllegalAccessException {
         HireBbs bbs = new HireBbs();
-        bbs.setBbsID(rs.getInt(1));
-        bbs.setBbsTitle(rs.getString(2));
-        bbs.setUserID(rs.getString(3));
-        bbs.setBbsDate(rs.getString(4));
-        bbs.setBbsContent(rs.getString(5));
-        bbs.setBbsEventState(rs.getInt(6));
-        bbs.setBbsAvailable(rs.getInt(7));
-        bbs.setBbsView(rs.getInt(8));
-        bbs.setBbsRecommend(rs.getInt(9));
-        bbs.setBbsThumbnail(rs.getString(10));
-        bbs.setBbsInstitution(rs.getString(11));
-        bbs.setBbsContactInformation(rs.getString(12));
-        bbs.setBbsRecruitmentNumber(rs.getInt(13));
-        bbs.setBbsStartDate(rs.getString(14));
-        bbs.setBbsEndDate(rs.getString(15));
-
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int colCnt = rsmd.getColumnCount();
+        for (int i = 1; i <= colCnt; i++) {
+            Method method = DtoListener.setMethod.get("hireBbs").get(rsmd.getColumnName(i));
+            if(rsmd.getColumnTypeName(i).equals("INT")) {
+                method.invoke(bbs, rs.getInt(i));
+            } else {
+                method.invoke(bbs, rs.getString(i));
+            }
+        }
         return bbs;
     }
 
     public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
         ArrayList<String> insert_attr = new ArrayList<String>();
         ArrayList<String> insert_value = new ArrayList<String>();
-        for (Method method : MethodManager.findGetters(HireBbs.class)) {
+        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
             if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
             if(method.invoke(hireBbs) == null) continue;
             Object obj = method.invoke(hireBbs);
@@ -131,7 +123,7 @@ public class HireBbsDAO{
         }
         String attr = String.join(", ", insert_attr);
         String value = String.join(", ", insert_value);
-        String SQL = String.format("insert into hire_bbs (%s) values (%s)", attr, value);
+        String SQL = String.format("insert into hireBbs (%s) values (%s)", attr, value);
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             return pstmt.executeUpdate();
@@ -145,7 +137,7 @@ public class HireBbsDAO{
         if(hireBbs.getBbsID() == -1)
             return -1; // bbsID가 없음
         ArrayList<String> update_list = new ArrayList<String>();
-        for (Method method : MethodManager.findGetters(HireBbs.class)) {
+        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
             if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
             if(method.invoke(hireBbs) == null) continue;
             Object obj = method.invoke(hireBbs);
@@ -156,7 +148,7 @@ public class HireBbsDAO{
             update_list.add(MethodManager.getParamName(method) + "=" + obj);
         }
         String update_col = String.join(", ", update_list);
-        String SQL = String.format("update hire_bbs set %s where bbsID = ?", update_col);
+        String SQL = String.format("update hireBbs set %s where bbsID = ?", update_col);
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, hireBbs.getBbsID());

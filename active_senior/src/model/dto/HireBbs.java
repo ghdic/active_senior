@@ -1,28 +1,29 @@
 package model.dto;
 
-import controller.dao.HireBbsDAO;
-import controller.tool.DateManger;
-
-import java.text.ParseException;
-import java.util.Date;
 
 public class HireBbs{
     private int bbsID = -1;
-    private String bbsTitle;
-    private String userID;
-    private String bbsDate;
-    private String bbsContent;
-    private int bbsEventState = -1;
+    private String userID = "";
+    private String userName = "";
+    private String bbsDate = "";
+    private String bbsTitle = "";
+    private String bbsContent = "";
     private int bbsAvailable = -1;
     private int bbsView = -1;
     private int bbsRecommend = -1;
-    private String bbsThumbnail;
-    private String bbsInstitution;
-    private String bbsContactInformation;
-    private int bbsRecruitmentNumber = -1;
-    private String bbsStartDate;
-    private String bbsEndDate;
-
+    private String bbsThumbnail = "";
+    private String bbsState = "";
+    private int recruitNum = -1;
+    private String agency = "";
+    private String department = "";
+    private String recruitStart = "";
+    private String recruitEnd = "";
+    private String eduStart = "";
+    private String eduEnd = "";
+    private String activeStart = "";
+    private String activeEnd = "";
+    private String realFileName = "";
+    private String originalFileName = "";
 
     public int getBbsID() {
         return bbsID;
@@ -30,14 +31,6 @@ public class HireBbs{
 
     public void setBbsID(int bbsID) {
         this.bbsID = bbsID;
-    }
-
-    public String getBbsTitle() {
-        return bbsTitle;
-    }
-
-    public void setBbsTitle(String bbsTitle) {
-        this.bbsTitle = bbsTitle;
     }
 
     public String getUserID() {
@@ -48,6 +41,14 @@ public class HireBbs{
         this.userID = userID;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getBbsDate() {
         return bbsDate;
     }
@@ -56,20 +57,20 @@ public class HireBbs{
         this.bbsDate = bbsDate;
     }
 
+    public String getBbsTitle() {
+        return bbsTitle;
+    }
+
+    public void setBbsTitle(String bbsTitle) {
+        this.bbsTitle = bbsTitle;
+    }
+
     public String getBbsContent() {
         return bbsContent;
     }
 
     public void setBbsContent(String bbsContent) {
         this.bbsContent = bbsContent;
-    }
-
-    public int getBbsEventState() {
-        return bbsEventState;
-    }
-
-    public void setBbsEventState(int bbsEventState) {
-        this.bbsEventState = bbsEventState;
     }
 
     public int getBbsAvailable() {
@@ -104,43 +105,99 @@ public class HireBbs{
         this.bbsThumbnail = bbsThumbnail;
     }
 
-    public String getBbsInstitution() {
-        return bbsInstitution;
+    public String getBbsState() {
+        return bbsState;
     }
 
-    public void setBbsInstitution(String bbsInstitution) {
-        this.bbsInstitution = bbsInstitution;
+    public void setBbsState(String bbsState) {
+        this.bbsState = bbsState;
     }
 
-    public String getBbsContactInformation() {
-        return bbsContactInformation;
+    public int getRecruitNum() {
+        return recruitNum;
     }
 
-    public void setBbsContactInformation(String bbsContactInformation) {
-        this.bbsContactInformation = bbsContactInformation;
+    public void setRecruitNum(int recruitNum) {
+        this.recruitNum = recruitNum;
     }
 
-    public int getBbsRecruitmentNumber() {
-        return bbsRecruitmentNumber;
+    public String getAgency() {
+        return agency;
     }
 
-    public void setBbsRecruitmentNumber(int bbsRecruitmentNumber) {
-        this.bbsRecruitmentNumber = bbsRecruitmentNumber;
+    public void setAgency(String agency) {
+        this.agency = agency;
     }
 
-    public String getBbsStartDate() {
-        return bbsStartDate;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setBbsStartDate(String bbsStartDate) {
-        this.bbsStartDate = bbsStartDate;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public String getBbsEndDate() {
-        return bbsEndDate;
+    public String getRecruitStart() {
+        return recruitStart;
     }
 
-    public void setBbsEndDate(String bbsEndDate) {
-        this.bbsEndDate = bbsEndDate;
+    public void setRecruitStart(String recruitStart) {
+        this.recruitStart = recruitStart;
+    }
+
+    public String getRecruitEnd() {
+        return recruitEnd;
+    }
+
+    public void setRecruitEnd(String recruitEnd) {
+        this.recruitEnd = recruitEnd;
+    }
+
+    public String getEduStart() {
+        return eduStart;
+    }
+
+    public void setEduStart(String eduStart) {
+        this.eduStart = eduStart;
+    }
+
+    public String getEduEnd() {
+        return eduEnd;
+    }
+
+    public void setEduEnd(String eduEnd) {
+        this.eduEnd = eduEnd;
+    }
+
+    public String getActiveStart() {
+        return activeStart;
+    }
+
+    public void setActiveStart(String activeStart) {
+        this.activeStart = activeStart;
+    }
+
+    public String getActiveEnd() {
+        return activeEnd;
+    }
+
+    public void setActiveEnd(String activeEnd) {
+        this.activeEnd = activeEnd;
+    }
+
+    public String getRealFileName() {
+        return realFileName;
+    }
+
+    public void setRealFileName(String realFileName) {
+        this.realFileName = realFileName;
+    }
+
+    public String getOriginalFileName() {
+        return originalFileName;
+    }
+
+    public void setOriginalFileName(String originalFileName) {
+        this.originalFileName = originalFileName;
     }
 }
