@@ -2,13 +2,13 @@ package model.dto;
 
 
 public class User {
-    private String userID;
-    private String userPW;
-    private String userName;
-    private String userGender;
-    private String userEmail;
-    private String userProfile;
-    private int userAuthority;
+    private String userID = "";
+    private String userPW = "";
+    private String userName = "";
+    private String userGender = "";
+    private String userEmail = "";
+    private String userProfile = "";
+    private int userAuthority = -1;
 
     public String getUserID() {
         return userID;

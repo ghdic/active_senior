@@ -3,7 +3,6 @@ package controller.tool;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MethodManager {
 

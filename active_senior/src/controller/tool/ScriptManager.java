@@ -1,5 +1,6 @@
 package controller.tool;
 
+import controller.dao.UserDAO;
 import model.dto.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +46,6 @@ public class ScriptManager {
     }
 
     public static void loginResult(HttpSession session, HttpServletResponse resp, User user, int result) throws IOException {
-//        resp.setContentType("text/html; charset=UTF-8");
-//        resp.setCharacterEncoding("utf-8");
         PrintWriter out = resp.getWriter();
 
         if (result == 1) {
@@ -69,7 +68,40 @@ public class ScriptManager {
             out.println("alert('데이터 베이스 오류가 발생했습니다.')");
             out.println("history.back()");
             out.println("</script>");
+        } else {
+            out.println("<script>");
+            out.println("alert('알수 없는 오류가 발생했습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
         }
-        out.println("</script>");
+    }
+
+    public static Boolean registerCheck(HttpServletResponse resp, User user) throws IOException {
+        PrintWriter out = resp.getWriter();
+        System.out.println(user.getUserID().equals(""));
+        if(user.getUserID().equals("") || user.getUserPW().equals("") || user.getUserName().equals("")
+                || user.getUserGender().equals("") || user.getUserEmail().equals("") || user.getUserProfile().equals("")) {
+            System.out.println("드루와");
+            out.println("<script>");
+            out.println("alert('입력되지 않은 사항이 있습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+            return false;
+        }
+        return true;
+    }
+
+    public static void registerResult(HttpServletResponse resp, int result) throws IOException {
+        PrintWriter out = resp.getWriter();
+        if(result == -2) {
+            out.println("<script>");
+            out.println("alert('회원가입에 실패하셨습니다.')");
+            out.println("</script>");
+        } else {
+            out.println("<script>");
+            out.println("alert('회원가입에 성공하셨습니다.')");
+            out.println("location.href = '/'");
+            out.println("</script>");
+        }
     }
 }

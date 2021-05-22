@@ -98,32 +98,6 @@ public class HireBbsDAO{
         return DataBaseManager.<HireBbs>insertData(hireBbs, "hireBbs");
     }
 
-//    public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
-//        ArrayList<String> insert_attr = new ArrayList<String>();
-//        ArrayList<String> insert_value = new ArrayList<String>();
-//        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
-//            if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
-//            if(method.invoke(hireBbs) == null) continue;
-//            Object obj = method.invoke(hireBbs);
-//            if (obj instanceof Integer)
-//                obj = Integer.toString((int)obj);
-//            else
-//                obj = "'" + obj + "'";
-//            insert_attr.add(MethodManager.getParamName(method));
-//            insert_value.add((String)obj);
-//        }
-//        String attr = String.join(", ", insert_attr);
-//        String value = String.join(", ", insert_value);
-//        String SQL = String.format("insert into hireBbs (%s) values (%s)", attr, value);
-//        try {
-//            PreparedStatement pstmt = conn.prepareStatement(SQL);
-//            return pstmt.executeUpdate();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return -2; // db error
-//    }
-
     public int updateHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
         if(hireBbs.getBbsID() == -1)
             return -1; // bbsID가 없음

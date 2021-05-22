@@ -4,6 +4,7 @@ package controller.listener;
 
 import model.dto.EduBbs;
 import model.dto.HireBbs;
+import model.dto.User;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,13 +26,14 @@ public class DtoListener implements ServletContextListener{
     public static HashMap<String, ArrayList<Method>> getMethodList = new HashMap<String, ArrayList<Method>>();
     public static HashMap<String, HashMap<String, Method>> setMethod = new HashMap<String, HashMap<String, Method>>();
     public static HashMap<String, ArrayList<Method>> setMethodList = new HashMap<String, ArrayList<Method>>();
-    private static HashMap<String, Class> dtoDict = new HashMap<String, Class>() {{
+    public static HashMap<String, Class> dtoDict = new HashMap<String, Class>() {{
+        put("user", User.class);
         put("hireBbs", HireBbs.class);
         put("eduBbs", EduBbs.class);
     }};
 
     private static ArrayList<String> dtoNameList = new ArrayList<String>(
-            Arrays.asList(new String[]{"hireBbs", "eduBbs"})
+            Arrays.asList(new String[]{"user", "hireBbs", "eduBbs"})
     );
     private DataSource dataSource;
     private Connection conn;

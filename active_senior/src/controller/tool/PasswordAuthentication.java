@@ -20,24 +20,15 @@ public final class PasswordAuthentication
     private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
     private static final int SIZE = 128;
     private static final Pattern layout = Pattern.compile("\\$31\\$(\\d\\d?)\\$(.{43})");
-    private final SecureRandom random;
-    private final int cost;
-
-    public PasswordAuthentication()
-    {
-        this(DEFAULT_COST);
-    }
+    private static SecureRandom random = new SecureRandom();;
+    private static int cost = DEFAULT_COST;
 
     /**
      * Create a password manager with a specified cost
-     *
      * @param cost the exponential computational cost of hashing a password, 0 to 30
      */
-    public PasswordAuthentication(int cost)
-    {
-        iterations(cost); /* Validate cost */
-        this.cost = cost;
-        this.random = new SecureRandom();
+    static {
+        iterations(DEFAULT_COST); /* Validate cost */
     }
 
     private static int iterations(int cost)
@@ -48,7 +39,7 @@ public final class PasswordAuthentication
     }
 
     // 랜덤한 8바이트를 솔트침, ID + 솔트값 + 솔트친 비밀번호 해쉬값 반환
-    public String hash(char[] password)
+    public static String hash(char[] password)
     {
         byte[] salt = new byte[SIZE / 8];
         random.nextBytes(salt);
@@ -61,7 +52,7 @@ public final class PasswordAuthentication
     }
 
     // (입력한 패스워드, 저장된 해쉬값)을 비교 인증
-    public boolean authenticate(char[] password, String token)
+    public static boolean authenticate(char[] password, String token)
     {
         Matcher m = layout.matcher(token);
         if (!m.matches())
@@ -92,12 +83,12 @@ public final class PasswordAuthentication
     }
 
 
-    public String hash(String password)
+    public static String hash(String password)
     {
         return hash(password.toCharArray());
     }
 
-    public boolean authenticate(String password, String token)
+    public static boolean authenticate(String password, String token)
     {
         return authenticate(password.toCharArray(), token);
     }

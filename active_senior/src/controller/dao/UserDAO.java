@@ -1,11 +1,14 @@
 package controller.dao;
 
 
+import controller.tool.DataBaseManager;
+import model.dto.HireBbs;
 import model.dto.User;
 import controller.tool.PasswordAuthentication;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,20 +51,7 @@ public class UserDAO {
         return -2; // 데이터베이스 오류
     }
 
-    public int register(User user) {
-        String SQL = "insert into user values (?, ?, ?, ?, ?, ?, Default)";
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, user.getUserID());
-            pstmt.setString(2, pwAuth.hash(user.getUserPW()));
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getUserGender());
-            pstmt.setString(5, user.getUserEmail());
-            pstmt.setString(6, user.getUserProfile());
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1;
+    public int register(User user) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.<User>insertData(user, "user");
     }
 }
