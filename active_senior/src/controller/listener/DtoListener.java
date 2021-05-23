@@ -31,6 +31,7 @@ public class DtoListener implements ServletContextListener{
         put("hireBbs", HireBbs.class);
         put("eduBbs", EduBbs.class);
     }};
+    public static HashMap<String, String> primaryColumnName = new HashMap<String, String>();
 
     private static ArrayList<String> dtoNameList = new ArrayList<String>(
             Arrays.asList(new String[]{"user", "hireBbs", "eduBbs"})
@@ -78,6 +79,13 @@ public class DtoListener implements ServletContextListener{
                 setMethod.put(dto, sh);
                 getMethodList.put(dto, ga);
                 setMethodList.put(dto, sa);
+
+                SQL = String.format("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = '%s' AND CONSTRAINT_NAME = 'PRIMARY'", dto);
+                pstmt = conn.prepareStatement(SQL);
+                rs = pstmt.executeQuery();
+                if(rs.next()) {
+                    primaryColumnName.put(dto, rs.getString(1));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -49,6 +49,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>account</servlet-name>
+        <jsp-file>/WEB-INF/account.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>account</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>appList</servlet-name>
         <jsp-file>/WEB-INF/appList.jsp</jsp-file>
     </servlet>

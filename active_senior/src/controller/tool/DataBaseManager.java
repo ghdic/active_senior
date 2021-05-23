@@ -27,8 +27,8 @@ public class DataBaseManager {
         }
     }
 
-    public static <T> T getData(ResultSet rs, String tableName, Class<T> c) throws SQLException, InvocationTargetException, IllegalAccessException, InstantiationException {
-        T data = c.newInstance();
+    public static <T> T getData(ResultSet rs, String tableName) throws SQLException, InvocationTargetException, IllegalAccessException, InstantiationException {
+        T data = (T) DtoListener.dtoDict.get(tableName).newInstance();
         ResultSetMetaData rsmd = rs.getMetaData();
         int colCnt = rsmd.getColumnCount();
         for (int i = 1; i <= colCnt; i++) {
@@ -44,13 +44,47 @@ public class DataBaseManager {
         return data;
     }
 
+    public static <T> int updateData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException {
+        String primaryKey = DtoListener.primaryColumnName.get(tableName);
+        String gName = DtoListener.toGetMethodName(primaryKey);
+        Method gMethod = DtoListener.returnMethod(DtoListener.dtoDict.get(tableName), gName);
+        ArrayList<String> update_list = new ArrayList<String>();
+        for (Method method : DtoListener.getMethodList.get(tableName)) {
+            if(method.getReturnType().equals(Integer.TYPE)) {
+                if((int)method.invoke(dto) == -1) continue;
+            } else {
+                if (method.invoke(dto).equals("")) continue;
+            }
+            Object obj = method.invoke(dto);
+            if (obj instanceof Integer)
+                obj = Integer.toString((int)obj);
+            else
+                obj = "'" + obj + "'";
+            update_list.add(MethodManager.getParamName(method) + "=" + obj);
+        }
+        String update_col = String.join(", ", update_list);
+        String SQL = String.format("update %s set %s where %s = ?", tableName, update_col, primaryKey);
+        System.out.println(SQL);
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setObject(1, gMethod.invoke(dto));
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -2; // db error
+    }
+
 
     public static <T> int insertData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException {
         ArrayList<String> insert_attr = new ArrayList<String>();
         ArrayList<String> insert_value = new ArrayList<String>();
         for (Method method : DtoListener.getMethodList.get(tableName)) {
-            if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(dto) == -1) continue;
-            if(method.invoke(dto) == "") continue;
+            if(method.getReturnType().equals(Integer.TYPE)) {
+                if((int)method.invoke(dto) == -1) continue;
+            } else {
+                if (method.invoke(dto).equals("")) continue;
+            }
             Object obj = method.invoke(dto);
             if (obj instanceof Integer)
                 obj = Integer.toString((int)obj);

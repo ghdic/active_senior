@@ -54,6 +54,14 @@ public class User {
         return userProfile;
     }
 
+    public String getUserProfilePath() {
+        if(userProfile.equals("")) {
+            return "/static/image/default/default-profile.png";
+        } else {
+            return "/static/user/profile_pic/" + userProfile;
+        }
+    }
+
     public void setUserProfile(String userProfile) {
         this.userProfile = userProfile;
     }

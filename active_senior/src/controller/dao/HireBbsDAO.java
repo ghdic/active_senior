@@ -42,7 +42,7 @@ public class HireBbsDAO{
             pstmt.setInt(2, require);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                HireBbs bbs = DataBaseManager.<HireBbs>getData(rs, "hireBbs", HireBbs.class);
+                HireBbs bbs = DataBaseManager.<HireBbs>getData(rs, "hireBbs");
                 list.add(bbs);
             }
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class HireBbsDAO{
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return DataBaseManager.<HireBbs>getData(rs, "hireBbs", HireBbs.class);
+                return DataBaseManager.<HireBbs>getData(rs, "hireBbs");
             }
         } catch (Exception e) {
             e.printStackTrace();

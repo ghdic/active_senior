@@ -1,7 +1,11 @@
+<%@ page import="controller.tool.ScriptManager" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="로그인 페이지"/>
 </jsp:include>
+<%
+	ScriptManager.alreadyLogin(session, response);
+%>
 <form action="/loginAction" method="post">
 	<h3>로그인 화면</h3>
 	<label>아이디:</label> <input type="text" placeholder="아이디" name="userID" maxlength="30"><br>

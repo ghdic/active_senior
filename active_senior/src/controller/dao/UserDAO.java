@@ -14,11 +14,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class UserDAO {
-    private DataSource dataSource;
-    private Connection conn;
-    private PasswordAuthentication pwAuth;
+    private static DataSource dataSource;
+    private static Connection conn;
+    private static PasswordAuthentication pwAuth;
 
-    public UserDAO() {
+    static {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
@@ -30,7 +30,7 @@ public class UserDAO {
         }
     }
 
-    public int login(String userID, String userPW) {
+    public static int login(String userID, String userPW) {
         String SQL = "select userPW from user where userID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -51,7 +51,29 @@ public class UserDAO {
         return -2; // 데이터베이스 오류
     }
 
-    public int register(User user) throws InvocationTargetException, IllegalAccessException {
+    public static int register(User user) throws InvocationTargetException, IllegalAccessException {
         return DataBaseManager.<User>insertData(user, "user");
+    }
+
+    public static int updateUser(User user) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.<User>updateData(user, "user");
+    }
+
+    public static User getUser(String userID) {
+        String SQL = "select * from user where userID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                return DataBaseManager.<User>getData(rs, "user");
+            } else {
+                System.out.println("hi");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // error
+
     }
 }
