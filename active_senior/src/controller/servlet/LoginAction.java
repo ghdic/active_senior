@@ -2,7 +2,7 @@ package controller.servlet;
 
 import controller.dao.UserDAO;
 import controller.tool.ScriptManager;
-import Model.dto.User;
+import model.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

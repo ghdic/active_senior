@@ -1,5 +1,5 @@
 <%@ page import="controller.tool.ScriptManager" %>
-<%@ page import="Model.dto.User" %>
+<%@ page import="model.dto.User" %>
 <%@ page import="controller.dao.UserDAO" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">

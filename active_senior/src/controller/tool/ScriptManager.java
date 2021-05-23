@@ -1,7 +1,7 @@
 package controller.tool;
 
-import Model.dto.HireBbs;
-import Model.dto.User;
+import model.dto.HireBbs;
+import model.dto.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

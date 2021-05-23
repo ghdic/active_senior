@@ -1,7 +1,7 @@
 package controller.dao;
 
 import controller.tool.DataBaseManager;
-import Model.dto.HireBbs;
+import model.dto.HireBbs;
 
 
 import javax.naming.Context;
