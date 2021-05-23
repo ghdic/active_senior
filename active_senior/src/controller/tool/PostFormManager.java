@@ -37,6 +37,7 @@ public class PostFormManager {
             T data = c.newInstance();
             for (FileItem item : items) {
                 if (item.isFormField()) {
+                    if(item.getString().equals(""))continue;
                     String sName = DtoListener.toSetMethodName(item.getFieldName());
                     Method sMethod = DtoListener.returnMethod(c, sName);
                     if(item.getFieldName().equals("userPW"))
@@ -47,7 +48,13 @@ public class PostFormManager {
                     if (item.getSize() > 0) {
                         String separator = File.separator;
                         String fileName = FileManager.getHashFileName(item.getName(), 30);
-                        File uploadFile = new File(realPath + separator + fileName);
+                        File uploadFile;
+                        if (item.getFieldName().equals("bbsThumbnail"))
+                            uploadFile = new File(realPath + separator + "thumbnail" + separator + fileName);
+                        else if (item.getFieldName().equals("userProfile"))
+                            uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
+                        else
+                            uploadFile = new File(realPath + separator + "upload" + separator + fileName);
                         item.write(uploadFile);
                         realFileNames.add(fileName);
                         originalFileNames.add(item.getName());
@@ -65,10 +72,12 @@ public class PostFormManager {
                 } else {
                     String sName = DtoListener.toSetMethodName("realFileName");
                     Method sMethod = DtoListener.returnMethod(c, sName);
-                    sMethod.invoke(data, String.join(",", realFileNames));
-                    sName = DtoListener.toSetMethodName("originalFileName");
-                    sMethod = DtoListener.returnMethod(c, sName);
-                    sMethod.invoke(data, String.join(",", originalFileNames));
+                    if (sMethod != null) {
+                        sMethod.invoke(data, String.join(",", realFileNames));
+                        sName = DtoListener.toSetMethodName("originalFileName");
+                        sMethod = DtoListener.returnMethod(c, sName);
+                        sMethod.invoke(data, String.join(",", originalFileNames));
+                    }
                 }
             }
 

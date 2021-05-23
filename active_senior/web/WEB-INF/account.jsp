@@ -6,7 +6,7 @@
 	<jsp:param name="title" value="계정정보 관리"/>
 </jsp:include>
 <%
-	String userID = ScriptManager.loginCheck(session, response);
+	String userID = ScriptManager.loginCheck(session, response, true);
 	User user = UserDAO.getUser(userID);
 	ScriptManager.userInfoCheck(response, user);
 %>
@@ -24,8 +24,8 @@
 	</div>
 	<label for="userEmail">이메일:</label>
 	<input type="text" placeholder="이메일" name="userEmail" id="userEmail" maxlength="50" value="<%= user.getUserEmail() %>"><br>
-	<label for="userProfile">프로필사진:</label>
-	<input type="file" name="userProfile" id="userProfile" maxlength="50"><br>
+	<label for="profile">프로필사진:</label>
+	<input type="file" name="userProfile" id="profile" maxlength="50" accept="image/*"><br>
 	<img src="<%= user.getUserProfilePath() %>" alt="프로필" id="profilePreview" width="100px" height="100px">
 
 	<input type="submit" value="업데이트">

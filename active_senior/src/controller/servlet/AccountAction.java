@@ -27,8 +27,8 @@ public class AccountAction extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
-        String userID = ScriptManager.loginCheck(session, resp);
-        User user = PostFormManager.<User>getPostData(req, "user", "/static/user/profile_pic");
+        String userID = ScriptManager.loginCheck(session, resp, true);
+        User user = PostFormManager.<User>getPostData(req, "user", "/static/user");
         ScriptManager.userInfoCheck(resp, user);
 
         if(ScriptManager.userMatchCheck(resp, user, userID)) {

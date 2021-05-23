@@ -64,7 +64,6 @@ public class DataBaseManager {
         }
         String update_col = String.join(", ", update_list);
         String SQL = String.format("update %s set %s where %s = ?", tableName, update_col, primaryKey);
-        System.out.println(SQL);
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setObject(1, gMethod.invoke(dto));

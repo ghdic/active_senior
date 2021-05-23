@@ -1,27 +1,23 @@
 package controller.dao;
 
-import controller.listener.DtoListener;
 import controller.tool.DataBaseManager;
-import controller.tool.MethodManager;
 import model.dto.HireBbs;
 
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 
 
 public class HireBbsDAO{
 
-    private DataSource dataSource;
-    private Connection conn;
+    private static DataSource dataSource;
+    private static Connection conn;
 
-    public HireBbsDAO() {
+    static {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
@@ -33,7 +29,7 @@ public class HireBbsDAO{
     }
 
     // start 지점으로부터 require 개의 게시글 리스트를 가져옴
-    public ArrayList<HireBbs> getPostList(int pageNumber, int require) {
+    public static ArrayList<HireBbs> getPostList(int pageNumber, int require) {
         String SQL = "select * from hireBbs where bbsAvailable = 1 order by bbsID desc limit ?, ?";
         ArrayList<HireBbs> list = new ArrayList<HireBbs>();
         try {
@@ -52,7 +48,7 @@ public class HireBbsDAO{
     }
 
     // 다음 페이지 존재하는지 확인
-    public boolean nextPage(int pageNumber, int require) {
+    public static boolean nextPage(int pageNumber, int require) {
         String SQL = "select bbsID from hireBbs where bbsAvailable = 1 order by bbsID desc limit ?, 1";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -67,7 +63,7 @@ public class HireBbsDAO{
     }
 
     // bbsID 로부터 post 가져옴
-    public HireBbs getPost(int bbsID) {
+    public static HireBbs getPost(int bbsID) {
         String SQL = "select * from hireBbs where bbsID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -82,7 +78,7 @@ public class HireBbsDAO{
         return null;
     }
 
-    public int deletePost(int bbsID) {
+    public static int deletePost(int bbsID) {
         String SQL = "update hireBbs set bbsAvailable = 0 where bbsID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -94,34 +90,12 @@ public class HireBbsDAO{
         return -1;
     }
 
-    public int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
+    public static int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
         return DataBaseManager.<HireBbs>insertData(hireBbs, "hireBbs");
     }
 
-    public int updateHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
-        if(hireBbs.getBbsID() == -1)
-            return -1; // bbsID가 없음
-        ArrayList<String> update_list = new ArrayList<String>();
-        for (Method method : DtoListener.getMethodList.get("hireBbs")) {
-            if(method.getReturnType().equals(Integer.TYPE) && (int)method.invoke(hireBbs) == -1) continue;
-            if(method.invoke(hireBbs) == null) continue;
-            Object obj = method.invoke(hireBbs);
-            if (obj instanceof Integer)
-                    obj = Integer.toString((int)obj);
-            else
-                obj = "'" + obj + "'";
-            update_list.add(MethodManager.getParamName(method) + "=" + obj);
-        }
-        String update_col = String.join(", ", update_list);
-        String SQL = String.format("update hireBbs set %s where bbsID = ?", update_col);
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, hireBbs.getBbsID());
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -2; // db error
+    public static int updateHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.<HireBbs>updateData(hireBbs, "hireBbs");
     }
 
 }

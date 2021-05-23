@@ -67,6 +67,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>appView</servlet-name>
+        <jsp-file>/WEB-INF/appView.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appView</servlet-name>
+        <url-pattern>/appView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>appWrite</servlet-name>
+        <jsp-file>/WEB-INF/appWrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appWrite</servlet-name>
+        <url-pattern>/appWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>navbar</servlet-name>
         <jsp-file>/WEB-INF/view/navbar.jsp</jsp-file>
     </servlet>

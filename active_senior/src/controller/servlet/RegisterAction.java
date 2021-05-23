@@ -24,7 +24,7 @@ public class RegisterAction extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html; charset=UTF-8");
-        User user = PostFormManager.<User>getPostData(req, "user", "/static/user/profile_pic");
+        User user = PostFormManager.<User>getPostData(req, "user", "/static/user");
         if(ScriptManager.registerCheck(resp, user)) {
             UserDAO userDAO = new UserDAO();
             int result = -2;

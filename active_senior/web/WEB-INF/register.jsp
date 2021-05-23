@@ -12,7 +12,7 @@
 		<input type="radio" name="userGender" value="여자">여자
 	</div>
 	<label for="userEmail">이메일:</label> <input type="text" placeholder="이메일" name="userEmail" id="userEmail" maxlength="50"><br>
-	<label for="userProfile">프로필사진:</label> <input type="file" name="userProfile" id="userProfile" maxlength="50"><br>
+	<label for="profile">프로필사진:</label> <input type="file" name="userProfile" id="profile" maxlength="50" accept="image/*"><br>
 	<img src="/static/image/default/default-profile.png" alt="프로필" id="profilePreview" width="100px" height="100px">
 	<input type="submit" value="회원가입">
 </form>
