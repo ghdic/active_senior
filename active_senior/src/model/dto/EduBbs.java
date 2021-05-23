@@ -1,4 +1,4 @@
-package model.dto;
+package Model.dto;
 
 public class EduBbs {
     private int bbsID = -1;

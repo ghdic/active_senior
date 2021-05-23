@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="controller.dao.HireBbsDAO" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="model.dto.HireBbs" %>
+<%@ page import="Model.dto.HireBbs" %>
 <%
 	String userID = null;
 	PrintWriter script = response.getWriter();

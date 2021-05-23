@@ -1,7 +1,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="controller.tool.ScriptManager" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.dto.HireBbs" %>
+<%@ page import="Model.dto.HireBbs" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="고용 게시판 글쓰기"/>

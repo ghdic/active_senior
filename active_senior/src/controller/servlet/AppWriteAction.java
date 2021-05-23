@@ -1,11 +1,10 @@
 package controller.servlet;
 
 import controller.dao.HireBbsDAO;
-import controller.tool.DateManger;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import Model.dto.HireBbs;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

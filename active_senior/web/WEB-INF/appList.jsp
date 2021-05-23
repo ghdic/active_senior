@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
-<%@ page import="model.dto.HireBbs" %>
+<%@ page import="Model.dto.HireBbs" %>
 <%@ page import="controller.dao.HireBbsDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="controller.tool.DateManger" %>

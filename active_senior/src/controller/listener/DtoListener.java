@@ -2,9 +2,9 @@ package controller.listener;
 
 
 
-import model.dto.EduBbs;
-import model.dto.HireBbs;
-import model.dto.User;
+import Model.dto.EduBbs;
+import Model.dto.HireBbs;
+import Model.dto.User;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

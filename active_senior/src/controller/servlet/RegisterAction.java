@@ -3,7 +3,7 @@ package controller.servlet;
 import controller.dao.UserDAO;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.User;
+import Model.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="controller.tool.ImageManager" %>
 <%@ page import="controller.tool.DateManger" %>
-<jsp:useBean id="hirebbs" class="model.dto.HireBbs" scope="page"/>
+<jsp:useBean id="hirebbs" class="Model.dto.HireBbs" scope="page"/>
 <jsp:setProperty name="hirebbs" property="bbsTitle"/>
 <jsp:setProperty name="hirebbs" property="bbsContent"/>
 <jsp:setProperty name="hirebbs" property="bbsEventState"/>

@@ -1,7 +1,6 @@
 package controller.tool;
 
 import controller.listener.DtoListener;
-import model.dto.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;

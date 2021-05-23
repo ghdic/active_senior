@@ -1,9 +1,7 @@
 package controller.tool;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import controller.dao.UserDAO;
-import model.dto.HireBbs;
-import model.dto.User;
+import Model.dto.HireBbs;
+import Model.dto.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

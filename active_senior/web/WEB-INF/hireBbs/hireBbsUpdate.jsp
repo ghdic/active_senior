@@ -1,5 +1,5 @@
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="model.dto.HireBbs" %>
+<%@ page import="Model.dto.HireBbs" %>
 <%@ page import="controller.dao.HireBbsDAO" %>
 <%@ page import="controller.tool.DateManger" %>
 <%@ page import="java.util.Date" %>
