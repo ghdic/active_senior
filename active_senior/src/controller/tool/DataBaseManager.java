@@ -48,7 +48,7 @@ public class DataBaseManager {
         String primaryKey = DtoListener.primaryColumnName.get(tableName);
         String gName = DtoListener.toGetMethodName(primaryKey);
         Method gMethod = DtoListener.returnMethod(DtoListener.dtoDict.get(tableName), gName);
-        ArrayList<String> update_list = new ArrayList<String>();
+        ArrayList<String> update_list = new ArrayList<>();
         for (Method method : DtoListener.getMethodList.get(tableName)) {
             if(method.getReturnType().equals(Integer.TYPE)) {
                 if((int)method.invoke(dto) == -1) continue;

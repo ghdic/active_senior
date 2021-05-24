@@ -42,25 +42,39 @@ public class PostFormManager {
                     Method sMethod = DtoListener.returnMethod(c, sName);
                     if(item.getFieldName().equals("userPW"))
                         sMethod.invoke(data, PasswordAuthentication.hash(item.getString()));
-                    else
-                        sMethod.invoke(data, item.getString());
+                    else {
+                        if(sMethod.getParameterTypes()[0].getTypeName().equals("int")) {
+                            int value;
+                            try {
+                                value = Integer.parseInt(item.getString());
+                            } catch (Exception e) {
+                                value = -1;
+                            }
+                            sMethod.invoke(data, value);
+                        } else {
+                            sMethod.invoke(data, item.getString());
+                        }
+                    }
                 } else {
                     if (item.getSize() > 0) {
                         String separator = File.separator;
                         String fileName = FileManager.getHashFileName(item.getName(), 30);
                         File uploadFile;
-                        if (item.getFieldName().equals("bbsThumbnail"))
+                        if (item.getFieldName().equals("bbsThumbnail")) {
                             uploadFile = new File(realPath + separator + "thumbnail" + separator + fileName);
-                        else if (item.getFieldName().equals("userProfile"))
+                            String sName = DtoListener.toSetMethodName(item.getFieldName());
+                            Method sMethod = DtoListener.returnMethod(c, sName);
+                            sMethod.invoke(data, fileName);
+                        } else if (item.getFieldName().equals("userProfile")) {
                             uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
-                        else
-                            uploadFile = new File(realPath + separator + "upload" + separator + fileName);
-                        item.write(uploadFile);
-                        realFileNames.add(fileName);
-                        originalFileNames.add(item.getName());
-                        if(item.getFieldName().equals("userProfile")) {
                             ImageManager.imageResize(realPath, fileName, 200, 200);
+                        } else {
+                            uploadFile = new File(realPath + separator + "upload" + separator + fileName);
+                            realFileNames.add(fileName);
+                            originalFileNames.add(item.getName());
                         }
+                        item.write(uploadFile);
+
                     }
                 }
             }

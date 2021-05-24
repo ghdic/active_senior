@@ -50,14 +50,12 @@ public class ScriptManager {
 
     public static void loginResult(HttpSession session, HttpServletResponse resp, User user, int result) throws IOException {
         PrintWriter out = resp.getWriter();
-        System.out.println(result);
         if (result == 1) {
             session.setAttribute("userID", user.getUserID());
             out.println("<script>");
             out.println("location.href = '/'");
             out.println("</script>");
         } else if (result == 0) {
-            System.out.println("hi");
             out.println("<script>");
             out.println("alert('비밀번호가 틀립니다')");
             out.println("history.back()");
@@ -105,11 +103,12 @@ public class ScriptManager {
         }
     }
 
-    public static Boolean userMatchCheck(HttpServletResponse resp, User user, String userID) throws IOException {
+    public static Boolean userMatchCheck(HttpServletResponse resp, String curUserID, String userID) throws IOException {
         PrintWriter out = resp.getWriter();
-        if(!user.getUserID().equals(userID)) {
+
+        if(!curUserID.equals(userID)) {
             out.println("<script>");
-            out.println("alert('유저 정보가 일치하지 않습니다')");
+            out.println("alert('접근 권한이 없습니다.')");
             out.println("history.back()");
             out.println("</script>");
             return false;
@@ -152,43 +151,60 @@ public class ScriptManager {
         }
         if(bbsID == -1) {
             out.println("<script>");
-            out.println("alert('삭제 되었거나 유효하지 않은 글입니다')");
+            out.println("alert('유효하지 않은 글입니다')");
             out.println("history.back()");
             out.println("</script>");
         }
         return bbsID;
     }
 
+    public static <T> void checkPost(HttpServletResponse resp, T post) throws IOException {
+        PrintWriter out = resp.getWriter();
+
+        if (post == null) {
+            out.println("<script>");
+            out.println("alert('삭제되었거나 유효하지 않은 글입니다')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+    }
+
     public static boolean checkWirteHireBbs(HttpServletResponse resp, HireBbs hireBbs) throws IOException, ParseException {
         PrintWriter out = resp.getWriter();
         if (hireBbs.getBbsTitle().equals("") || hireBbs.getBbsContent().equals("") || hireBbs.getBbsState().equals("") ||
-                hireBbs.getBbsThumbnail().equals("") || hireBbs.getRecruitNum() == -1 || hireBbs.getAgency().equals("") ||
+                hireBbs.getRecruitNum() == -1 || hireBbs.getAgency().equals("") ||
                 hireBbs.getDepartment().equals("") || hireBbs.getRecruitStart().equals("") || hireBbs.getRecruitEnd().equals("") ||
                 hireBbs.getEduStart().equals("") || hireBbs.getEduEnd().equals("") || hireBbs.getActiveStart().equals("") ||
                 hireBbs.getActiveEnd().equals("")) {
             out.println("<script>");
-            out.println("alert('입력이 안 된 사항이 있습니다')");
+            out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
             out.println("history.back()");
             out.println("</script>");
             return false;
         } else if (DateManger.compareDate(hireBbs.getRecruitStart(), hireBbs.getRecruitEnd()) > 0 ||
                 DateManger.compareDate(hireBbs.getEduStart(), hireBbs.getEduEnd()) > 0 ||
                 DateManger.compareDate(hireBbs.getActiveStart(), hireBbs.getActiveEnd()) > 0){
+            out.println("<script>");
             out.println("alert('시작 날짜가 끝나는 날짜보다 큽니다')");
             out.println("history.back()");
             out.println("</script>");
             return false;
         }
+
         return true;
     }
 
     public static void writeResult(HttpServletResponse resp, int result, String href) throws IOException {
         PrintWriter out = resp.getWriter();
         if (result == -2) {
+            out.println("<script>");
             out.println("alert('글쓰기에 오류가 발생하였습니다.')");
             out.println("history.back()");
+            out.println("</script>");
         } else {
+            out.println("<script>");
             out.println(String.format("location.href = '%s'", href));
+            out.println("</script>");
         }
     }
 }

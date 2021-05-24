@@ -70,7 +70,7 @@ public class HireBbsDAO{
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return DataBaseManager.<HireBbs>getData(rs, "hireBbs");
+                return DataBaseManager.getData(rs, "hireBbs");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,11 +91,11 @@ public class HireBbsDAO{
     }
 
     public static int insertHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
-        return DataBaseManager.<HireBbs>insertData(hireBbs, "hireBbs");
+        return DataBaseManager.insertData(hireBbs, "hireBbs");
     }
 
     public static int updateHireBbs(HireBbs hireBbs) throws InvocationTargetException, IllegalAccessException {
-        return DataBaseManager.<HireBbs>updateData(hireBbs, "hireBbs");
+        return DataBaseManager.updateData(hireBbs, "hireBbs");
     }
 
 }

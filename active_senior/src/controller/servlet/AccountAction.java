@@ -28,10 +28,10 @@ public class AccountAction extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
-        User user = PostFormManager.<User>getPostData(req, "user", "/static/user");
+        User user = PostFormManager.getPostData(req, "user", "/static/user");
         ScriptManager.userInfoCheck(resp, user);
 
-        if(ScriptManager.userMatchCheck(resp, user, userID)) {
+        if(ScriptManager.userMatchCheck(resp, user.getUserID(), userID)) {
             int result = -2;
             try {
                 result = UserDAO.updateUser(user);

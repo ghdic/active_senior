@@ -85,6 +85,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>appUpdate</servlet-name>
+        <jsp-file>/WEB-INF/appUpdate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appUpdate</servlet-name>
+        <url-pattern>/appUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>navbar</servlet-name>
         <jsp-file>/WEB-INF/view/navbar.jsp</jsp-file>
     </servlet>

@@ -10,8 +10,8 @@
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);
 	int bbsID = ScriptManager.checkBbs(request, response);
-	HireBbs hireBbs = new HireBbsDAO().getPost(bbsID);
-
+	HireBbs hireBbs = HireBbsDAO.getPost(bbsID);
+	ScriptManager.checkPost(response, hireBbs);
 %>
 <table border="1px">
 	<thead>
@@ -77,8 +77,8 @@
 	</tr>
 	<% if(userID != null && userID.equals(hireBbs.getUserID())) { %>
 	<tr>
-		<td><button onclick="location.href='/appUpdate?bbsID=<%= bbsID %>'">게시글 수정</button></td>
-		<td><button onclick="location.href='/appDeleteAction?bbsID=<%= bbsID %>'">게시글 삭제</button></td>
+		<td><a href="/appUpdate?bbsID=<%= bbsID %>">게시글 수정</a></td>
+		<td><a href="/appDeleteAction?bbsID=<%= bbsID %>" onclick="return confirm('정말로 삭제하시겠습니까?')">게시글 삭제</a></td>
 	</tr>
 	<% } %>
 	</tbody>

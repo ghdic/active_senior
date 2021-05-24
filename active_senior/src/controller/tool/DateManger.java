@@ -9,14 +9,14 @@ public class DateManger {
     public static String getSimpleDate(String d) throws ParseException {
         if(d.equals("")) return "";
         Date date =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
-        DateFormat dateFormat  = new SimpleDateFormat("MM-dd HH");
+        DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd");
         String sd = dateFormat.format(date);
         return sd;
     }
 
     public static String getSimpleDate(Date d) throws ParseException {
         if(d == null) return "";
-        DateFormat dateFormat  = new SimpleDateFormat("MM-dd HH");
+        DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd");
         String sd = dateFormat.format(d);
         return sd;
     }

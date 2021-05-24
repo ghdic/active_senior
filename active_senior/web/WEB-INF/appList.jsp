@@ -14,7 +14,7 @@
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
 %>
-<table style="border: 1px solid #dddddd; text-align: center">
+<table style="text-align: center" border="1px">
 	<thead>
 	<tr>
 		<th>섬네일</th>
