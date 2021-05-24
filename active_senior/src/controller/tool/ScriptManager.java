@@ -1,7 +1,5 @@
 package controller.tool;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import controller.dao.UserDAO;
 import model.dto.HireBbs;
 import model.dto.User;
 

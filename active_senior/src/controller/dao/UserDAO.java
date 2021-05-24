@@ -2,7 +2,6 @@ package controller.dao;
 
 
 import controller.tool.DataBaseManager;
-import model.dto.HireBbs;
 import model.dto.User;
 import controller.tool.PasswordAuthentication;
 import javax.naming.Context;

@@ -1,7 +1,6 @@
 package controller.tool;
 
 import controller.listener.DtoListener;
-import model.dto.HireBbs;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

@@ -1,7 +1,6 @@
 package controller.servlet;
 
 import controller.dao.UserDAO;
-import controller.tool.DataBaseManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
 import model.dto.User;

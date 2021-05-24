@@ -111,6 +111,15 @@
         <url-pattern>/view/footer</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>introduce</servlet-name>
+        <jsp-file>/WEB-INF/introduce.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>introduce</servlet-name>
+        <url-pattern>/introduce</url-pattern>
+    </servlet-mapping>
+
 
 
     <filter>

@@ -1,216 +1,70 @@
-// SCROLLMAGIC
-const controller = new ScrollMagic.Controller();
-
-// --- Section 1 Start ---
-const section1 = document.querySelector('#section1')
-const video1 = section1.querySelector('#active_senior1')
-// const text1 = section1.querySelector('#text1')
-
-// Scenes1
-let scene1 = new ScrollMagic.Scene({
-    duration: 7000,
-    triggerElement: section1,
-    triggerHook: 0
-})
-.setPin(section1)
-.addTo(controller)
-
-// Text Animation 1
-// const textAnim1 = TweenMax.fromTo(text1, 7, {opacity: 1}, {opacity: 0})
-
-// let text_scene1 = new ScrollMagic.Scene({
-//     duration: 7000,
-//     triggerElement: section1,
-//     triggerHook: 0
-// })
-// .setTween(textAnim1)
-// .addIndicators()
-// .addTo(controller)
-
-// --- Section 1 End ---
-
-// --- Section 2 Start ---
-const section2 = document.querySelector('#section2')
-const video2 = section2.querySelector('#active_senior2')
-
-// Scenes2
-let scene2 = new ScrollMagic.Scene({
-    duration: 7500,
-    triggerElement: section2,
-    triggerHook: 0
-})
-.setPin(section2)
-.addTo(controller)
-
-// Text Animation 2
-const textAnim2 = TweenMax.staggerFrom("#text2", 2, {
-    ease:Back.easeOut,
-    opacity: 0,
-    y: 200,
-    delay: 0.5,
-    immediatelyRender: false
-}, 0.2);
-
-let text_scene2 = new ScrollMagic.Scene({
-    triggerElement: section2,
-    triggerHook: 0
-})
-.setTween(textAnim2)
-.addTo(controller)
-
-// --- Section 2 End ---
+$( document ).ready(function() {
+    // Main variables
+    var $aboutTitle = $('.about-myself .content h2');
+    var $developmentWrapper = $('.development-wrapper');
+    var developmentIsVisible = false;
 
 
-// --- Section 3 Start ---
-const section3 = document.querySelector('#section3')
-const video3 = section3.querySelector('#active_senior3')
+    /* ####### HERO SECTION ####### */
 
-// Scenes3
-let scene3 = new ScrollMagic.Scene({
-    duration: 9500,
-    triggerElement: section3,
-    triggerHook: 0
-})
-.setPin(section3)
-.addTo(controller)
-
-// Text Animation 3
-const textAnim3 = TweenMax.staggerFrom("#text3", 2, {
-    ease:Back.easeOut,
-    opacity: 0,
-    y: 200,
-    delay: 0.5,
-    immediatelyRender: false
-}, 0.2);
-
-let text_scene3 = new ScrollMagic.Scene({
-    triggerElement: section3,
-    triggerHook: 0
-})
-.setTween(textAnim3)
-.addTo(controller)
-
-// --- Section 3 End ---
+    $('.hero .content .header').delay(500).animate({
+        'opacity':'1',
+        'top': '50%'
+    },1000);
 
 
-// --- Section 4 Start ---
-const section4 = document.querySelector('#section4')
-const video4 = section4.querySelector('#active_senior4')
+    $(window).scroll( function(){
 
-// Scenes4
-let scene4 = new ScrollMagic.Scene({
-    duration: 7000,
-    triggerElement: section4,
-    triggerHook: 0
-})
-.setPin(section4)
-.addTo(controller)
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
 
-// Text Animation 4
-const textAnim4 = TweenMax.staggerFrom("#text4", 2, {
-    ease:Back.easeOut,
-    opacity: 0,
-    y: 200,
-    delay: 0.5,
-    immediatelyRender: false
-}, 0.2);
+        /* ##### ABOUT MYSELF SECTION #### */
+        if( bottom_of_window > ($aboutTitle.offset().top + $aboutTitle.outerHeight())){
+            $('.about-myself .content h2').addClass('aboutTitleVisible');
+        }
+        /* ##### produce SECTION #### */
 
-let text_scene4 = new ScrollMagic.Scene({
-    triggerElement: section4,
-    triggerHook: 0
-})
-.setTween(textAnim4)
-.addTo(controller)
+        // Check the location of each element hidden */
+        $('.produce .content .hidden').each( function(i){
 
-// --- Section 4 End ---
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
 
+            /* If the object is completely visible in the window, fadeIn it */
+            if( bottom_of_window > bottom_of_object ){
 
-// --- Section 5 Start ---
-const section5 = document.querySelector('#section5')
-const video5 = section5.querySelector('#active_senior5')
+                $(this).animate({
+                    'opacity':'1',
+                    'margin-left': '0'
+                },600);
+            }
+        });
 
-// Scenes5
-let scene5 = new ScrollMagic.Scene({
-    duration: 7000,
-    triggerElement: section5,
-    triggerHook: 0
-})
-.setPin(section5)
-.addTo(controller)
+        /*###### SKILLS SECTION ######*/
 
-// Text Animation 5
-const textAnim5 = TweenMax.staggerFrom("#text5", 2, {
-    ease:Back.easeOut,
-    opacity: 0,
-    y: 200,
-    delay: 0.5,
-    immediatelyRender: false
-}, 0.2);
+        var middle_of_developmentWrapper = $developmentWrapper.offset().top + $developmentWrapper.outerHeight()/2;
 
-let text_scene5 = new ScrollMagic.Scene({
-    triggerElement: section5,
-    triggerHook: 0
-})
-.setTween(textAnim5)
-.addTo(controller)
+        if((bottom_of_window > middle_of_developmentWrapper)&& (developmentIsVisible == false)){
 
-// --- Section 5 End ---
+            $('.skills-bar-container li').each( function(){
 
+                var $barContainer = $(this).find('.bar-container');
+                var dataPercent = parseInt($barContainer.data('percent'));
+                var elem = $(this).find('.progressbar');
+                var percent = $(this).find('.percent');
+                var width = 0;
 
-// --- Section 6 Start ---
-const section6 = document.querySelector('#section6')
-const video6 = section6.querySelector('#active_senior6')
+                var id = setInterval(frame, 15);
 
-// Scenes6
-let scene6 = new ScrollMagic.Scene({
-    duration: 7000,
-    triggerElement: section6,
-    triggerHook: 0
-})
-.setPin(section6)
-.addTo(controller)
-
-// Text Animation 6
-const textAnim6 = TweenMax.staggerFrom("#text6", 2, {
-    ease:Back.easeOut,
-    opacity: 0,
-    y: 200,
-    delay: 0.5,
-    immediatelyRender: false
-}, 0.2);
-
-let text_scene6 = new ScrollMagic.Scene({
-    triggerElement: section6,
-    triggerHook: 0
-})
-.setTween(textAnim6)
-.addTo(controller)
-
-// --- Section 6 End ---
-
-
-
-
-// Video Animation
-let accelamount = 0.1
-let scrollpos = 0
-let delay = 0
-
-
-scene1.on('update', (e) => {
-    scrollpos = e.scrollPos / 1000;
-})
-
-
-setInterval(() => {
-    delay += (scrollpos - delay) * accelamount
-    video1.currentTime = delay // 부드럽게 멈추게하기 위해서 scrollpos가 아닌 delay 사용
-    video2.currentTime = delay - 7;
-    video3.currentTime = delay - 16;
-    video4.currentTime = delay - 26;
-    video5.currentTime = delay - 34;
-    video6.currentTime = delay - 42;
-}, 33.3)
-
-
-
+                function frame() {
+                    if (width >= dataPercent) {
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        elem.css("width", width+"%");
+                        percent.html(width+" %");
+                    }
+                }
+            });
+            developmentIsVisible = true;
+        }
+    }); // -- End window scroll --
+});
