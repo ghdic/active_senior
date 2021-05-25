@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
+import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 
 public class DataBaseManager {
@@ -58,7 +59,7 @@ public class DataBaseManager {
             if (obj instanceof Integer)
                 obj = Integer.toString((int)obj);
             else
-                obj = "'" + obj + "'";
+                obj = "'" + htmlSpecialCharacterToCode(obj.toString()) + "'";
             update_list.add(MethodManager.getParamName(method) + "=" + obj);
         }
         String update_col = String.join(", ", update_list);
@@ -86,8 +87,12 @@ public class DataBaseManager {
             Object obj = method.invoke(dto);
             if (obj instanceof Integer)
                 obj = Integer.toString((int)obj);
-            else
-                obj = "'" + obj + "'";
+            else {
+                if(method.getName().equals("getBbsContent"))
+                    obj = "'" + htmlSpecialCharacterToCodeContent(obj.toString()) + "'";
+                else
+                    obj = "'" + htmlSpecialCharacterToCode(obj.toString()) + "'";
+            }
             insert_attr.add(MethodManager.getParamName(method));
             insert_value.add((String)obj);
         }
@@ -101,5 +106,22 @@ public class DataBaseManager {
             e.printStackTrace();
         }
         return -2; // db error
+    }
+
+    public static String htmlSpecialCharacterToCode(String html) {
+        return html.replace("\"", "&#34;")
+                .replace("'", "&#39;")
+                .replace("\\", "&#92;")
+                .replace("/", "&#47;")
+                .replace("<", "&#60;")
+                .replace(">", "&#62;");
+    }
+
+    public static String htmlSpecialCharacterToCodeContent(String html) {
+        return html.replace("\"", "&#34;")
+                .replace("'", "&#39;")
+                .replace("\\", "&#92;")
+                .replace("<script>", "<block>")
+                .replace("</script>", "</block>");
     }
 }

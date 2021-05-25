@@ -48,7 +48,7 @@ public class AppUpdateAction extends HttpServlet {
                 e.printStackTrace();
                 result = -2;
             }
-            ScriptManager.writeResult(resp, result, "/appList");
+            ScriptManager.writeResult(resp, result, "/appList", "updateHireBbsContentAuto");
         }
     }
 }

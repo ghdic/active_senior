@@ -73,9 +73,7 @@ public class HireBbs{
         this.bbsTitle = bbsTitle;
     }
 
-    public String getBbsContent() {
-        return bbsContent;
-    }
+    public String getBbsContent() { return bbsContent; }
 
     public void setBbsContent(String bbsContent) {
         this.bbsContent = bbsContent;

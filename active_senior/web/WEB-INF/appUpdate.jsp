@@ -37,10 +37,13 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="radio" name="bbsState" value="종료" <%= hireBbs.getBbsState().equals("종료") ? "checked":"" %>>종료
-				<input type="radio" name="bbsState" value="신청·접수중" <%= hireBbs.getBbsState().equals("신청·접수중") ? "checked":"" %>>신청·접수중
-				<input type="radio" name="bbsState" value="마감" <%= hireBbs.getBbsState().equals("마감") ? "checked":"" %>>마감
-				<input type="radio" name="bbsState" value="공지" <%= hireBbs.getBbsState().equals("공지") ? "checked":"" %>>공지
+				<label for="bbsState">게시판 상태 : </label>
+				<select name="bbsState" id="bbsState">
+					<option value="종료">종료</option>
+					<option value="신청·접수중">신청·접수중</option>
+					<option value="마감">마감</option>
+					<option value="공지">공지</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
@@ -79,8 +82,9 @@
 <script>
     $('#summernote').summernote('code', '')
     $('#summernote').summernote('pasteHTML', '<%= hireBbs.getBbsContent() %>')
+    $('#bbsState').val('<%= hireBbs.getBbsState() %>')
 </script>
 <script src="/static/profilePreview.js"></script>
-<script src="/static/bbs.js"></script>
+<script src="/static/hireBbsUpdate.js"></script>
 
 <jsp:include page="/view/footer"/>

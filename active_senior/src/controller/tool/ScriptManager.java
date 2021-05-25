@@ -192,7 +192,7 @@ public class ScriptManager {
         return true;
     }
 
-    public static void writeResult(HttpServletResponse resp, int result, String href) throws IOException {
+    public static void writeResult(HttpServletResponse resp, int result, String href, String name) throws IOException {
         PrintWriter out = resp.getWriter();
         if (result == -2) {
             out.println("<script>");
@@ -201,6 +201,7 @@ public class ScriptManager {
             out.println("</script>");
         } else {
             out.println("<script>");
+            out.println(String.format("localStorage.removeItem('%s')", name));
             out.println(String.format("location.href = '%s'", href));
             out.println("</script>");
         }

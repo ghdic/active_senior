@@ -32,15 +32,15 @@ public class AppWriteAction extends HttpServlet {
         HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
         int result = -2;
         try {
-            if(!ScriptManager.checkWirteHireBbs(resp, hireBbs)) {
+            if(ScriptManager.checkWirteHireBbs(resp, hireBbs)) {
                 hireBbs.setUserID(userID);
                 hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
                 result = HireBbsDAO.insertHireBbs(hireBbs);
-            }
+            } else return;
         } catch (Exception e) {
             e.printStackTrace();
             result = -2;
         }
-        ScriptManager.writeResult(resp, result, "/appList");
+        ScriptManager.writeResult(resp, result, "/appList", "writeHireBbsContentAuto");
     }
 }
