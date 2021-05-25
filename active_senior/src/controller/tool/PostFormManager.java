@@ -58,7 +58,7 @@ public class PostFormManager {
                     if (item.getSize() > 0) {
                         String separator = File.separator;
                         String fileName = FileManager.getHashFileName(item.getName(), 30);
-                        File uploadFile;
+                        File uploadFile = null;
                         if (item.getFieldName().equals("bbsThumbnail")) {
                             uploadFile = new File(realPath + separator + "thumbnail" + separator + fileName);
                             String sName = DtoListener.toSetMethodName(item.getFieldName());
@@ -67,12 +67,13 @@ public class PostFormManager {
                         } else if (item.getFieldName().equals("userProfile")) {
                             uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
                             ImageManager.imageResize(realPath, fileName, 200, 200);
-                        } else {
+                        } else if (item.getFieldName().equals("files")) {
                             uploadFile = new File(realPath + separator + "upload" + separator + fileName);
                             realFileNames.add(fileName);
                             originalFileNames.add(item.getName());
                         }
-                        item.write(uploadFile);
+                        if (uploadFile != null)
+                            item.write(uploadFile);
 
                     }
                 }

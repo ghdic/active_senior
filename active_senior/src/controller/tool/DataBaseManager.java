@@ -58,8 +58,13 @@ public class DataBaseManager {
             Object obj = method.invoke(dto);
             if (obj instanceof Integer)
                 obj = Integer.toString((int)obj);
-            else
-                obj = "'" + htmlSpecialCharacterToCode(obj.toString()) + "'";
+            else {
+                if(method.getName().equals("getBbsContent"))
+                    obj = "'" + htmlSpecialCharacterToCodeContent(obj.toString()) + "'";
+                else
+                    obj = "'" + htmlSpecialCharacterToCode(obj.toString()) + "'";
+            }
+
             update_list.add(MethodManager.getParamName(method) + "=" + obj);
         }
         String update_col = String.join(", ", update_list);

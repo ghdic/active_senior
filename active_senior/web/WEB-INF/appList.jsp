@@ -9,10 +9,7 @@
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);
-	int pageNumber = 1;
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-	}
+	int pageNumber = ScriptManager.pageNumberCheck(request);
 %>
 <table style="text-align: center" border="1px">
 	<thead>

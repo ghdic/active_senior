@@ -94,6 +94,153 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>eduList</servlet-name>
+        <jsp-file>/WEB-INF/eduList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eduList</servlet-name>
+        <url-pattern>/eduList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>eduView</servlet-name>
+        <jsp-file>/WEB-INF/eduView.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eduView</servlet-name>
+        <url-pattern>/eduView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>eduWrite</servlet-name>
+        <jsp-file>/WEB-INF/eduWrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eduWrite</servlet-name>
+        <url-pattern>/eduWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>eduUpdate</servlet-name>
+        <jsp-file>/WEB-INF/eduUpdate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eduUpdate</servlet-name>
+        <url-pattern>/eduUpdate</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>infoList</servlet-name>
+        <jsp-file>/WEB-INF/infoList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>infoList</servlet-name>
+        <url-pattern>/infoList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>infoView</servlet-name>
+        <jsp-file>/WEB-INF/infoView.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>infoView</servlet-name>
+        <url-pattern>/infoView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>infoWrite</servlet-name>
+        <jsp-file>/WEB-INF/infoWrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>infoWrite</servlet-name>
+        <url-pattern>/infoWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>infoUpdate</servlet-name>
+        <jsp-file>/WEB-INF/infoUpdate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>infoUpdate</servlet-name>
+        <url-pattern>/infoUpdate</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>hobbyList</servlet-name>
+        <jsp-file>/WEB-INF/hobbyList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hobbyList</servlet-name>
+        <url-pattern>/hobbyList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>hobbyView</servlet-name>
+        <jsp-file>/WEB-INF/hobbyView.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hobbyView</servlet-name>
+        <url-pattern>/hobbyView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>hobbyWrite</servlet-name>
+        <jsp-file>/WEB-INF/hobbyWrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hobbyWrite</servlet-name>
+        <url-pattern>/hobbyWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>hobbyUpdate</servlet-name>
+        <jsp-file>/WEB-INF/hobbyUpdate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hobbyUpdate</servlet-name>
+        <url-pattern>/hobbyUpdate</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>cmntyList</servlet-name>
+        <jsp-file>/WEB-INF/cmntyList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cmntyList</servlet-name>
+        <url-pattern>/cmntyList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cmntyView</servlet-name>
+        <jsp-file>/WEB-INF/cmntyView.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cmntyView</servlet-name>
+        <url-pattern>/cmntyView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cmntyWrite</servlet-name>
+        <jsp-file>/WEB-INF/cmntyWrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cmntyWrite</servlet-name>
+        <url-pattern>/cmntyWrite</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cmntyUpdate</servlet-name>
+        <jsp-file>/WEB-INF/cmntyUpdate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cmntyUpdate</servlet-name>
+        <url-pattern>/cmntyUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>navbar</servlet-name>
         <jsp-file>/WEB-INF/view/navbar.jsp</jsp-file>
     </servlet>

@@ -50,8 +50,8 @@
 		<li class="dropdown">
 			<a href="#" class="nav-item">교육</a>
 			<div class="dropdown-content">
-				<a href="/eduVideoList">교육영상</a>
-				<a href="/eduReviewList">교육후기</a>
+				<a href="/eduList?category=0">교육영상</a>
+				<a href="/eduList?category=1">교육후기</a>
 			</div>
 		</li>
 		<li class="dropdown">

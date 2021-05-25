@@ -66,13 +66,25 @@ public class UserDAO {
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
                 return DataBaseManager.<User>getData(rs, "user");
-            } else {
-                System.out.println("hi");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null; // error
+    }
 
+    public static int getUserAuthority(String userID) {
+        String SQL = "select userAuthority from user where userID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -2; // DB Error
     }
 }

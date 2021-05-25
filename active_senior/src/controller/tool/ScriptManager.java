@@ -206,4 +206,35 @@ public class ScriptManager {
             out.println("</script>");
         }
     }
+
+    public static int pageNumberCheck(HttpServletRequest req) {
+        int pageNumber = 1;
+        if (req.getParameter("pageNumber") != null) {
+            try {
+                pageNumber = Integer.parseInt(req.getParameter("pageNumber"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return pageNumber;
+    }
+
+    public static int categoryCheck(HttpServletRequest req, HttpServletResponse resp, boolean message) throws IOException {
+        int category = 0;
+        PrintWriter out = resp.getWriter();
+
+        if (req.getParameter("category") != null) {
+            try {
+                category = Integer.parseInt(req.getParameter("category"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (message) {
+            out.println("<script>");
+            out.println("alert('옳지 않은 접근 방식입니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+        return category;
+    }
 }
