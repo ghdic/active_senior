@@ -47,8 +47,7 @@ const textAnim2 = TweenMax.staggerFrom("#text2", 2, {
     ease:Back.easeOut,
     opacity: 0,
     y: 200,
-    delay: 0.5,
-    immediatelyRender: false
+    delay: 0.5
 }, 0.2);
 
 let text_scene2 = new ScrollMagic.Scene({
@@ -79,8 +78,7 @@ const textAnim3 = TweenMax.staggerFrom("#text3", 2, {
     ease:Back.easeOut,
     opacity: 0,
     y: 200,
-    delay: 0.5,
-    immediatelyRender: false
+    delay: 0.5
 }, 0.2);
 
 let text_scene3 = new ScrollMagic.Scene({
@@ -111,8 +109,7 @@ const textAnim4 = TweenMax.staggerFrom("#text4", 2, {
     ease:Back.easeOut,
     opacity: 0,
     y: 200,
-    delay: 0.5,
-    immediatelyRender: false
+    delay: 0.5
 }, 0.2);
 
 let text_scene4 = new ScrollMagic.Scene({
@@ -143,8 +140,7 @@ const textAnim5 = TweenMax.staggerFrom("#text5", 2, {
     ease:Back.easeOut,
     opacity: 0,
     y: 200,
-    delay: 0.5,
-    immediatelyRender: false
+    delay: 0.5
 }, 0.2);
 
 let text_scene5 = new ScrollMagic.Scene({
@@ -175,8 +171,7 @@ const textAnim6 = TweenMax.staggerFrom("#text6", 2, {
     ease:Back.easeOut,
     opacity: 0,
     y: 200,
-    delay: 0.5,
-    immediatelyRender: false
+    delay: 0.5
 }, 0.2);
 
 let text_scene6 = new ScrollMagic.Scene({
@@ -187,8 +182,6 @@ let text_scene6 = new ScrollMagic.Scene({
 .addTo(controller)
 
 // --- Section 6 End ---
-
-
 
 
 // Video Animation

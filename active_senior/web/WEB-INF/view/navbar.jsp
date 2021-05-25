@@ -1,9 +1,13 @@
+<%@ page import="controller.tool.ScriptManager" %>
+<%@ page import="model.dto.User" %>
+<%@ page import="controller.dao.UserDAO" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%
 	String title = request.getParameter("title");
-	String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
+	String userID = ScriptManager.loginCheck(session, response, false);
+	User user = null;
+	if (userID != null) {
+	    user = UserDAO.getUser(userID);
 	}
 %>
 <!DOCTYPE html>
@@ -23,7 +27,9 @@
 </head>
 <body>
 <nav>
-	<a href="/"><img src="static/active_senior.png" alt="logo" class="logo"></a>
+	<div class="logo">
+		<a href="/"><img src="static/active_senior.png" alt="logo"></a>
+	</div>
 	<input type="checkbox" id="check">
 	<div class="menu-icon">
 		<label for="check" class="button">
@@ -33,7 +39,6 @@
 		</label>
 	</div>
 	<ul class="topnav">
-		<li style="width: 100%; height: 80px;"></li>
 		<li class="dropdown">
 			<a href="#" class="nav-item">소개</a>
 			<div class="dropdown-content">
@@ -75,6 +80,9 @@
 			<% } else {%>
 			<i class="far fa-user"></i><a href="/account" class="nav-item"><%= userID %>님 안녕하세요!</a>
 			<i class="fas fa-sign-out-alt"></i><a href="/logoutAction" class="nav-item">로그아웃</a>
+			<% } %>
+			<% if(user != null && user.getUserAuthority() == 0) { %>
+			<i class="fas fa-users-cog"></i><a href="/admin" class="nav-item">사이트 관리</a>
 			<% } %>
 		</li>
 
