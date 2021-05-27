@@ -3,10 +3,8 @@ package model.dto;
 import controller.tool.DateManger;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-public class InfoBbs {
+public class HobbyBbs {
     private int bbsID = -1;
     private String userID = "";
     private String userName = "";
@@ -21,8 +19,6 @@ public class InfoBbs {
     private int bbsCategory = -1;
     private String tag = "";
     private String keyword = "";
-    private String realFileName = "";
-    private String originalFileName = "";
 
     public int getBbsID() {
         return bbsID;
@@ -114,7 +110,7 @@ public class InfoBbs {
         if(bbsThumbnail.equals(""))
             return "/static/image/default/default-image.png";
         else
-            return "/static/info_bbs/thumbnail/" + bbsThumbnail;
+            return "/static/hobby_bbs/thumbnail/" + bbsThumbnail;
     }
 
     public void setBbsThumbnail(String bbsThumbnail) {
@@ -143,31 +139,5 @@ public class InfoBbs {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
-    }
-
-    public String getRealFileName() {
-        return realFileName;
-    }
-
-    public ArrayList<String> getRealFileNameArrayList() {
-        ArrayList<String> list = (ArrayList<String>) Arrays.asList(realFileName.split(","));
-        return list;
-    }
-
-    public void setRealFileName(String realFileName) {
-        this.realFileName = realFileName;
-    }
-
-    public String getOriginalFileName() {
-        return originalFileName;
-    }
-
-    public ArrayList<String> getOriginalFileNameArrayList() {
-        ArrayList<String> list = (ArrayList<String>) Arrays.asList(originalFileName.split(","));
-        return list;
-    }
-
-    public void setOriginalFileName(String originalFileName) {
-        this.originalFileName = originalFileName;
     }
 }

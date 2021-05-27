@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class InfoBbs {
+public class CommunityBbs {
     private int bbsID = -1;
     private String userID = "";
     private String userName = "";
@@ -114,7 +114,7 @@ public class InfoBbs {
         if(bbsThumbnail.equals(""))
             return "/static/image/default/default-image.png";
         else
-            return "/static/info_bbs/thumbnail/" + bbsThumbnail;
+            return "/static/cmnty_bbs/thumbnail/" + bbsThumbnail;
     }
 
     public void setBbsThumbnail(String bbsThumbnail) {
