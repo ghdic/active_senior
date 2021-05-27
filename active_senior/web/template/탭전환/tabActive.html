@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab-container * {
+            display: none;
+        }
+
+        .tab-container.active * {
+            display: block;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha512-bnIvzh6FU75ZKxp0GXLH9bewza/OIw6dLVh9ICg0gogclmYGguQJWl8U30WpbsGTqbIiAwxTsbe76DErLq5EDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="container" >
+        <a class="tab-container" style="display:block;width: 100px;height: 100px;background-color: red;">
+            첫번째 탭
+            <div>
+                안녕하세요
+            </div>
+        </a>
+        <a class="tab-container" style="display:block;width: 100px;height: 100px;background-color: yellow;">
+            두번째 탭
+            <div>
+                파뒝님
+            </div>
+        </a>
+        <a class="tab-container" style="display:block;width: 100px;height: 100px;background-color: blue;">
+            세번째 탭
+            <div>
+                보지마세요 > <
+            </div>
+        </a>
+    </div>
+
+
+    <script>
+        $('.tab-container').on('click', function() {
+            for(tab of $('.tab-container')) {
+                tab.classList.remove('active');
+            }
+            $(this).toggleClass('active')
+            
+            }
+        );
+    </script>
+</body>
+</html>
