@@ -1634,6 +1634,10 @@ a.article-title:hover {
     background: #5bc2ce;
 }
 
+.introduce_active_senior .bg-4 .sl-slide-inner h2 {
+    color: #FFFFFF;
+}
+
 .introduce_active_senior .bg-4 .deco {
     border-color: #379eaa;
 }
@@ -1723,102 +1727,27 @@ slider-container .bg-4 h2,
     -ms-animation: fadeOut 1s linear both;
     animation: fadeOut 1s linear both;
 }
-@-webkit-keyframes roll{
-    0% {-webkit-transform: translateX(500px) rotate(360deg);}
-    100% {-webkit-transform: translateX(0px) rotate(0deg);}
-}
-@-moz-keyframes roll{
-    0% {-moz-transform: translateX(500px) rotate(360deg); opacity: 0;}
-    100% {-moz-transform: translateX(0px) rotate(0deg); opacity: 1;}
-}
-@-o-keyframes roll{
-    0% {-o-transform: translateX(500px) rotate(360deg); opacity: 0;}
-    100% {-o-transform: translateX(0px) rotate(0deg); opacity: 1;}
-}
-@-ms-keyframes roll{
-    0% {-ms-transform: translateX(500px) rotate(360deg); opacity: 0;}
-    100% {-ms-transform: translateX(0px) rotate(0deg); opacity: 1;}
-}
+
 @keyframes roll{
     0% {transform: translateX(500px) rotate(360deg); opacity: 0;}
     100% {transform: translateX(0px) rotate(0deg); opacity: 1;}
 }
-@-webkit-keyframes moveUp{
-    0% {-webkit-transform: translateY(40px);}
-    100% {-webkit-transform: translateY(0px);}
-}
-@-moz-keyframes moveUp{
-    0% {-moz-transform: translateY(40px);}
-    100% {-moz-transform: translateY(0px);}
-}
-@-o-keyframes moveUp{
-    0% {-o-transform: translateY(40px);}
-    100% {-o-transform: translateY(0px);}
-}
-@-ms-keyframes moveUp{
-    0% {-ms-transform: translateY(40px);}
-    100% {-ms-transform: translateY(0px);}
-}
+
 @keyframes moveUp{
     0% {transform: translateY(40px);}
     100% {transform: translateY(0px);}
 }
-@-webkit-keyframes fadeIn{
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-@-moz-keyframes fadeIn{
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-@-o-keyframes fadeIn{
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-@-ms-keyframes fadeIn{
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
+
 @keyframes fadeIn{
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
-@-webkit-keyframes scaleDown{
-    0% {-webkit-transform: scale(1);}
-    100% {-webkit-transform: scale(0.5);}
-}
-@-moz-keyframes scaleDown{
-    0% {-moz-transform: scale(1);}
-    100% {-moz-transform: scale(0.5);}
-}
-@-o-keyframes scaleDown{
-    0% {-o-transform: scale(1);}
-    100% {-o-transform: scale(0.5);}
-}
-@-ms-keyframes scaleDown{
-    0% {-ms-transform: scale(1);}
-    100% {-ms-transform: scale(0.5);}
-}
+
 @keyframes scaleDown{
     0% {transform: scale(1);}
     100% {transform: scale(0.5);}
 }
-@-webkit-keyframes fadeOut{
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-}
-@-moz-keyframes fadeOut{
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-}
-@-o-keyframes fadeOut{
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-}
-@-ms-keyframes fadeOut{
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-}
+
 @keyframes fadeOut{
     0% {opacity: 1;}
     100% {opacity: 0;}

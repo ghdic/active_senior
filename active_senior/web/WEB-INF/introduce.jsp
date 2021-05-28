@@ -226,6 +226,32 @@
 			</div>
 		</div>
 	</section>
+	<section>
+		<h1 style="margin: 0 auto;padding: 3rem;text-align: center">찾아오시는길</h1>
+		<div id="map" style="width:70%;height:100vh;margin: 1rem auto;"></div>
+	</section>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fm0zdiaitk"></script>
+	<script>
+        var position = new naver.maps.LatLng(36.73617268835486, 127.07436939996632);
+
+        var map = new naver.maps.Map('map', {
+            center: position,
+            zoom: 17
+        });
+
+        var markerOptions = {
+            position: position.destinationPoint(0, 20),
+            map: map,
+            icon: {
+                url: 'https://i.ibb.co/DrqFNgV/active-senior-resize.jpg',
+                size: new naver.maps.Size(72, 47),
+                origin: new naver.maps.Point(0, 0),
+                anchor: new naver.maps.Point(25, 26)
+            }
+        };
+
+        var marker = new naver.maps.Marker(markerOptions);
+	</script>
 </div>
 <script src="/static/introduce.js"></script>
 <jsp:include page="/view/footer"/>
