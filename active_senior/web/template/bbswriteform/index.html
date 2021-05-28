@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/appWriteAction" id="form" method="post" enctype="multipart/form-data">
+        <table style="border: 1px solid #dddddd">
+            <thead>
+            <tr>
+                <th class="write-title"><h2>고용 게시판 글쓰기</h2></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text " placeholder="글 제목" id="bbsTitle" name="bbsTitle" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td><textarea id="summernote" name="bbsContent"></textarea></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" class="blue-button" value="임시 저장" onclick="setContent()">
+                    <input type="button" class="blue-button" value="불러오기" onclick="getContent()">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="collocate-input">
+                        <div class="thumbnailSetting">
+                            <img src="default-image.png" alt="프로필" id="profilePreview">
+                            <div><label for="profile">썸네일</label></div><div><input type="file" id="profile" name="bbsThumbnail" accept="image/*"></div>
+                        </div>
+                        <div class="info-input">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <label for="bbsState">게시판 상태</label>
+                                    </div>
+                                    <div>
+                                        <select name="bbsState" id="bbsState">
+                                            <option value="종료">종료</option>
+                                            <option value="신청·접수중">신청·접수중</option>
+                                            <option value="마감">마감</option>
+                                            <option value="공지">공지</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label for="recruitmentNumber">모집 인원</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="recruitmentNumber" name="recruitNum" autocomplete="off">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label for="agency">기관명</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="agency" name="agency" autocomplete="off">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label for="department">담당부서</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" id="department" name="department" autocomplete="off">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="info-input">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <label>모집기간</label>
+                                    </div>
+                                    <div class="input-date">
+                                        <input type="date" id="recruitStart" name="recruitStart">~<input type="date" id="recruitEnd" name="recruitEnd">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label>교육기간</label>
+                                    </div>
+                                    <div class="input-date">
+                                        <input type="date" id="eduStart" name="eduStart">~<input type="date" id="eduEnd" name="eduEnd">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <label>활동기간</label>
+                                    </div>
+                                    <div class="input-date">
+                                        <input type="date" id="activeStart" name="activeStart">~<input type="date" id="activeEnd" name="activeEnd">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="file-uploader">
+                        <div class="file-uploader__message-area">파일 리스트:</div><ul class="file-list"><li style=""><span class="file-list__name">kb주식.pdf</span><button class="removal-button" data-uploadid="2"></button></li></ul><div class="hidden-inputs hidden"><input class="" type="file" data-uploadid="2" name="files"></div>
+                        <div class="file-chooser">
+                            
+                        <input class="file-chooser__input" type="file"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" class="submit-btn" value="완료"></td>
+            </tr>
+            </tbody>
+        </table>
+        
+
+        
+    </form>
+
+    <script src="fileUpload.js"></script>
+
+    <script>
+        $('#summernote').summernote({
+            placeholder: '',
+            tabsize: 2,
+            width: '80vw',
+            height: '90vh',
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    
+    
+    
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                lang: 'ko-KR' // default: 'en-US'
+            });
+        });
+
+    </script>
+</body>
+</html>
