@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+#active_senior_navbar {
+    min-width: 350px;
+}
+
 /* --- navbar section start --- */
 nav > ul {
     list-style-type: none;
@@ -104,7 +108,7 @@ li.dropdown {
 /* menu */
 .menu-icon{
     text-align: right;
-    position: fixed;
+    position: relative;
     width: 100%;
     z-index: 200;
 }
@@ -128,9 +132,8 @@ li.dropdown {
     padding-top: 8px;
     line-height: 8px;
     text-align: left;
-    position: fixed;
-    right: 0;
-    top: 0;
+    position: relative;
+    float: right;
     z-index: 201;
 }
 .button:hover{
@@ -178,21 +181,27 @@ li.dropdown {
 @media screen and (max-width: 1000px) {
     ul.topnav li {float: none;}
     nav > ul > li > a.nav-item {display: block;}
+
     ul.topnav > li{
         transition: all 0.4s cubic-bezier(.22,.43,.35,1.5);
         opacity: 0;
         height: 0px;
     }
     .logo {
-        width: 100%;
         float: none;
+    }
+
+    .login {
+        padding: 0;
     }
 
     .login * {
         float: left;
     }
 
-    .menu-icon label { display: block;}
+    .menu-icon { display: inline; }
+
+    .menu-icon label { display: inline-block;}
 
     .dropdown-content {
         width: 100%;
@@ -203,12 +212,21 @@ li.dropdown {
         padding: 20px 16px;
     }
 
-    #check:checked ~ ul li{
+    #check:checked ~ ul li {
         opacity: 1;
         height: 64px;
     }
 
-    #check:checked ~ ul li:last-child{
+    #check:checked ~ ul li {
+        opacity: 1;
+        height: 64px;
+    }
+
+    #check:checked ~ ul li .login {
+        padding: 30px 16px 0px 16px;
+    }
+
+    #check:checked ~ ul li:last-child {
         height: 94px;
     }
 

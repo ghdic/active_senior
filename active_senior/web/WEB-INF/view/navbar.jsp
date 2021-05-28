@@ -26,7 +26,7 @@
 	<title><%= title %></title>
 </head>
 <body>
-<nav>
+<nav id="active_senior_navbar">
 	<div class="logo">
 		<a href="/"><img src="static/active_senior.png" alt="logo"></a>
 	</div>

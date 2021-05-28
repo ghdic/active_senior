@@ -94,7 +94,7 @@ li.dropdown {
 /* menu */
 .menu-icon{
     text-align: right;
-    position: fixed;
+    position: relative;
     width: 100%;
     z-index: 200;
 }
@@ -118,7 +118,7 @@ li.dropdown {
     padding-top: 8px;
     line-height: 8px;
     text-align: left;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: 201;
