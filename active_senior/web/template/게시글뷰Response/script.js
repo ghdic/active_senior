@@ -4,6 +4,13 @@ $('.grid').imagesLoaded(function () {
     });
 });
 
+TweenMax.staggerFrom(".grid-item", 1, {
+    ease:Back.easeOut,
+    opacity: 0,
+    y: 100,
+    delay: 0.5
+}, 0.2);
+
 (function () {
     function init() {
         var speed = 250,
