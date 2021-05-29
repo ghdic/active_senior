@@ -2,9 +2,7 @@ package controller.listener;
 
 
 
-import model.dto.EduBbs;
-import model.dto.HireBbs;
-import model.dto.User;
+import model.dto.*;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,11 +28,15 @@ public class DtoListener implements ServletContextListener{
         put("user", User.class);
         put("hireBbs", HireBbs.class);
         put("eduBbs", EduBbs.class);
+        put("infoBbs", InfoBbs.class);
+        put("hobbyBbs", HobbyBbs.class);
+        put("communityBbs", CommunityBbs.class);
+        put("communityComment", CommunityComment.class);
     }};
     public static HashMap<String, String> primaryColumnName = new HashMap<String, String>();
 
     private static ArrayList<String> dtoNameList = new ArrayList<String>(
-            Arrays.asList(new String[]{"user", "hireBbs", "eduBbs"})
+            Arrays.asList(new String[]{"user", "hireBbs", "eduBbs", "infoBbs", "hobbyBbs", "communityBbs", "communityComment"})
     );
     private DataSource dataSource;
     private Connection conn;

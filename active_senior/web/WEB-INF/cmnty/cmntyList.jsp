@@ -37,7 +37,7 @@
 <br>
 <% if (pageNumber > 1) { %>
 <button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber - 1 %>'">이전</button>
-<% } if (CommunityBbsDAO.nextPage(pageNumber, 10, category)) { %>
+<% } if (CommunityBbsDAO.nextPage(pageNumber, 10, 0)) { %>
 <button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber + 1 %>'">다음</button>
 <% } %>
 <jsp:include page="view/footer"/>
