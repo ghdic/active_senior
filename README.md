@@ -82,6 +82,7 @@
 * servlet commons fileupload
 * mysql connector(jdbc)
 * jai
+* javax mail
 * Naver Maps
 
 프론트엔드
@@ -98,7 +99,7 @@
 
 # 프로젝트 세팅 방법
 
-* [☆active_senior.sql다운★](https://drive.google.com/file/d/1u0P8HjrmYIBIw9nW-ZeGk_hPRQbqMMaX/view?usp=sharing)을 통해 데이터베이스 세팅
+* [☆active_senior.sql다운★](https://drive.google.com/file/d/1dm0P6xCCyVp3hm2heV2z_8CTzb7TrGeT/view?usp=sharing)을 통해 데이터베이스 세팅
     ```
     // mysqldump -uroot -proot active_senior > active_senior.sql (export database)
 
