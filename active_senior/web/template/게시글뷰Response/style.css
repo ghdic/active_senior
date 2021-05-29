@@ -1,0 +1,143 @@
+/* 게시글 card start */
+.grid {
+	margin: 40px auto 120px;
+	max-width: 1200px;
+	width: 90%;
+}
+
+.grid a {
+	float: left;
+	width: 400px;
+	color: #333;
+}
+
+
+.grid figure {
+	position: relative;
+	overflow: hidden;
+	margin: 5px;
+	background: #333;
+	border-radius: 1rem;
+}
+
+.grid figure img {
+	position: relative;
+	display: block;
+	width: 100%;
+	opacity: 0.7;
+	min-height: 400px;
+	object-fit: cover;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.grid figcaption {
+	position: absolute;
+	top: 0;
+	z-index: 11;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.grid figcaption h2 {
+	margin: 0 0 20px 0;
+	color: #3498db;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	font-size: 130%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.grid figcaption p {
+	padding: 0 20px;
+	color: #aaa;
+	font-weight: 300;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.grid figcaption h2,
+.grid figcaption p {
+	-webkit-transform: translateY(50px);
+	transform: translateY(50px);
+}
+
+.grid figure button {
+	position: absolute;
+	padding: 4px 20px;
+	border: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.grid figcaption,
+.grid figcaption h2,
+.grid figcaption p,
+.grid figure button {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+/* Style for SVG */
+.grid svg {
+	position: absolute;
+	top: -1px; /* fixes rendering issue in FF */
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+}
+
+.grid svg path {
+	fill: #fff;
+}
+
+/* Hover effects */
+.grid a:hover figure img {
+	opacity: 1;
+}
+
+.grid a:hover figcaption h2,
+.grid a:hover figcaption p {
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.grid a:hover figcaption p {
+	opacity: 0;
+}
+
+/* Individual styles */
+body {
+	background: #3498db;
+}
+
+.grid figure button {
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 50px;
+	border: 3px solid #fff;
+	background: transparent;
+	color: #fff;
+	opacity: 0;
+	-webkit-transform: translateY(-50%) translateX(-50%) scale(0.25);
+	transform: translateY(-50%) translateX(-50%) scale(0.25);
+}
+
+.grid a:hover figure button
+{
+	opacity: 1;
+	-webkit-transform: translateY(-50%) translateX(-50%) scale(1);
+	transform: translateY(-50%) translateX(-50%) scale(1);
+}
+
+
+
+/* --- 게시글 card end --- */
