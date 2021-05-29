@@ -241,19 +241,24 @@ li.dropdown {
 
 /* --- navbar section end --- */
 
-
-
 /* footer section start */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+
+
+
 
 .footer-distributed{
-    background: #5F788A;
+    background: #f2f2f2;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
-    padding: 55px 50px;
+    padding: 30px 30px 15px 30px;
 }
+
+
 
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
@@ -265,25 +270,26 @@ li.dropdown {
 /* Footer left */
 
 .footer-distributed .footer-left{
-    width: 40%;
+    width: 60%;
 }
 
 /* The company logo */
 
 .footer-distributed h3{
-    color:  #ffffff;
+    color:  black;
     font: normal 36px 'Open Sans', cursive;
     margin: 0;
 }
 
 .footer-distributed h3 span{
-    color:  lightseagreen;
+    color:  #2186DF;
 }
+
 
 /* Footer links */
 
 .footer-distributed .footer-links{
-    color:  #ffffff;
+    color:  black;
     margin: 20px 0 12px;
     padding: 0;
 }
@@ -306,12 +312,17 @@ li.dropdown {
 /* Footer Center */
 
 .footer-distributed .footer-center{
-    width: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .footer-distributed .footer-center i{
+
     background-color:  #33383b;
-    color: #ffffff;
+    color: white;
     font-size: 25px;
     width: 38px;
     height: 38px;
@@ -322,14 +333,10 @@ li.dropdown {
     vertical-align: middle;
 }
 
-.footer-distributed .footer-center i.fa-envelope{
-    font-size: 17px;
-    line-height: 38px;
-}
 
 .footer-distributed .footer-center p{
     display: inline-block;
-    color: #ffffff;
+    color: black;
     font-weight:400;
     vertical-align: middle;
     margin:0;
@@ -339,7 +346,7 @@ li.dropdown {
     display:block;
     font-weight: normal;
     font-size:14px;
-    line-height:2;
+    line-height:1.1;
 }
 
 .footer-distributed .footer-center p a{
@@ -347,12 +354,17 @@ li.dropdown {
     text-decoration: none;;
 }
 
+.footer-distributed .footer-center .footer-item {
+    display: inline-block;
+    margin: 2px 4px;
+}
+
 .footer-distributed .footer-links a:before {
     content: "|";
     font-weight:300;
     font-size: 20px;
     left: 0;
-    color: #fff;
+    color: black;
     display: inline-block;
     padding-right: 5px;
 }
@@ -377,7 +389,7 @@ li.dropdown {
 
 .footer-distributed .footer-company-about span{
     display: block;
-    color:  #ffffff;
+    color:  black;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -392,11 +404,13 @@ li.dropdown {
     width: 35px;
     height: 35px;
     cursor: pointer;
-    background-color:  #33383b;
+
+    background-color:  white;
+
     border-radius: 2px;
 
     font-size: 20px;
-    color: #ffffff;
+    color: black;
     text-align: center;
     line-height: 35px;
 
@@ -427,6 +441,7 @@ li.dropdown {
 
 }
 /* footer section end */
+
 
 .bg-steel {
     background-color: #5f788a;
