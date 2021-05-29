@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="회원가입 페이지"/>
+	<jsp:param name="curTab" value="0"/>
 </jsp:include>
 <form action="/registerAction" onsubmit="return registerSubmit()" method="post" enctype="multipart/form-data">
 	<div class="register-form">
-		<h1>회원가입 화면</h1>
+		<h1>회원가입</h1>
 		<input type="text" placeholder="아이디" name="userID" id="userID" maxlength="30" />
 		<input type="password" placeholder="비밀번호" name="userPW" id="userPW" maxlength="30" />
 		<input type="password" placeholder="비밀번호 확인" id="verifyPW" maxlength="30">

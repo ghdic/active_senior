@@ -49,6 +49,25 @@ public class HobbyBbsDAO{
         return list; // 리스트가 비어있을 경우 더이상 조회 x
     }
 
+    public static ArrayList<HobbyBbs> getPostList(int pageNumber, int require) {
+        String SQL = "select * from hobbyBbs where bbsAvailable = 1 order by bbsID desc limit ?, ?";
+        ArrayList<HobbyBbs> list = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, (pageNumber - 1) * require);
+            pstmt.setInt(2, require);
+
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                HobbyBbs bbs = DataBaseManager.getData(rs, "hobbyBbs");
+                list.add(bbs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list; // 리스트가 비어있을 경우 더이상 조회 x
+    }
+
     // 다음 페이지 존재하는지 확인
     public static boolean nextPage(int pageNumber, int require, int category) {
         String SQL = "select bbsID from hobbyBbs where bbsAvailable = 1 and bbsCategory = ? order by bbsID desc limit ?, 1";

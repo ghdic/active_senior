@@ -6,6 +6,7 @@
 <%@ page import="controller.tool.ScriptManager" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="일자리 지원"/>
+	<jsp:param name="curTab" value="2"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);

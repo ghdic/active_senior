@@ -2,6 +2,7 @@
 <%@ page isErrorPage="true" %>
 <jsp:include page="View/navbar.jsp">
 	<jsp:param name="title" value="Error"/>
+	<jsp:param name="curTab" value="0"/>
 </jsp:include>
 <%
 	String msg = exception.getMessage();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="비밀번호 초기화 페이지"/>
+	<jsp:param name="curTab" value="0"/>
 </jsp:include>
 <%
 	request.setCharacterEncoding("utf-8");

@@ -5,6 +5,7 @@
 <%@ page import="model.dto.CommunityBbs" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="커뮤니티 리스트"/>
+	<jsp:param name="curTab" value="6"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);

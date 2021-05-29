@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%
 	String title = request.getParameter("title");
+	String curTab = request.getParameter("curTab");
 	String userID = ScriptManager.loginCheck(session, response, false);
 	User user = null;
 	if (userID != null) {
@@ -40,22 +41,22 @@
 	</div>
 	<ul class="topnav">
 		<li class="dropdown">
-			<a href="#" class="nav-item">소개</a>
+			<a href="#" class="nav-item <% if(curTab.equals("1")){%>active<% } %>">소개</a>
 			<div class="dropdown-content">
 				<a href="/introduce" class="nav-item">사이트 소개</a>
 				<a href="/activeSenior" class="nav-item">액티브 시니어란?</a>
 			</div>
 		</li>
-		<li><a href="/appList" class="nav-item active">구인 & 고용</a></li>
+		<li><a href="/appList" class="nav-item <% if(curTab.equals("2")){%>active<% } %>">구인 & 고용</a></li>
 		<li class="dropdown">
-			<a href="#" class="nav-item">교육</a>
+			<a href="#" class="nav-item <% if(curTab.equals("3")){%>active<% } %>">교육</a>
 			<div class="dropdown-content">
 				<a href="/eduList?category=0">교육영상</a>
 				<a href="/eduList?category=1">교육후기</a>
 			</div>
 		</li>
 		<li class="dropdown">
-			<a href="#" class="nav-item">정보알리미</a>
+			<a href="#" class="nav-item <% if(curTab.equals("4")){%>active<% } %>">정보알리미</a>
 			<div class="dropdown-content">
 				<a href="/infoList?category=0">공지/채용정보</a>
 				<a href="/infoList?category=1">지원사업</a>
@@ -63,7 +64,7 @@
 			</div>
 		</li>
 		<li class="dropdown">
-			<a href="#" class="nav-item">취미</a>
+			<a href="#" class="nav-item <% if(curTab.equals("5")){%>active<% } %>">취미</a>
 			<div class="dropdown-content">
 				<a href="/hobbyList?category=0">사람책</a>
 				<a href="/hobbyList?category=1">여행</a>
@@ -72,7 +73,7 @@
 				<a href="/hobbyList?category=4">문화라이프</a>
 			</div>
 		</li>
-		<li><a href="/cmntyList" class="nav-item">커뮤니티</a></li>
+		<li><a href="/cmntyList" class="nav-item <% if(curTab.equals("6")){%>active<% } %>">커뮤니티</a></li>
 		<li style="float: right;" class="login">
 			<% if(userID == null) { %>
 			<i class="far fa-user"></i><a href="/login" class="nav-item">로그인</a>

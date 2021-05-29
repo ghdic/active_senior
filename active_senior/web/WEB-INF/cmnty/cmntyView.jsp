@@ -4,6 +4,7 @@
 <%@ page import="controller.dao.CommunityBbsDAO" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="게시글"/>
+	<jsp:param name="curTab" value="6"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);

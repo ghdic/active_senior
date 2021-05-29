@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="비밀번호가 재발급 되었습니다"/>
+	<jsp:param name="curTab" value="0"/>
 </jsp:include>
 <%
 	request.setCharacterEncoding("utf-8");

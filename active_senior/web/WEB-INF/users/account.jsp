@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="계정정보 관리"/>
+	<jsp:param name="curTab" value="0"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, true);

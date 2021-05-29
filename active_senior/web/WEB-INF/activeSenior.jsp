@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="Introduce - ActiveSenior"/>
+	<jsp:param name="curTab" value="1"/>
 </jsp:include>
 <div id="section1" class="section">
 	<div id="text">

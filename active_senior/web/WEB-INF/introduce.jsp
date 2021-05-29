@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8" %>
 <jsp:include page="/view/navbar">
 	<jsp:param name="title" value="소개페이지"/>
+	<jsp:param name="curTab" value="1"/>
 </jsp:include>
 <div id="introduce">
 	<section class="hero">
@@ -14,8 +15,8 @@
 		<div class="person">
 			<div class="container">
 				<div class="container-inner">
-					<img src="static/circlebackground.jpg" alt="circle" class="circle">
-					<img src="static/jiwon.png" alt="이지원" class="img img1">
+					<img src="/static/image/circlebackground.jpg" alt="circle" class="circle">
+					<img src="/static/image/jiwon.png" alt="이지원" class="img img1">
 				</div>
 			</div>
 			<div class="divider"></div>
@@ -186,7 +187,7 @@
 
 				<div class="Activity">
 					<div class="Activity-image">
-						<img src="static/yoga.jpg" alt="요가"/>
+						<img src="static/image/yoga.jpg" alt="요가"/>
 					</div>
 					<div class="Activity-title">
 						<h2>Activity #1</h2>
@@ -199,7 +200,7 @@
 				</div>
 				<div class="Activity">
 					<div class="Activity-image">
-						<img src="static/shopping.jpg" alt="쇼핑"/>
+						<img src="static/image/shopping.jpg" alt="쇼핑"/>
 					</div>
 					<div class="Activity-title">
 						<h2>Activity #2</h2>
@@ -212,7 +213,7 @@
 				</div>
 				<div class="Activity">
 					<div class="Activity-image">
-						<img src="static/Digital.jpg" alt="정보력"/>
+						<img src="static/image/Digital.jpg" alt="정보력"/>
 					</div>
 					<div class="Activity-title">
 						<h2>Activity #3</h2>

@@ -5,6 +5,7 @@
 <%@ page import="model.dto.EduBbs" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="교육 게시판"/>
+	<jsp:param name="curTab" value="3"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);

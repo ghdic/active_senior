@@ -5,6 +5,7 @@
 <%@ page import="model.dto.InfoBbs" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="공지&정보 게시판"/>
+	<jsp:param name="curTab" value="4"/>
 </jsp:include>
 <%
 	String userID = ScriptManager.loginCheck(session, response, false);
