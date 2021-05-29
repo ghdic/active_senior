@@ -11,7 +11,7 @@
 }
 
 #active_senior_navbar {
-    min-width: 350px;
+    min-width: 1080px;
 }
 
 /* --- navbar section start --- */
@@ -179,6 +179,9 @@ li.dropdown {
 
 
 @media screen and (max-width: 1000px) {
+    #active_senior_navbar {
+        min-width: 350px;
+    }
     ul.topnav li {float: none;}
     nav > ul > li > a.nav-item {display: block;}
 
@@ -658,7 +661,7 @@ a.article-title:hover {
 
 .hero {
     height: 100vh;
-    background: url("/static/Active-Senior-Couple.jpg");
+    background: url("/static/image/Active-Senior-Couple.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -868,7 +871,7 @@ a.article-title:hover {
 
 /*##### RESUME SECTION #####*/
 #introduce .resume {
-    background: url("/static/star.jpg");
+    background: url("/static/image/star.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1793,3 +1796,340 @@ slider-container .bg-4 h2,
 }
 
 /* ---Active Senior Introduce Section End--- */
+
+
+/* --- login form Start --- */
+.login-form {
+    max-width: 550px;
+    min-width: 500px;
+    width: 50vw;
+    height: 80vh;
+    background: #fff;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.06);
+    padding: 2rem 1rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form img {
+    width: 200px;
+    height: 120px;
+    margin: 1rem;
+}
+
+.login-form h1 {
+    color: #1e1e2d;
+    font-weight: 500;
+    margin: 0;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.login-form span {
+    display: block;
+    vertical-align: middle;
+    margin: 29px auto;
+    border-bottom: 1px solid #cecece;
+    width: 100px;
+}
+
+.login-form p {
+    color: #455056;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0.2rem;
+}
+
+.login-form input[type='text'] {
+    margin: 0.3rem auto;
+    width: 80%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+.login-form input[type='password'] {
+    margin: 0.3rem auto;
+    width: 80%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+
+.login-form input[type='submit'] {
+    background-color: #20e277;
+    text-decoration: none !important;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 24px;
+    display: block;
+    width: 80%;
+    border-radius: .5rem;
+}
+
+.login-form input[type='submit']:hover {
+    background-color: #DFFF41;
+    color: black;
+}
+
+.login-form a {
+    text-decoration: none;
+}
+/* --- login form End --- */
+
+
+/* --- register form Start --- */
+.register-form {
+    max-width: 550px;
+    min-width: 500px;
+    width: 50vw;
+    height: 100vh;
+    background: #fff;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.06);
+    padding: 2rem 1rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form h1 {
+    color: #1e1e2d;
+    font-weight: 500;
+    margin: 1rem;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.register-form span {
+    display: block;
+    vertical-align: middle;
+    margin: 29px auto;
+    border-bottom: 1px solid #cecece;
+    width: 100px;
+}
+
+.register-form p {
+    color: #455056;
+    font-size: 25px;
+    line-height: 24px;
+    margin: 0.5rem;
+}
+
+.register-form input[type='file'] {
+    padding: 1rem;
+}
+
+.register-form input[type='text'],
+.register-form input[type='email'] {
+    margin: 0.3rem auto;
+    width: 80%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+.register-form input[type='password'] {
+    margin: 0.3rem auto;
+    width: 80%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+
+.register-form input[type='radio'] {
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: -9999px;
+}
+
+.register-form input[type='radio'] + label {
+    margin: 0.5rem 0;
+    padding: 0.75rem 1.5rem;
+    position: relative;
+    display: inline-block;
+    border: solid 1px #dddddd;
+    background-color: #ffffff;
+    line-height: 140%;
+    text-align: center;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transition: border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+    cursor: pointer;
+}
+
+.register-form input[type='radio']:checked + label {
+    background-color: #4b9dea;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+    border-color: #4b9dea;
+    z-index: 1;
+}
+
+.register-form input[type='submit'] {
+    background-color: #20e277;
+    text-decoration: none !important;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 24px;
+    display: block;
+    width: 80%;
+    border-radius: 0.5rem;
+}
+
+.register-form input[type='submit']:hover {
+    background-color: #dfff41;
+    color: black;
+}
+
+.register-form a {
+    text-decoration: none;
+}
+
+.register-form img {
+    width: 200px;
+    height: 200px;
+    margin: 1rem;
+}
+/* --- register form End --- */
+
+/* --- reset password form Start --- */
+.reset-password {
+    max-width: 550px;
+    min-width: 500px;
+    width: 50vw;
+    height: 70vh;
+    background: #fff;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.06);
+    padding: 2rem 1rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-password h1 {
+    color: #1e1e2d;
+    font-weight: 500;
+    margin: 0;
+    font-size: 32px;
+}
+
+.reset-password span {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 29px 0 26px;
+    border-bottom: 1px solid #cecece;
+    width: 100px;
+}
+
+.reset-password p {
+    color: #455056;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.reset-password a {
+    background: #20e277;
+    text-decoration: none !important;
+    font-weight: 500;
+    margin-top: 35px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 24px;
+    display: inline-block;
+    border-radius: 50px;
+}
+/* --- reset password form End --- */
+
+/* --- forget password form Start --- */
+.password-reset-form {
+    max-width: 550px;
+    min-width: 500px;
+    width: 50vw;
+    height: 80vh;
+    background: #fff;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.06);
+    padding: 2rem 1rem;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-reset-form h1 {
+    color: #1e1e2d;
+    font-weight: 500;
+    margin: 1rem;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.password-reset-form p {
+    color: #455056;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 1rem;
+}
+
+.password-reset-form input[type='text'],
+.password-reset-form input[type='email'] {
+    margin: 0.3rem auto;
+    width: 80%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+
+.password-reset-form input[type='submit'] {
+    background-color: #20e277;
+    text-decoration: none !important;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 24px;
+    display: block;
+    width: 80%;
+    border-radius: 0.5rem;
+}
+
+.password-reset-form input[type='submit']:hover {
+    background-color: #dfff41;
+    color: black;
+}
+/* --- forget password form End --- */

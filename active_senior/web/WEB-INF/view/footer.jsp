@@ -5,9 +5,9 @@
 		<p class="footer-links">
 			<a href="/" class="link-1">Home</a>
 			<a href="/about.jsp">About</a>
-			<a href="/WEB-INF/login.jsp">Login</a>
+			<a href="/WEB-INF/user/login.jsp">Login</a>
 			<a href="/WEB-INF/logoutAction.jsp">Logout</a>
-			<a href="/WEB-INF/register.jsp">Register</a>
+			<a href="/WEB-INF/user/register.jsp">Register</a>
 			<a href="/account.jsp">Account</a>
 		</p>
 		<p class="footer-company-name">Company Name © 2021</p>

@@ -28,7 +28,7 @@
 <body>
 <nav id="active_senior_navbar">
 	<div class="logo">
-		<a href="/"><img src="static/active_senior.png" alt="logo"></a>
+		<a href="/"><img src="static/image/active_senior.png" alt="logo"></a>
 	</div>
 	<input type="checkbox" id="check">
 	<div class="menu-icon">
@@ -57,22 +57,22 @@
 		<li class="dropdown">
 			<a href="#" class="nav-item">정보알리미</a>
 			<div class="dropdown-content">
-				<a href="/noticeList">공지/채용정보</a>
-				<a href="/supportList">지원사업</a>
-				<a href="/eventList">이벤트/행사</a>
+				<a href="/infoList?category=0">공지/채용정보</a>
+				<a href="/infoList?category=1">지원사업</a>
+				<a href="/infoList?category=2">이벤트/행사</a>
 			</div>
 		</li>
 		<li class="dropdown">
 			<a href="#" class="nav-item">취미</a>
 			<div class="dropdown-content">
-				<a href="/peopleBookList">사람책</a>
-				<a href="/tripList">여행</a>
-				<a href="/healthList">건강</a>
-				<a href="/financeList">재무</a>
-				<a href="/cultureList">문화라이프</a>
+				<a href="/hobbyList?category=0">사람책</a>
+				<a href="/hobbyList?category=1">여행</a>
+				<a href="/hobbyList?category=2">건강</a>
+				<a href="/hobbyList?category=3">재무</a>
+				<a href="/hobbyList?category=4">문화라이프</a>
 			</div>
 		</li>
-		<li><a href="/communityList" class="nav-item">커뮤니티</a></li>
+		<li><a href="/cmntyList" class="nav-item">커뮤니티</a></li>
 		<li style="float: right;" class="login">
 			<% if(userID == null) { %>
 			<i class="far fa-user"></i><a href="/login" class="nav-item">로그인</a>
