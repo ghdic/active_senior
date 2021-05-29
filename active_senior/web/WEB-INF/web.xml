@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <jsp-file>/WEB-INF/login.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -31,17 +31,8 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>logout</servlet-name>
-        <jsp-file>/WEB-INF/logoutAction.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>register</servlet-name>
-        <jsp-file>/WEB-INF/register.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/register.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
@@ -49,8 +40,26 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>forgotPassword</servlet-name>
+        <jsp-file>/WEB-INF/user/forgotPassword.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forgotPassword</servlet-name>
+        <url-pattern>/forgotPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sendPassword</servlet-name>
+        <jsp-file>/WEB-INF/user/sendPassword.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sendPassword</servlet-name>
+        <url-pattern>/sendPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>account</servlet-name>
-        <jsp-file>/WEB-INF/account.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/account.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>account</servlet-name>
@@ -59,7 +68,7 @@
 
     <servlet>
         <servlet-name>appList</servlet-name>
-        <jsp-file>/WEB-INF/appList.jsp</jsp-file>
+        <jsp-file>/WEB-INF/app/appList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>appList</servlet-name>
@@ -68,7 +77,7 @@
 
     <servlet>
         <servlet-name>appView</servlet-name>
-        <jsp-file>/WEB-INF/appView.jsp</jsp-file>
+        <jsp-file>/WEB-INF/app/appView.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>appView</servlet-name>
@@ -77,7 +86,7 @@
 
     <servlet>
         <servlet-name>appWrite</servlet-name>
-        <jsp-file>/WEB-INF/appWrite.jsp</jsp-file>
+        <jsp-file>/WEB-INF/app/appWrite.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>appWrite</servlet-name>
@@ -86,7 +95,7 @@
 
     <servlet>
         <servlet-name>appUpdate</servlet-name>
-        <jsp-file>/WEB-INF/appUpdate.jsp</jsp-file>
+        <jsp-file>/WEB-INF/app/appUpdate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>appUpdate</servlet-name>
@@ -95,7 +104,7 @@
 
     <servlet>
         <servlet-name>eduList</servlet-name>
-        <jsp-file>/WEB-INF/eduList.jsp</jsp-file>
+        <jsp-file>/WEB-INF/edu/eduList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>eduList</servlet-name>
@@ -104,7 +113,7 @@
 
     <servlet>
         <servlet-name>eduView</servlet-name>
-        <jsp-file>/WEB-INF/eduView.jsp</jsp-file>
+        <jsp-file>/WEB-INF/edu/eduView.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>eduView</servlet-name>
@@ -113,7 +122,7 @@
 
     <servlet>
         <servlet-name>eduWrite</servlet-name>
-        <jsp-file>/WEB-INF/eduWrite.jsp</jsp-file>
+        <jsp-file>/WEB-INF/edu/eduWrite.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>eduWrite</servlet-name>
@@ -122,7 +131,7 @@
 
     <servlet>
         <servlet-name>eduUpdate</servlet-name>
-        <jsp-file>/WEB-INF/eduUpdate.jsp</jsp-file>
+        <jsp-file>/WEB-INF/edu/eduUpdate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>eduUpdate</servlet-name>
@@ -132,7 +141,7 @@
 
     <servlet>
         <servlet-name>infoList</servlet-name>
-        <jsp-file>/WEB-INF/infoList.jsp</jsp-file>
+        <jsp-file>/WEB-INF/info/infoList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>infoList</servlet-name>
@@ -141,7 +150,7 @@
 
     <servlet>
         <servlet-name>infoView</servlet-name>
-        <jsp-file>/WEB-INF/infoView.jsp</jsp-file>
+        <jsp-file>/WEB-INF/info/infoView.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>infoView</servlet-name>
@@ -150,7 +159,7 @@
 
     <servlet>
         <servlet-name>infoWrite</servlet-name>
-        <jsp-file>/WEB-INF/infoWrite.jsp</jsp-file>
+        <jsp-file>/WEB-INF/info/infoWrite.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>infoWrite</servlet-name>
@@ -159,7 +168,7 @@
 
     <servlet>
         <servlet-name>infoUpdate</servlet-name>
-        <jsp-file>/WEB-INF/infoUpdate.jsp</jsp-file>
+        <jsp-file>/WEB-INF/info/infoUpdate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>infoUpdate</servlet-name>
@@ -169,7 +178,7 @@
 
     <servlet>
         <servlet-name>hobbyList</servlet-name>
-        <jsp-file>/WEB-INF/hobbyList.jsp</jsp-file>
+        <jsp-file>/WEB-INF/hobby/hobbyList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>hobbyList</servlet-name>
@@ -178,7 +187,7 @@
 
     <servlet>
         <servlet-name>hobbyView</servlet-name>
-        <jsp-file>/WEB-INF/hobbyView.jsp</jsp-file>
+        <jsp-file>/WEB-INF/hobby/hobbyView.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>hobbyView</servlet-name>
@@ -187,7 +196,7 @@
 
     <servlet>
         <servlet-name>hobbyWrite</servlet-name>
-        <jsp-file>/WEB-INF/hobbyWrite.jsp</jsp-file>
+        <jsp-file>/WEB-INF/hobby/hobbyWrite.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>hobbyWrite</servlet-name>
@@ -196,7 +205,7 @@
 
     <servlet>
         <servlet-name>hobbyUpdate</servlet-name>
-        <jsp-file>/WEB-INF/hobbyUpdate.jsp</jsp-file>
+        <jsp-file>/WEB-INF/hobby/hobbyUpdate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>hobbyUpdate</servlet-name>
@@ -206,7 +215,7 @@
 
     <servlet>
         <servlet-name>cmntyList</servlet-name>
-        <jsp-file>/WEB-INF/cmntyList.jsp</jsp-file>
+        <jsp-file>/WEB-INF/cmnty/cmntyList.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>cmntyList</servlet-name>
@@ -215,7 +224,7 @@
 
     <servlet>
         <servlet-name>cmntyView</servlet-name>
-        <jsp-file>/WEB-INF/cmntyView.jsp</jsp-file>
+        <jsp-file>/WEB-INF/cmnty/cmntyView.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>cmntyView</servlet-name>
@@ -224,7 +233,7 @@
 
     <servlet>
         <servlet-name>cmntyWrite</servlet-name>
-        <jsp-file>/WEB-INF/cmntyWrite.jsp</jsp-file>
+        <jsp-file>/WEB-INF/cmnty/cmntyWrite.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>cmntyWrite</servlet-name>
@@ -233,7 +242,7 @@
 
     <servlet>
         <servlet-name>cmntyUpdate</servlet-name>
-        <jsp-file>/WEB-INF/cmntyUpdate.jsp</jsp-file>
+        <jsp-file>/WEB-INF/cmnty/cmntyUpdate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>cmntyUpdate</servlet-name>

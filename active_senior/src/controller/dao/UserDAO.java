@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
     private static DataSource dataSource;
@@ -37,6 +38,7 @@ public class UserDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if(rs.next()) {
+                System.out.println(userPW + " " + rs.getString(1));
                 if(pwAuth.authenticate(userPW, rs.getString(1))) {
                     return 1; // 로그인 성공
                 } else {
@@ -51,7 +53,22 @@ public class UserDAO {
     }
 
     public static int register(User user) throws InvocationTargetException, IllegalAccessException {
+        user.setUserPW(PasswordAuthentication.hash(user.getUserPW()));
         return DataBaseManager.<User>insertData(user, "user");
+    }
+
+    public static int resetPassword(String userID, String password) {
+        password = PasswordAuthentication.hash(password);
+        String SQL = "update user set userPW = ? where userID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, password);
+            pstmt.setString(2, userID);
+            return pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -2;
     }
 
     public static int updateUser(User user) throws InvocationTargetException, IllegalAccessException {

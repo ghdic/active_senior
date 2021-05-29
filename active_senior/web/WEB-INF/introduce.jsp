@@ -253,5 +253,5 @@
         var marker = new naver.maps.Marker(markerOptions);
 	</script>
 </div>
-<script src="/static/introduce.js"></script>
+<script src="/static/js/introduce.js"></script>
 <jsp:include page="/view/footer"/>

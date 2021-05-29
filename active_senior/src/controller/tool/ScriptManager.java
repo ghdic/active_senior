@@ -76,6 +76,46 @@ public class ScriptManager {
         }
     }
 
+    public static void checkResetForm(HttpServletResponse resp, String userID, String userEmail) throws IOException {
+        PrintWriter out = resp.getWriter();
+        if (userID == null || userEmail == null || userID.equals("") || userEmail.equals("")) {
+            out.println("<script>");
+            out.println("alert('입력되지 않은 값이 있습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+    }
+
+    public static void resetCheck(HttpServletResponse resp, int result) throws IOException {
+        PrintWriter out = resp.getWriter();
+        if(result == -2) {
+            out.println("<script>");
+            out.println("alert('비밀번호 변경에 실패하였습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+    }
+
+    public static void emailCheck(HttpServletResponse resp, String email1, String email2) throws IOException {
+        PrintWriter out = resp.getWriter();
+        if(email1.equals(email2)) {
+            out.println("<script>");
+            out.println("alert('유저 정보와 이메일이 일치하지 않습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+    }
+
+    public static void checkSendEmail(HttpServletResponse resp, int result) throws IOException {
+        PrintWriter out = resp.getWriter();
+        if (result == -1) {
+            out.println("<script>");
+            out.println("alert('이메일을 전송하는데 실패하였습니다.')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+    }
+
     public static void userInfoCheck(HttpServletResponse resp, User user) throws IOException {
         PrintWriter out = resp.getWriter();
         if(user == null) {
