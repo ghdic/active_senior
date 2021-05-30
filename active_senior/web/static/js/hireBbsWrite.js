@@ -15,7 +15,7 @@ $('#summernote').summernote({
     ]
 });
 
-
+let url_name = window.location.href.split('/').pop()
 
 $(document).ready(function() {
     $('#summernote').summernote({
@@ -33,11 +33,11 @@ $('#form').submit(() => {
 })
 
 window.onbeforeunload = function (e) {
-    localStorage.setItem("writeHireBbsContentAuto", $('#summernote').summernote('code'))
+    localStorage.setItem(url_name + "ContentAuto", $('#summernote').summernote('code'))
 };
 
 window.onload = (e) => {
-    let getValue = localStorage.getItem("writeHireBbsContentAuto")
+    let getValue = localStorage.getItem(url_name + "ContentAuto")
 
     if(getValue !== null && getValue !== "" && getValue !== "<p><br></p>" && confirm("이전에 작성했던 글이 있습니다. 불러오시겠습니까?")){
         $('#summernote').summernote('code', '')
@@ -46,45 +46,69 @@ window.onload = (e) => {
 }
 
 function setContent() {
-    localStorage.setItem("writeHireBbsTitle", $("#bbsTitle").val())
-    localStorage.setItem("writeHireBbsContent", $('#summernote').summernote('code'))
-    localStorage.setItem("writeHireBbsState", $("#bbsState option:selected").val())
-    localStorage.setItem("writeHireBbsRecruitNum", $("#recruitmentNumber").val())
-    localStorage.setItem("writeHireBbsAgency", $("#agency").val())
-    localStorage.setItem("writeHireBbsDepartment", $("#department").val())
-    localStorage.setItem(("writeHireBbsRecruitStart"), $("#recruitStart").val())
-    localStorage.setItem(("writeHireBbsRecruitEnd"), $("#recruitEnd").val())
-    localStorage.setItem(("writeHireBbsEduStart"), $("#eduStart").val())
-    localStorage.setItem(("writeHireBbsEduEnd"), $("#eduEnd").val())
-    localStorage.setItem(("writeHireBbsActiveStart"), $("#activeStart").val())
-    localStorage.setItem(("writeHireBbsActiveEnd"), $("#activeEnd").val())
+    if($("#bbsTitle").length)
+        localStorage.setItem(url_name + "Title", $("#bbsTitle").val())
+    if($('#summernote').length)
+        localStorage.setItem(url_name + "Content", $('#summernote').summernote('code'))
+    if($("#bbsState option:selected").length)
+        localStorage.setItem(url_name + "State", $("#bbsState option:selected").val())
+    if($("#recruitmentNumber").length)
+        localStorage.setItem(url_name + "RecruitNum", $("#recruitmentNumber").val())
+    if($("#agency").length)
+        localStorage.setItem(url_name + "Agency", $("#agency").val())
+    if($("#department").length)
+        localStorage.setItem(url_name + "Department", $("#department").val())
+    if($("#recruitStart").length)
+        localStorage.setItem(url_name + "RecruitStart", $("#recruitStart").val())
+    if($("#recruitEnd").length)
+        localStorage.setItem(url_name + "RecruitEnd", $("#recruitEnd").val())
+    if($("#eduStart").length)
+        localStorage.setItem(url_name + "EduStart", $("#eduStart").val())
+    if($("#eduEnd").length)
+        localStorage.setItem(url_name + "EduEnd", $("#eduEnd").val())
+    if($("#activeStart").length)
+        localStorage.setItem(url_name + "ActiveStart", $("#activeStart").val())
+    if($("#activeEnd").length)
+        localStorage.setItem(url_name + "ActiveEnd", $("#activeEnd").val())
 }
 
 function getContent() {
-    let getTitle = localStorage.getItem("writeHireBbsTitle")
-    let getContent = localStorage.getItem("writeHireBbsContent")
-    let getState = localStorage.getItem("writeHireBbsState")
-    let getRecruitNum = localStorage.getItem("writeHireBbsRecruitNum")
-    let getAgency = localStorage.getItem("writeHireBbsAgency")
-    let getDepartment = localStorage.getItem("writeHireBbsDepartment")
-    let getRecruitStart = localStorage.getItem("writeHireBbsRecruitStart")
-    let getRecruitEnd = localStorage.getItem("writeHireBbsRecruitEnd")
-    let getEduStart = localStorage.getItem("writeHireBbsEduStart")
-    let getEduEnd = localStorage.getItem("writeHireBbsEduEnd")
-    let getActiveStart = localStorage.getItem("writeHireBbsActiveStart")
-    let getActiveEnd = localStorage.getItem("writeHireBbsActiveEnd")
-
-    $("#bbsTitle").val(getTitle)
-    $('#summernote').summernote('code', '')
-    $('#summernote').summernote('pasteHTML', getContent)
-    $('#bbsState').val(getState)
-    $("#recruitmentNumber").val(getRecruitNum)
-    $("#agency").val(getAgency)
-    $("#department").val(getDepartment)
-    $("#recruitStart").val(getRecruitStart)
-    $("#recruitEnd").val(getRecruitEnd)
-    $("#eduStart").val(getEduStart)
-    $("#eduEnd").val(getEduEnd)
-    $("#activeStart").val(getActiveStart)
-    $("#activeEnd").val(getActiveEnd)
+    let getTitle = localStorage.getItem(url_name + "Title")
+    let getContent = localStorage.getItem(url_name + "Content")
+    let getState = localStorage.getItem(url_name + "State")
+    let getRecruitNum = localStorage.getItem(url_name + "RecruitNum")
+    let getAgency = localStorage.getItem(url_name + "Agency")
+    let getDepartment = localStorage.getItem(url_name + "Department")
+    let getRecruitStart = localStorage.getItem(url_name + "RecruitStart")
+    let getRecruitEnd = localStorage.getItem(url_name + "RecruitEnd")
+    let getEduStart = localStorage.getItem(url_name + "EduStart")
+    let getEduEnd = localStorage.getItem(url_name + "EduEnd")
+    let getActiveStart = localStorage.getItem(url_name + "ActiveStart")
+    let getActiveEnd = localStorage.getItem(url_name + "ActiveEnd")
+    if(getTitle)
+        $("#bbsTitle").val(getTitle)
+    if(getContent) {
+        $('#summernote').summernote('code', '')
+        $('#summernote').summernote('pasteHTML', getContent)
+    }
+    if(getState)
+        $('#bbsState').val(getState)
+    if(getRecruitNum)
+        $("#recruitmentNumber").val(getRecruitNum)
+    if(getAgency)
+        $("#agency").val(getAgency)
+    if(getDepartment)
+        $("#department").val(getDepartment)
+    if(getRecruitStart)
+        $("#recruitStart").val(getRecruitStart)
+    if(getRecruitEnd)
+        $("#recruitEnd").val(getRecruitEnd)
+    if(getEduStart)
+        $("#eduStart").val(getEduStart)
+    if(getEduEnd)
+        $("#eduEnd").val(getEduEnd)
+    if(getActiveStart)
+        $("#activeStart").val(getActiveStart)
+    if(getActiveEnd)
+        $("#activeEnd").val(getActiveEnd)
 }

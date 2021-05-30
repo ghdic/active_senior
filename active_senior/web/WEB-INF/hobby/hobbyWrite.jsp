@@ -45,5 +45,5 @@
 	</table>
 </form>
 <script src="/static/js/profilePreview.js"></script>
-<script src="/static/hobbyBbsWrite.js"></script>
+<script src="/static/js/hobbyBbsWrite.js"></script>
 <jsp:include page="/view/footer"/>

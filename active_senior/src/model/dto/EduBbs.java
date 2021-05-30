@@ -3,6 +3,8 @@ package model.dto;
 import controller.tool.DateManger;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EduBbs {
     private int bbsID = -1;
@@ -128,6 +130,13 @@ public class EduBbs {
 
     public String getTag() {
         return tag;
+    }
+
+    public ArrayList<String> getTagArrayList() {
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(tag.trim().split(",")));
+        if(list.size() == 1 && list.get(0).equals(""))
+            list.remove(0);
+        return list;
     }
 
     public void setTag(String tag) {

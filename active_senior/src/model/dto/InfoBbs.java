@@ -133,6 +133,13 @@ public class InfoBbs {
         return tag;
     }
 
+    public ArrayList<String> getTagArrayList() {
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(tag.trim().split(",")));
+        if(list.size() == 1 && list.get(0).equals(""))
+            list.remove(0);
+        return list;
+    }
+
     public void setTag(String tag) {
         this.tag = tag;
     }

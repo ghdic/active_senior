@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <jsp-file>/WEB-INF/users/login.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>register</servlet-name>
-        <jsp-file>/WEB-INF/users/register.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/register.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>forgotPassword</servlet-name>
-        <jsp-file>/WEB-INF/users/forgotPassword.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/forgotPassword.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>forgotPassword</servlet-name>
@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>sendPassword</servlet-name>
-        <jsp-file>/WEB-INF/users/sendPassword.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/sendPassword.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>sendPassword</servlet-name>
@@ -59,7 +59,7 @@
 
     <servlet>
         <servlet-name>account</servlet-name>
-        <jsp-file>/WEB-INF/users/account.jsp</jsp-file>
+        <jsp-file>/WEB-INF/user/account.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>account</servlet-name>

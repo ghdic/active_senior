@@ -90,8 +90,11 @@
 * jquery
 * summernote
 * scrollMagic
-* gasp
+* gasp(TweenMax)
 * font-awesome
+* snap
+* masonry
+* slicker
 
 
 # 프로젝트 기능별 설명

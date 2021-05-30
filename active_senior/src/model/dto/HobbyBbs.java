@@ -74,6 +74,13 @@ public class HobbyBbs {
         return summary;
     }
 
+    public String getSummarySlice(int len) {
+        String str = summary;
+        if(str.length() > 50)
+            str = str.substring(0, len) + "...";
+        return str;
+    }
+
     public void setSummary(String summary) {
         this.summary = summary;
     }

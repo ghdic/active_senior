@@ -86,7 +86,7 @@ li.dropdown {
     position: absolute;
     background-color: white;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 1000;
 }
 
 .dropdown-content a {
@@ -2658,3 +2658,262 @@ slider-container .bg-4 h2,
     color: black;
 }
 /* --- forget password form End --- */
+
+
+/* 게시글 card start */
+.response-grid {
+    width: 100vw;
+    padding: 5rem 10vw;
+    background-color: #EFEFEF;
+}
+
+.response-grid a {
+    float: left;
+    width: 400px;
+    color: #333;
+}
+
+
+.response-grid figure {
+    position: relative;
+    overflow: hidden;
+    margin: 5px;
+    background: #333;
+    border-radius: 1rem;
+}
+
+.response-grid figure img {
+    position: relative;
+    display: block;
+    width: 100%;
+    opacity: 0.7;
+    min-height: 400px;
+    object-fit: cover;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+.response-grid figcaption {
+    position: absolute;
+    top: 0;
+    z-index: 11;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.response-grid figcaption h2 {
+    margin: 0 0 20px 0;
+    color: #3498db;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 130%;
+    word-break: keep-all;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.response-grid figcaption p {
+    padding: 0 20px;
+    color: #aaa;
+    font-weight: 300;
+    word-break: keep-all;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.response-grid figcaption h2,
+.response-grid figcaption p {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+}
+
+.response-grid figure button {
+    position: absolute;
+    padding: 4px 20px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.response-grid figcaption,
+.response-grid figcaption h2,
+.response-grid figcaption p,
+.response-grid figure button {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.response-grid svg {
+    position: absolute;
+    top: -1px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.response-grid svg path {
+    fill: #fff;
+}
+
+.response-grid a:hover figure img {
+    opacity: 1;
+}
+
+.response-grid a:hover figcaption h2,
+.response-grid a:hover figcaption p {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 0;
+}
+
+.response-grid figure button {
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 50px;
+    border: 6px solid #fff;
+    background: #fff;
+    font-size: 15px;
+    color: #3498db;
+    opacity: 0;
+    -webkit-transform: translateY(-50%) translateX(-50%) scale(0.25);
+    transform: translateY(-50%) translateX(-50%) scale(0.25);
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: -1px 0 #3498db, 0 1px #3498db, 1px 0 #3498db, 0 -1px #3498db;
+
+
+}
+
+.response-grid a:hover figure button
+{
+    opacity: 1;
+    -webkit-transform: translateY(-50%) translateX(-50%) scale(1);
+    transform: translateY(-50%) translateX(-50%) scale(1);
+}
+
+
+/* --- 게시글 card end --- */
+
+/* --- edu card Start */
+.edu-card-section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.edu-card-section::after {
+    content: '';
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    width: 700px;
+    height: 0px;
+    margin: 3vh auto;
+    overflow: hidden !important;
+}
+
+.edu-card {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    background: #444;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat !important;
+    width: 700px;
+    height: 380px;
+    box-shadow: 4px 8px 28px rgba(39, 44, 49, 0.1), 1px 3px 8px rgba(39, 44, 49, 0.075);
+    margin: 3vh auto;
+    overflow: hidden !important;
+    cursor: pointer;
+}
+.edu-card:hover {
+    box-shadow: 0 0 1px rgba(39, 44, 49, 0.2), 0 3px 16px rgba(39, 44, 49, 0.25);
+    transform: translate3D(0, -0.5px, 0);
+}
+.edu-card .content-mask {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.9);
+    width: 61%;
+    height: 100%;
+    padding: 0.75em 0 0.75em 2.5em;
+    overflow: hidden;
+    z-index: 5;
+    min-width: 500px;
+}
+.edu-card .horizontal {
+    display: inline-block;
+    position: relative;
+    background: linear-gradient(to top right, rgba(255, 255, 255, 0.9) 50%, transparent 0);
+    height: 101%;
+    width: 20%;
+    overflow: hidden;
+}
+
+.content-mask .category {
+    display: inline-block;
+    background: #e23f7e;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+    min-width: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px rgba(172, 28, 56, 0.1), 0 2px 6px rgba(172, 28, 56, 0.175);
+    margin: 3vh 2px 2.5vh;
+    padding: 6px 8px;
+    cursor: pointer;
+    z-index: 9;
+    background-color: #444;
+}
+
+.content-mask .category:hover {
+    box-shadow: 0 0 1px rgba(10, 96, 58, 0.2), 0 3px 6px rgba(39, 44, 49, 0.25);
+}
+
+.content-mask h1 {
+    background: transparent;
+    color: rgba(0, 0, 0, 0.9);
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    height: auto;
+    border-bottom: 2px solid rgba(204, 204, 204, 0.75);
+    margin-top: 0.35em;
+    margin-bottom: 0.35em;
+    padding-bottom: 5px;
+}
+.content-mask p {
+    font-size: 1.1em;
+    line-height: 1.4;
+    width: 100%;
+    margin-top: 0.3em;
+    padding-left: 2px;
+    z-index: 9;
+}
+.post-detail {
+    color: rgba(0, 0, 0, 0.55);
+    margin-top: 1rem;
+    padding-left: 2px;
+    vertical-align: middle;
+}
+.post-detail .icon {
+    position: relative;
+    width: 14px;
+    top: 2.25px;
+    margin-right: 7px;
+}
+.post-detail .date {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 0.85em;
+}
+/* --- edu card End */
