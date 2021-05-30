@@ -3057,6 +3057,7 @@ slider-container .bg-4 h2,
 .cmnty-view tbody td {
     color: #707070;
     padding: 0.7rem 0.5rem;
+    white-space: nowrap;
 }
 
 .cmnty-view tbody td:nth-child(2) {
@@ -3066,5 +3067,10 @@ slider-container .bg-4 h2,
 .cmnty-view tbody a {
     text-decoration: none;
     color: #707070;
+}
+
+.cmnty-view tbody span {
+    color: #4376f3;
+    font-weight: bold;
 }
 /* --- cmntyBbs table End --- */

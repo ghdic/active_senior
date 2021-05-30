@@ -3,6 +3,7 @@
 <%@ page import="controller.tool.ScriptManager" %>
 <%@ page import="controller.dao.CommunityBbsDAO" %>
 <%@ page import="model.dto.CommunityBbs" %>
+<%@ page import="controller.dao.CommunityCommentDAO" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="커뮤니티 리스트"/>
 	<jsp:param name="curTab" value="6"/>
@@ -30,7 +31,10 @@
 	%>
 	<tr>
 		<td><%= list.get(i).getBbsID() %></td>
-		<td><a href="/cmntyView?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
+		<td><a href="/cmntyView?bbsID=<%= list.get(i).getBbsID() %>">
+			<%= list.get(i).getBbsTitle() %>&nbsp;
+			<% int comment = CommunityCommentDAO.getCommentCount(list.get(i).getBbsID());
+			if(comment != 0) { %><span>(<%= comment %>)</span></a></td><% } %>
 		<td><%= list.get(i).getUserName() %></td>
 		<td><%= list.get(i).getBbsRecommend() %></td>
 		<td><%= list.get(i).getBbsView() %></td>

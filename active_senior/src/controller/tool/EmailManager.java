@@ -7,11 +7,10 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailManager {
+public class EmailManager{
     final static String user = "irony0728@gmail.com";
     final static String password = "test0728!";
     private static Properties prop;
-    private static Session session;
 
     static {
         prop = new Properties();
@@ -20,15 +19,14 @@ public class EmailManager {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.ssl.enable", "true");
         prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+    }
 
-        session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+    public static int sendMail(String target, String title, String html) throws MessagingException {
+        Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(user, password);
             }
         });
-    }
-
-    public static int sendMail(String target, String title, String html) throws MessagingException {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(user));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(target));
