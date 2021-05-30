@@ -3031,3 +3031,40 @@ slider-container .bg-4 h2,
     white-space: nowrap;
 }
 /* --- hirBbs card End --- */
+
+/* --- cmntyBbs table Start --- */
+.cmnty-view {
+    text-align: center;
+    width: 1200px;
+    margin: 3rem auto 1rem auto;
+    border-collapse: collapse;
+}
+
+.cmnty-view thead {
+    background-color: #717F9A;
+}
+
+.cmnty-view thead th {
+    color: white;
+    padding: 1rem .7rem;
+}
+
+.cmnty-view tbody {
+    background-color: #c3d8f5;
+    border-bottom: 1px solid #90b4e6;
+}
+
+.cmnty-view tbody td {
+    color: #707070;
+    padding: 0.7rem 0.5rem;
+}
+
+.cmnty-view tbody td:nth-child(2) {
+    text-align: left;
+}
+
+.cmnty-view tbody a {
+    text-decoration: none;
+    color: #707070;
+}
+/* --- cmntyBbs table End --- */

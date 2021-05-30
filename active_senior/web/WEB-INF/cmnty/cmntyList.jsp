@@ -11,34 +11,39 @@
 	String userID = ScriptManager.loginCheck(session, response, false);
 	int pageNumber = ScriptManager.pageNumberCheck(request);
 %>
-<table style="text-align: center" border="1px">
+
+<table class="cmnty-view">
 	<thead>
 	<tr>
-		<th>섬네일</th>
+		<th>게시글번호</th>
 		<th>제목</th>
+		<th>글쓴이</th>
+		<th>추천</th>
+		<th>조회</th>
+		<th>날짜</th>
 	</tr>
 	</thead>
 	<tbody>
 	<%
-		ArrayList<CommunityBbs> list = CommunityBbsDAO.getPostList(pageNumber, 10, 0);
+		ArrayList<CommunityBbs> list = CommunityBbsDAO.getPostList(pageNumber, 20, 0);
 		for(int i = 0; i < list.size(); i++) {
 	%>
-
 	<tr>
-		<td><%= list.get(i).getBbsThumbnailPath() %></td>
+		<td><%= list.get(i).getBbsID() %></td>
 		<td><a href="/cmntyView?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
-		<td><%= list.get(i).getSummary() %></td>
+		<td><%= list.get(i).getUserName() %></td>
+		<td><%= list.get(i).getBbsRecommend() %></td>
+		<td><%= list.get(i).getBbsView() %></td>
+		<td><%= list.get(i).getBbsDateSimple() %></td>
 	</tr>
-	<%
-		}
-	%>
+	<% } %>
 	</tbody>
 </table>
 <button type="button" onclick="location.href='/cmntyWrite'">글쓰기</button>
 <br>
 <% if (pageNumber > 1) { %>
 <button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber - 1 %>'">이전</button>
-<% } if (CommunityBbsDAO.nextPage(pageNumber, 10, 0)) { %>
+<% } if (CommunityBbsDAO.nextPage(pageNumber, 20, 0)) { %>
 <button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber + 1 %>'">다음</button>
 <% } %>
 <jsp:include page="view/footer"/>
