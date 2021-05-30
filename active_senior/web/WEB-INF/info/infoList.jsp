@@ -14,29 +14,30 @@
 %>
 
 <% if(category == 0) { %>
-<table style="text-align: center" border="1px">
-	<thead>
-	<tr>
-		<th>섬네일</th>
-		<th>제목</th>
-	</tr>
-	</thead>
-	<tbody>
+<section class="edu-card-section">
 	<%
 		ArrayList<InfoBbs> list = InfoBbsDAO.getPostList(pageNumber, 20, category);
 		for(int i = 0; i < list.size(); i++) {
 	%>
-
-	<tr>
-		<td><%= list.get(i).getBbsThumbnailPath() %></td>
-		<td><a href="/infoView?bbsID=<%= list.get(i).getBbsID() %>&category=<%= category %>"><%= list.get(i).getBbsTitle() %></a></td>
-		<td><%= list.get(i).getSummary() %></td>
-	</tr>
-	<%
-		}
-	%>
-	</tbody>
-</table>
+	<div class="edu-card" onclick="javascript:location.href = '/infoView?bbsID=<%= list.get(i).getBbsID() %>&category=<%= category %>'">
+		<div class="content-mask">
+			<%
+				ArrayList<String> tags = list.get(i).getTagArrayList();
+				int sz = tags.size() > 5 ? 5 : tags.size();
+				for(int j = 0; j < sz; j++) {
+			%>
+			<span class="category"><%= tags.get(j) %></span>
+			<% } %>
+			<h1><%= list.get(i).getBbsTitle() %></h1>
+			<p><%= list.get(i).getSummary() %></p>
+			<div class="post-detail">
+				<span class="icon"><i class="far fa-calendar-alt">&nbsp;</i></span><span class="date"><%= list.get(i).getBbsDateSimple() %></span>
+			</div>
+		</div>
+		<div class="horizontal"></div>
+	</div>
+	<% } %>
+</section>
 <% } else{ %>
 <section class="edu-card-section">
 	<%
@@ -47,7 +48,7 @@
 		<div class="content-mask">
 			<%
 				ArrayList<String> tags = list.get(i).getTagArrayList();
-				int sz = tags.size() > 3 ? 3 : tags.size();
+				int sz = tags.size() > 5 ? 5 : tags.size();
 				for(int j = 0; j < sz; j++) {
 			%>
 			<span class="category"><%= tags.get(j) %></span>

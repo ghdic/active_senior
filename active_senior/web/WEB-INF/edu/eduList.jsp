@@ -22,7 +22,7 @@
 		<div class="content-mask">
 			<%
 				ArrayList<String> tags = list.get(i).getTagArrayList();
-				int sz = tags.size() > 3 ? 3 : tags.size();
+				int sz = tags.size() > 5 ? 5 : tags.size();
 				for(int j = 0; j < sz; j++) {
 			%>
 			<span class="category"><%= tags.get(j) %></span>
@@ -42,7 +42,7 @@
 <br>
 <% if (pageNumber > 1) { %>
 <button onclick="location.href='/eduList?pageNumber=<%= pageNumber - 1 %>&category=<%= category %>'">이전</button>
-<% } if (EduBbsDAO.nextPage(pageNumber, 10, category)) { %>
+<% } if (EduBbsDAO.nextPage(pageNumber, 20, category)) { %>
 <button onclick="location.href='/eduList?pageNumber=<%= pageNumber + 1 %>&category=<%= category %>'">다음</button>
 <% } %>
 <jsp:include page="view/footer"/>

@@ -12,40 +12,37 @@
 	String userID = ScriptManager.loginCheck(session, response, false);
 	int pageNumber = ScriptManager.pageNumberCheck(request);
 %>
-<table style="text-align: center" border="1px">
-	<thead>
-	<tr>
-		<th>섬네일</th>
-		<th>제목</th>
-		<th>운영기관</th>
-		<th>모집인원</th>
-		<th>모집기간</th>
-		<th>공고모집상태</th>
-	</tr>
-	</thead>
-	<tbody>
-	<%
-		ArrayList<HireBbs> list = HireBbsDAO.getPostList(pageNumber, 10);
-		for(int i = 0; i < list.size(); i++) {
-	%>
+<%
+	ArrayList<HireBbs> list = HireBbsDAO.getPostList(pageNumber, 10);
+	for(int i = 0; i < list.size(); i++) {
+%>
+<div class="table-container">
+	<div class="table-header">
+		<div class="publish-date">
+			<%= list.get(i).getBbsDateSimple()%>
+		</div>
+	</div>
+	<img src="<%= list.get(i).getBbsThumbnailPath() %>" class="table-image">
+	<div class="table-body">
+		<div class="table-title">
+			<h1><a href="/appView?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></h1>
+		</div>
+		<p>운영기관:&nbsp; <%= list.get(i).getAgency() %></p>
+		<p>담당부서:&nbsp;<%= list.get(i).getDepartment() %></p>
+		<p>모집인원:&nbsp;<%= list.get(i).getRecruitNum() %>명</p>
+		<p>모집기간:&nbsp;<%= list.get(i).getRecruitStartSimple() %>~<%= list.get(i).getRecruitEndSimple() %></p>
+		<div class="table-tags">
+			<div class="explain">
+				<p>공고모집상태:&nbsp;</p>
+				<ul class="tag">
+					<li><span><%= list.get(i).getBbsState() %></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<% } %>
 
-	<tr>
-		<td><%= list.get(i).getBbsThumbnailPath() %></td>
-		<td><a href="/appView?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></td>
-		<td><%= list.get(i).getAgency() %></td>
-		<% if(list.get(i).getRecruitNum() == -1) { %>
-		<td></td>
-		<% } else { %>
-		<td><%= list.get(i).getRecruitNum() %></td>
-		<% } %>
-		<td><%= list.get(i).getRecruitStartSimple() + " ~ " + list.get(i).getRecruitEndSimple() %></td>
-		<td><%= list.get(i).getBbsState() %></td>
-	</tr>
-	<%
-		}
-	%>
-	</tbody>
-</table>
 <button type="button" onclick="location.href='/appWrite'">글쓰기</button>
 <br>
 <% if (pageNumber > 1) { %>

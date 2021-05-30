@@ -3,7 +3,7 @@
 	<div class="footer-center">
 		<div class="footer-item">
 			<i class="fa fa-map-marker"></i>
-			<p><span>충청남도 아산시 <br>배방읍 호서로79번길 20</span>호서대 제2공학관</p>
+			<p><span>충청남도 아산시 <br>배방읍 호서로79번길 20</span>호서대 제1공학관</p>
 		</div>
 
 		<div class="footer-item">
