@@ -102,11 +102,11 @@
 
 # 프로젝트 세팅 방법
 
-* [☆active_senior.sql다운★](https://drive.google.com/file/d/1dm0P6xCCyVp3hm2heV2z_8CTzb7TrGeT/view?usp=sharing)을 통해 데이터베이스 세팅
+* [☆active_senior.sql다운★](https://drive.google.com/file/d/1bGbnOxfu9VgJNWPMkSTs_X6-IVdRiNUC/view?usp=sharing)을 통해 데이터베이스 세팅
     ```
     // mysqldump -uroot -proot active_senior > active_senior.sql (export database)
 
     mysqladmin -uroot -p[루트비밀번호] create actvie_senior
     mysql -uroot -p[루트비밀번호] active_senior < active_senior.sql
     ```
-* [☆static다운★](https://drive.google.com/file/d/1I4tcVoNCdu9elLTbIVHf7BwWeiU_xXNz/view?usp=sharing)을 다운받아 `actvie_senior/web/static` 폴더 안에 내용을 옮겨줌(static폴더 통째로 넣기 x)
+* [☆static다운★](https://drive.google.com/file/d/1uI6IG6jgQYJsMgZtU3jL7JWX_tP4l1GS/view?usp=sharing)을 다운받아 `actvie_senior/web/static` 폴더 안에 내용을 옮겨줌(static폴더 통째로 넣기 x)
