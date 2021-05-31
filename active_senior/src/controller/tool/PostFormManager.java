@@ -57,11 +57,19 @@ public class PostFormManager {
                         File uploadFile = null;
                         if (item.getFieldName().equals("bbsThumbnail")) {
                             uploadFile = new File(realPath + separator + "thumbnail" + separator + fileName);
+                            while (uploadFile.exists()) {
+                                fileName = FileManager.getHashFileName(item.getName(), 30);
+                                uploadFile = new File(realPath + separator + "thumbnail" + separator + fileName);
+                            }
                             String sName = DtoListener.toSetMethodName(item.getFieldName());
                             Method sMethod = DtoListener.returnMethod(c, sName);
                             sMethod.invoke(data, fileName);
                         } else if (item.getFieldName().equals("userProfile")) {
                             uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
+                            while (uploadFile.exists()) {
+                                fileName = FileManager.getHashFileName(item.getName(), 30);
+                                uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
+                            }
                             item.write(uploadFile);
                             ImageManager.imageResize(realPath + separator + "profile_pic", fileName, 200, 200);
                             String sName = DtoListener.toSetMethodName("userProfile");
@@ -69,6 +77,10 @@ public class PostFormManager {
                             sMethod.invoke(data, fileName);
                         } else if (item.getFieldName().equals("files")) {
                             uploadFile = new File(realPath + separator + "upload" + separator + fileName);
+                            while (uploadFile.exists()) {
+                                fileName = FileManager.getHashFileName(item.getName(), 30);
+                                uploadFile = new File(realPath + separator + "upload" + separator + fileName);
+                            }
                             realFileNames.add(fileName);
                             originalFileNames.add(item.getName());
                         }
