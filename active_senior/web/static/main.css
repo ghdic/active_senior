@@ -3074,3 +3074,93 @@ slider-container .bg-4 h2,
     font-weight: bold;
 }
 /* --- cmntyBbs table End --- */
+
+/* --- Admin Section Start --- */
+
+/* Search bar */
+.search-container {
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+
+input#search-bar {
+    width: 100%;
+    height: 45px;
+    padding: 0 60px 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+
+input#search-bar:focus {
+    border: 1px solid #008abf;
+    transition: 0.35s ease;
+    color: #008abf;
+}
+
+input#search-bar:focus::-webkit-input-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+
+.search-icon {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    top: -60px;
+    right: -280px;
+}
+
+#searchForm-left {
+    position: relative;
+    float: left;
+    margin: 1rem;
+    height: 45px;
+}
+
+#searchForm-right {
+    position: relative;
+    float: right;
+    margin: 1rem;
+    height: 45px;
+}
+
+/* tab */
+#tab-menu {
+    width: 1200px;
+    background: #2d69b8;
+    position: relative;
+    border-radius: 4px;
+    margin: 3rem auto 0 auto;
+}
+#tab-btn ul {
+    overflow: hidden;
+}
+#tab-btn li {
+    float: left;
+    text-align: center;
+    list-style: none;
+}
+#tab-btn li a {
+    display: block;
+    color: #fff;
+    padding: 15px 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+#tab-btn li.tab-active a {
+    border-bottom: 5px solid #2dc3dd;
+}
+
+#tab-cont {
+    width: 1200px;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+/* --- Admin Section End --- */

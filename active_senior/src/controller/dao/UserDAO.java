@@ -2,6 +2,7 @@ package controller.dao;
 
 
 import controller.tool.DataBaseManager;
+import model.dto.HireBbs;
 import model.dto.User;
 import controller.tool.PasswordAuthentication;
 import javax.naming.Context;
@@ -12,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
     private static DataSource dataSource;
@@ -103,5 +105,51 @@ public class UserDAO {
             e.printStackTrace();
         }
         return -2; // DB Error
+    }
+
+    public static ArrayList<User> getUserList(int pageNumber, int require) {
+        String SQL = "select * from user limit ?, ?";
+        ArrayList<User> list = new ArrayList<User>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, (pageNumber - 1) * require);
+            pstmt.setInt(2, require);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                User user = DataBaseManager.<User>getData(rs, "user");
+                list.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list; // 리스트가 비어있을 경우 더이상 조회 x
+    }
+
+    // 다음 페이지 존재하는지 확인
+    public static boolean nextPage(int pageNumber, int require) {
+        String SQL = "select userID from user limit ?, 1";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, pageNumber * require);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+                return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public static int deleteUser(String userID) {
+        String SQL = "delete from user where userID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

@@ -96,6 +96,8 @@
 * masonry
 * slicker
 
+테스트방식
+e2e
 
 # 프로젝트 기능별 설명
 

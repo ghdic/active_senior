@@ -67,6 +67,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>admin</servlet-name>
+        <jsp-file>/WEB-INF/user/admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>appList</servlet-name>
         <jsp-file>/WEB-INF/app/appList.jsp</jsp-file>
     </servlet>
