@@ -1,7 +1,6 @@
 package controller.tool;
 
-import model.dto.HireBbs;
-import model.dto.User;
+import model.dto.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -209,21 +208,21 @@ public class ScriptManager {
         }
     }
 
-    public static boolean checkWirteHireBbs(HttpServletResponse resp, HireBbs hireBbs) throws IOException, ParseException {
+    public static boolean checkWriteHireBbs(HttpServletResponse resp, HireBbs eduBbs) throws IOException, ParseException {
         PrintWriter out = resp.getWriter();
-        if (hireBbs.getBbsTitle().equals("") || hireBbs.getBbsContent().equals("") || hireBbs.getBbsState().equals("") ||
-                hireBbs.getRecruitNum() == -1 || hireBbs.getAgency().equals("") ||
-                hireBbs.getDepartment().equals("") || hireBbs.getRecruitStart().equals("") || hireBbs.getRecruitEnd().equals("") ||
-                hireBbs.getEduStart().equals("") || hireBbs.getEduEnd().equals("") || hireBbs.getActiveStart().equals("") ||
-                hireBbs.getActiveEnd().equals("")) {
+        if (eduBbs.getBbsTitle().equals("") || eduBbs.getBbsContent().equals("") || eduBbs.getBbsState().equals("") ||
+                eduBbs.getRecruitNum() == -1 || eduBbs.getAgency().equals("") ||
+                eduBbs.getDepartment().equals("") || eduBbs.getRecruitStart().equals("") || eduBbs.getRecruitEnd().equals("") ||
+                eduBbs.getEduStart().equals("") || eduBbs.getEduEnd().equals("") || eduBbs.getActiveStart().equals("") ||
+                eduBbs.getActiveEnd().equals("")) {
             out.println("<script>");
             out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
             out.println("history.back()");
             out.println("</script>");
             return false;
-        } else if (DateManger.compareDate(hireBbs.getRecruitStart(), hireBbs.getRecruitEnd()) > 0 ||
-                DateManger.compareDate(hireBbs.getEduStart(), hireBbs.getEduEnd()) > 0 ||
-                DateManger.compareDate(hireBbs.getActiveStart(), hireBbs.getActiveEnd()) > 0){
+        } else if (DateManger.compareDate(eduBbs.getRecruitStart(), eduBbs.getRecruitEnd()) > 0 ||
+                DateManger.compareDate(eduBbs.getEduStart(), eduBbs.getEduEnd()) > 0 ||
+                DateManger.compareDate(eduBbs.getActiveStart(), eduBbs.getActiveEnd()) > 0){
             out.println("<script>");
             out.println("alert('시작 날짜가 끝나는 날짜보다 큽니다')");
             out.println("history.back()");
@@ -231,6 +230,54 @@ public class ScriptManager {
             return false;
         }
 
+        return true;
+    }
+
+    public static boolean checkWriteEduBbs(HttpServletResponse resp, EduBbs eduBbs) throws IOException, ParseException {
+        PrintWriter out = resp.getWriter();
+        if (eduBbs.getBbsTitle().equals("") || eduBbs.getBbsContent().equals("")) {
+            out.println("<script>");
+            out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
+            out.println("history.back()");
+            out.println("</script>");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkWriteHobbyBbs(HttpServletResponse resp, HobbyBbs hobbyBbs) throws IOException, ParseException {
+        PrintWriter out = resp.getWriter();
+        if (hobbyBbs.getBbsTitle().equals("") || hobbyBbs.getBbsContent().equals("")) {
+            out.println("<script>");
+            out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
+            out.println("history.back()");
+            out.println("</script>");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkWriteInfoBbs(HttpServletResponse resp, InfoBbs infoBbs) throws IOException, ParseException {
+        PrintWriter out = resp.getWriter();
+        if (infoBbs.getBbsTitle().equals("") || infoBbs.getBbsContent().equals("")) {
+            out.println("<script>");
+            out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
+            out.println("history.back()");
+            out.println("</script>");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkWriteCmntyBbs(HttpServletResponse resp, CommunityBbs communityBbs) throws IOException, ParseException {
+        PrintWriter out = resp.getWriter();
+        if (communityBbs.getBbsTitle().equals("") || communityBbs.getBbsContent().equals("")) {
+            out.println("<script>");
+            out.println("alert('입력이 안 된 사항이 있거나 잘못 입력된 데이터가 있습니다!!')");
+            out.println("history.back()");
+            out.println("</script>");
+            return false;
+        }
         return true;
     }
 

@@ -1,10 +1,10 @@
-package controller.servlet.app;
+package controller.servlet.cmnty;
 
-import controller.dao.HireBbsDAO;
+import controller.dao.CommunityBbsDAO;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import model.dto.CommunityBbs;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/appUpdateAction")
-public class AppUpdateAction extends HttpServlet {
+@WebServlet("/cmntyUpdateAction")
+public class CmntyUpdateAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -28,25 +28,25 @@ public class AppUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HireBbs post = HireBbsDAO.getPost(bbsID);
+        CommunityBbs post = CommunityBbsDAO.getPost(bbsID);
         ScriptManager.checkPost(resp, post);
 
-        HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
+        CommunityBbs cmntyBbs = PostFormManager.getPostData(req, "communityBbs", "/static/cmnty_bbs");
         if(ScriptManager.userMatchCheck(resp, userID, post.getUserID())) {
             int result = -2;
 
             try {
-                if (ScriptManager.checkWriteHireBbs(resp, hireBbs)) {
-                    hireBbs.setUserID(userID);
-                    hireBbs.setBbsID(bbsID);
-                    hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
-                    result = HireBbsDAO.updateHireBbs(hireBbs);
+                if (ScriptManager.checkWriteCmntyBbs(resp, cmntyBbs)) {
+                    cmntyBbs.setUserID(userID);
+                    cmntyBbs.setBbsID(bbsID);
+                    cmntyBbs.setBbsContent(ImageManager.replaceBase64toImage(cmntyBbs.getBbsContent(), "static/cmnty_bbs/content"));
+                    result = CommunityBbsDAO.updateCommunityBbs(cmntyBbs);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 result = -2;
             }
-            ScriptManager.writeResult(resp, result, "/appList", "updateHireBbsContentAuto");
+            ScriptManager.writeResult(resp, result, "/cmntyList", "updateCommunityBbsContentAuto");
         }
     }
 }

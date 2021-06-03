@@ -1,11 +1,11 @@
-package controller.servlet.app;
+package controller.servlet.edu;
 
-import controller.dao.HireBbsDAO;
+import controller.dao.EduBbsDAO;
 import controller.dao.UserDAO;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import model.dto.EduBbs;
 import model.dto.User;
 
 import javax.servlet.ServletException;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/appWriteAction")
-public class AppWriteAction extends HttpServlet {
+@WebServlet("/eduWriteAction")
+public class EduWriteAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -30,19 +30,19 @@ public class AppWriteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         User user = UserDAO.getUser(userID);
-        HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
+        EduBbs eduBbs = PostFormManager.getPostData(req, "eduBbs", "/static/edu_bbs");
         int result = -2;
         try {
-            if(ScriptManager.checkWriteHireBbs(resp, hireBbs)) {
-                hireBbs.setUserID(userID);
-                hireBbs.setUserName(user.getUserName());
-                hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
-                result = HireBbsDAO.insertHireBbs(hireBbs);
+            if(ScriptManager.checkWriteEduBbs(resp, eduBbs)) {
+                eduBbs.setUserID(userID);
+                eduBbs.setUserName(user.getUserName());
+                eduBbs.setBbsContent(ImageManager.replaceBase64toImage(eduBbs.getBbsContent(), "static/edu_bbs/content"));
+                result = EduBbsDAO.insertEduBbs(eduBbs);
             } else return;
         } catch (Exception e) {
             e.printStackTrace();
             result = -2;
         }
-        ScriptManager.writeResult(resp, result, "/appList", "writeHireBbsContentAuto");
+        ScriptManager.writeResult(resp, result, "/eduList", "writeEduBbsContentAuto");
     }
 }

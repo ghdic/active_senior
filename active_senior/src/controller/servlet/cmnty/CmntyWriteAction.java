@@ -1,11 +1,11 @@
-package controller.servlet.app;
+package controller.servlet.cmnty;
 
-import controller.dao.HireBbsDAO;
+import controller.dao.CommunityBbsDAO;
 import controller.dao.UserDAO;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import model.dto.CommunityBbs;
 import model.dto.User;
 
 import javax.servlet.ServletException;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/appWriteAction")
-public class AppWriteAction extends HttpServlet {
+@WebServlet("/cmntyWriteAction")
+public class CmntyWriteAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -30,19 +30,19 @@ public class AppWriteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         User user = UserDAO.getUser(userID);
-        HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
+        CommunityBbs communityBbs = PostFormManager.getPostData(req, "communityBbs", "/static/cmnty_bbs");
         int result = -2;
         try {
-            if(ScriptManager.checkWriteHireBbs(resp, hireBbs)) {
-                hireBbs.setUserID(userID);
-                hireBbs.setUserName(user.getUserName());
-                hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
-                result = HireBbsDAO.insertHireBbs(hireBbs);
+            if(ScriptManager.checkWriteCmntyBbs(resp, communityBbs)) {
+                communityBbs.setUserID(userID);
+                communityBbs.setUserName(user.getUserName());
+                communityBbs.setBbsContent(ImageManager.replaceBase64toImage(communityBbs.getBbsContent(), "static/cmnty_bbs/content"));
+                result = CommunityBbsDAO.insertCommunityBbs(communityBbs);
             } else return;
         } catch (Exception e) {
             e.printStackTrace();
             result = -2;
         }
-        ScriptManager.writeResult(resp, result, "/appList", "writeHireBbsContentAuto");
+        ScriptManager.writeResult(resp, result, "/cmntyList", "writeCommunityBbsContentAuto");
     }
 }

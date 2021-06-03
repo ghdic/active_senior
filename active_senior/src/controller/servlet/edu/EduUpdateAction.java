@@ -1,10 +1,10 @@
-package controller.servlet.app;
+package controller.servlet.edu;
 
-import controller.dao.HireBbsDAO;
+import controller.dao.EduBbsDAO;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import model.dto.EduBbs;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/appUpdateAction")
-public class AppUpdateAction extends HttpServlet {
+@WebServlet("/eduUpdateAction")
+public class EduUpdateAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -28,25 +28,25 @@ public class AppUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HireBbs post = HireBbsDAO.getPost(bbsID);
+        EduBbs post = EduBbsDAO.getPost(bbsID);
         ScriptManager.checkPost(resp, post);
 
-        HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
+        EduBbs eduBbs = PostFormManager.getPostData(req, "eduBbs", "/static/edu_bbs");
         if(ScriptManager.userMatchCheck(resp, userID, post.getUserID())) {
             int result = -2;
 
             try {
-                if (ScriptManager.checkWriteHireBbs(resp, hireBbs)) {
-                    hireBbs.setUserID(userID);
-                    hireBbs.setBbsID(bbsID);
-                    hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
-                    result = HireBbsDAO.updateHireBbs(hireBbs);
+                if (ScriptManager.checkWriteEduBbs(resp, eduBbs)) {
+                    eduBbs.setUserID(userID);
+                    eduBbs.setBbsID(bbsID);
+                    eduBbs.setBbsContent(ImageManager.replaceBase64toImage(eduBbs.getBbsContent(), "static/edu_bbs/content"));
+                    result = EduBbsDAO.updateEduBbs(eduBbs);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 result = -2;
             }
-            ScriptManager.writeResult(resp, result, "/appList", "updateHireBbsContentAuto");
+            ScriptManager.writeResult(resp, result, "/eduList", "updateEduBbsContentAuto");
         }
     }
 }

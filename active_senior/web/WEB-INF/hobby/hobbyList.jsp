@@ -37,7 +37,7 @@
 </section>
 <div style="width: 100%;background-color: #EFEFEF;">
 	<% if(userID != null) { %>
-	<button type="button" onclick="location.href='/hobbyWrite'">글쓰기</button>
+	<button type="button" onclick="location.href='/hobbyWrite?category=<%= category %>'">글쓰기</button>
 	<% } %>
 	<br>
 	<% if (pageNumber > 1) { %>

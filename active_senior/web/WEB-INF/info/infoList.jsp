@@ -64,7 +64,7 @@
 	<% } %>
 </section>
 <% } %>
-<button type="button" onclick="location.href='/infoWrite'">글쓰기</button>
+<button type="button" onclick="location.href='/infoWrite?category=<%= category %>'">글쓰기</button>
 <br>
 <% if (pageNumber > 1) { %>
 <button onclick="location.href='/infoList?pageNumber=<%= pageNumber - 1 %>&category=<%= category %>'">이전</button>

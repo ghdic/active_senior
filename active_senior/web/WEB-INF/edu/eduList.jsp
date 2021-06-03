@@ -38,7 +38,7 @@
 	<% } %>
 </section>
 
-<button type="button" onclick="location.href='/eduWrite'">글쓰기</button>
+<button type="button" onclick="location.href='/eduWrite?category=<%= category %>'">글쓰기</button>
 <br>
 <% if (pageNumber > 1) { %>
 <button onclick="location.href='/eduList?pageNumber=<%= pageNumber - 1 %>&category=<%= category %>'">이전</button>

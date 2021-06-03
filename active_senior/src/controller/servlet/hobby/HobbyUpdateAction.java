@@ -1,10 +1,10 @@
-package controller.servlet.app;
+package controller.servlet.hobby;
 
-import controller.dao.HireBbsDAO;
+import controller.dao.HobbyBbsDAO;
 import controller.tool.ImageManager;
 import controller.tool.PostFormManager;
 import controller.tool.ScriptManager;
-import model.dto.HireBbs;
+import model.dto.HobbyBbs;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/appUpdateAction")
-public class AppUpdateAction extends HttpServlet {
+@WebServlet("/hobbyUpdateAction")
+public class HobbyUpdateAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -28,25 +28,25 @@ public class AppUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HireBbs post = HireBbsDAO.getPost(bbsID);
+        HobbyBbs post = HobbyBbsDAO.getPost(bbsID);
         ScriptManager.checkPost(resp, post);
 
-        HireBbs hireBbs = PostFormManager.getPostData(req, "hireBbs", "/static/hire_bbs");
+        HobbyBbs hobbyBbs = PostFormManager.getPostData(req, "hobbyBbs", "/static/hobby_bbs");
         if(ScriptManager.userMatchCheck(resp, userID, post.getUserID())) {
             int result = -2;
 
             try {
-                if (ScriptManager.checkWriteHireBbs(resp, hireBbs)) {
-                    hireBbs.setUserID(userID);
-                    hireBbs.setBbsID(bbsID);
-                    hireBbs.setBbsContent(ImageManager.replaceBase64toImage(hireBbs.getBbsContent(), "static/hire_bbs/content"));
-                    result = HireBbsDAO.updateHireBbs(hireBbs);
+                if (ScriptManager.checkWriteHobbyBbs(resp, hobbyBbs)) {
+                    hobbyBbs.setUserID(userID);
+                    hobbyBbs.setBbsID(bbsID);
+                    hobbyBbs.setBbsContent(ImageManager.replaceBase64toImage(hobbyBbs.getBbsContent(), "static/hobby_bbs/content"));
+                    result = HobbyBbsDAO.updateHobbyBbs(hobbyBbs);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 result = -2;
             }
-            ScriptManager.writeResult(resp, result, "/appList", "updateHireBbsContentAuto");
+            ScriptManager.writeResult(resp, result, "/hobbyList", "updateHobbyBbsContentAuto");
         }
     }
 }
