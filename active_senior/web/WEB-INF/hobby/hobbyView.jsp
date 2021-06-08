@@ -16,6 +16,7 @@
 	int bbsID = ScriptManager.checkBbs(request, response);
 	HobbyBbs hobbyBbs = HobbyBbsDAO.getPost(bbsID);
 	ScriptManager.checkPost(response, hobbyBbs);
+	HobbyBbsDAO.viewIncrease(bbsID);
 	User user = UserDAO.getUser(hobbyBbs.getUserID());
 	ArrayList<String> recommendTable = RecommendTableDAO.getRecommends(bbsID);
 %>
@@ -30,7 +31,7 @@
 			<i class="fas fa-user"></i><span>작성자: <%= hobbyBbs.getUserName() %></span>
 		</li>
 		<li>
-			<i class="far fa-eye"></i></li><span>조회수: <%= hobbyBbs.getBbsView() %></span>
+			<i class="far fa-eye"></i></li><span>조회수: <%= hobbyBbs.getBbsView() + 1 %></span>
 		<li>
 			<i class="far fa-thumbs-up"></i><span>추천수: <%= recommendTable.size() %></span>
 		</li>

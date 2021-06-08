@@ -133,4 +133,14 @@ public class HobbyBbsDAO{
         return DataBaseManager.updateData(hobbyBbs, "hobbyBbs");
     }
 
+    public static void viewIncrease(int bbsID) {
+        String SQL = "update hobbyBbs set bbsView = bbsView + 1 where bbsID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, bbsID);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
