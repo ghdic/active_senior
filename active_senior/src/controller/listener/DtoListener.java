@@ -32,11 +32,12 @@ public class DtoListener implements ServletContextListener{
         put("hobbyBbs", HobbyBbs.class);
         put("communityBbs", CommunityBbs.class);
         put("communityComment", CommunityComment.class);
+        put("recommendTable", RecommendTable.class);
     }};
     public static HashMap<String, String> primaryColumnName = new HashMap<String, String>();
 
     private static ArrayList<String> dtoNameList = new ArrayList<String>(
-            Arrays.asList(new String[]{"user", "hireBbs", "eduBbs", "infoBbs", "hobbyBbs", "communityBbs", "communityComment"})
+            Arrays.asList(new String[]{"user", "hireBbs", "eduBbs", "infoBbs", "hobbyBbs", "communityBbs", "communityComment", "recommendTable"})
     );
     private DataSource dataSource;
     private Connection conn;

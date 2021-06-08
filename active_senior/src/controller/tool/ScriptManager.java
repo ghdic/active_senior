@@ -182,6 +182,21 @@ public class ScriptManager {
         }
     }
 
+    public static String checkUser (HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        PrintWriter out = resp.getWriter();
+        String userID = null;
+        if (req.getParameter("userID") != null) {
+            userID = req.getParameter("userID");
+        }
+        if(userID == null) {
+            out.println("<script>");
+            out.println("alert('유효하지 않은 접근입니다')");
+            out.println("history.back()");
+            out.println("</script>");
+        }
+        return userID;
+    }
+
     public static int checkBbs(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
         int bbsID = -1;
@@ -325,5 +340,16 @@ public class ScriptManager {
             out.println("</script>");
         }
         return category;
+    }
+
+    public static void recommendCheck(HttpServletResponse resp, int result) throws IOException {
+       PrintWriter out = resp.getWriter();
+
+       if(result == -2) {
+           out.println("<script>");
+           out.println("alert('옳지 않은 접근 방식입니다.')");
+           out.println("history.back()");
+           out.println("</script>");
+       }
     }
 }

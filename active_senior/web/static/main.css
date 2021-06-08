@@ -3245,6 +3245,10 @@ input#search-bar:focus::-webkit-input-placeholder {
     color: black;
 }
 
+.board .recommend-section {
+    margin: 300px 0 0 0;
+}
+
 .board .recommend-section a {
     display: flex;
     flex-direction: column;
@@ -3256,7 +3260,7 @@ input#search-bar:focus::-webkit-input-placeholder {
     text-align: center;
     font-size: 30px;
     line-height: 10px;
-    margin: 0 auto;
+    margin: 3rem auto;
     border: 1px solid black;
     border-radius: 5px;
 }

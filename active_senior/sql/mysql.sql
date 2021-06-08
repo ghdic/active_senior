@@ -173,3 +173,8 @@ create table communityComment
     commentDate datetime default now(),
     comment text
 );
+
+create table recommendTable(
+    bbsID int,
+    userID varchar(20) not null
+);

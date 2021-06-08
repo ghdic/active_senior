@@ -4,6 +4,9 @@
 <%@ page import="controller.dao.HobbyBbsDAO" %>
 <%@ page import="model.dto.User" %>
 <%@ page import="controller.dao.UserDAO" %>
+<%@ page import="model.dto.RecommendTable" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="controller.dao.RecommendTableDAO" %>
 <jsp:include page="view/navbar">
 	<jsp:param name="title" value="게시글"/>
 	<jsp:param name="curTab" value="5"/>
@@ -14,6 +17,7 @@
 	HobbyBbs hobbyBbs = HobbyBbsDAO.getPost(bbsID);
 	ScriptManager.checkPost(response, hobbyBbs);
 	User user = UserDAO.getUser(hobbyBbs.getUserID());
+	ArrayList<String> recommendTable = RecommendTableDAO.getRecommends(bbsID);
 %>
 
 <div class="board">
@@ -28,7 +32,7 @@
 		<li>
 			<i class="far fa-eye"></i></li><span>조회수: <%= hobbyBbs.getBbsView() %></span>
 		<li>
-			<i class="far fa-thumbs-up"></i><span>추천수: <%= hobbyBbs.getBbsRecommend() %></span>
+			<i class="far fa-thumbs-up"></i><span>추천수: <%= recommendTable.size() %></span>
 		</li>
 		<li style="float:right;">
 			<i class="far fa-clock"></i><span><%= hobbyBbs.getBbsDateSimple() %></span>
@@ -47,7 +51,13 @@
 		%>
 	</div>
 	<div class="recommend-section">
-		<a href="/hobbyDeleteAction?bbsID=<%= bbsID %>" onclick="return confirm('이 게시글을 추천하시겠습니까?')"><span><%= hobbyBbs.getBbsRecommend() %></span><br><span><i class="far fa-thumbs-up"></i></span></a>
+		<% if (userID == null) { %>
+		<a href="javascript:location.href = '/login'" onclick="return confirm('추천을 하시려면 로그인을 먼저해주세요!')"><span><%= recommendTable.size() %></span><br><span><i class="far fa-thumbs-up"></i></span></a>
+		<% } else if (recommendTable.contains(userID)) {  %>
+		<a href="javascript:recommend(false)" style="box-shadow: 10px 5px 5px cornflowerblue" onclick="return confirm('추천을 취소하시겠습니까??')"><span><%= recommendTable.size() %></span><br><span><i class="far fa-thumbs-up"></i></span></a>
+		<% } else { %>
+		<a href="javascript:recommend(true)" onclick="return confirm('이 게시글을 추천하시겠습니까?')"><span><%= recommendTable.size() %></span><br><span><i class="far fa-thumbs-up"></i></span></a>
+		<% } %>
 	</div>
 	<div>
 		<p class="keywords">
@@ -58,5 +68,32 @@
 		</p>
 	</div>
 </div>
+
+<script>
+	function recommend(check) {
+	    let form = document.createElement("form")
+		form.method = "post"
+	    if (check === true) {
+            form.action = '/setRecommend'
+        } else {
+	        form.action = '/cancelRecommend'
+	    }
+
+	    let input = document.createElement("input")
+		input.setAttribute("type", "hidden")
+		input.setAttribute("name", "bbsID")
+		input.setAttribute("value", "<%= bbsID %>")
+		form.appendChild(input)
+
+        input = document.createElement("input")
+        input.setAttribute("type", "hidden")
+        input.setAttribute("name", "userID")
+        input.setAttribute("value", "<%= userID %>")
+        form.appendChild(input)
+
+		document.body.appendChild(form)
+		form.submit()
+	}
+</script>
 
 <jsp:include page="view/footer"/>

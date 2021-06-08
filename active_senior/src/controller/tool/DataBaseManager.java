@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 
 public class DataBaseManager {
