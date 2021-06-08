@@ -18,7 +18,8 @@
 			for(int i = 0; i < info_list.size(); i++) {
 		%>
 		<div id="<%= divId.get(i) %>">
-			<div class="image-item"><img src="<%= info_list.get(i).getBbsThumbnailPath() %>"></div>
+			<div class="image-item"><img src="<%= info_list.get(i).getBbsThumbnailPath() %>"><span class="title-item"><%= info_list.get(i).getBbsTitle()%></span></div>
+
 		</div>
 		<%
 			}
@@ -180,6 +181,7 @@
             '-o-transform': 'rotateY(' + -currdeg + 'deg)',
             transform: 'rotateY(' + -currdeg + 'deg)',
         });
+
     }
 
 </script>
