@@ -3180,6 +3180,11 @@ input#search-bar:focus::-webkit-input-placeholder {
 /* --- Admin Section End --- */
 
 /* --- bbs-view section Start --- */
+.board {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .board .bbs-view-title {
     font-size: 36px;
     display: block;
@@ -3206,7 +3211,7 @@ input#search-bar:focus::-webkit-input-placeholder {
     margin: 0 auto;
     display: block;
     padding: 15px;
-    width: 70%;
+    width: 1000px;
 }
 .board .info li {
     list-style-type: none;
@@ -3294,3 +3299,88 @@ input#search-bar:focus::-webkit-input-placeholder {
     font-weight: normal;
 }
 /* --- bbs-view section End --- */
+
+
+/* --- comment section Start */
+.comment_view {
+    margin: 50px 30px;
+}
+
+.comment_view strong {
+    display: block;
+    padding: 10px 3px;
+}
+
+.comment_table {
+    border-spacing: 0px;
+    border-collapse: separate;
+    border: 1px solid #c2c2c2;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.comment_table td {
+    border-top-style: dotted;
+    border-top-color: #c2c2c2;
+    border-top-width: 1px;
+}
+
+.username {
+    background-color: #F8F8F8;
+    padding: 20px 30px;
+    width: 20%;
+}
+
+.nickname {
+    display: inline-block;
+    width: 80%;
+}
+
+.comment {
+    background-color: #FAFAFA;
+    padding: 20px 30px;
+    width: 80%;
+}
+
+.reply {
+    display: inline-block;
+    width: 20%;
+    float: left;
+}
+
+.btn-reply {
+    background: none;
+    border: 0;
+    color: #90B4E6;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.comment-input {
+    margin: 10px 0px;
+}
+
+.comment-input textarea {
+    width: 85%;
+    height: 150px;
+    float: left;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.comment-input a {
+    display: inline-block;
+    background-color: #2d69b8;
+    width: 15%;
+    height: 150px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    line-height: 150px;
+}
+
+.disable {
+    display: none;
+}
+/* --- comment section End */
