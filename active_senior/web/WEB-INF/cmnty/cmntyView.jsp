@@ -18,7 +18,8 @@
 	CommunityBbs cmntyBbs = CommunityBbsDAO.getPost(bbsID);
 	ScriptManager.checkPost(response, cmntyBbs);
 	CommunityBbsDAO.viewIncrease(bbsID);
-	User user = UserDAO.getUser(cmntyBbs.getUserID());
+	User bbs_user = UserDAO.getUser(cmntyBbs.getUserID());
+	User user = UserDAO.getUser(userID);
 	ArrayList<String> recommendTable = RecommendTableDAO.getRecommends(bbsID);
 %>
 
@@ -27,7 +28,7 @@
 	<h3 class="bbs-view-title"><%= cmntyBbs.getBbsTitle() %></h3>
 	<ul class="info">
 		<li>
-			<img src="<%= user.getUserProfilePath() %>" alt="thumbnail" width="50" height="50">
+			<img src="<%= bbs_user.getUserProfilePath() %>" alt="thumbnail" width="50" height="50">
 		</li>
 		<li>
 			<i class="fas fa-user"></i><span>작성자: <%= cmntyBbs.getUserName() %></span>
@@ -87,21 +88,25 @@
 					<div class="nickname"><%= comments.get(i).getUserName() %><br>(<%= comments.get(i).getUserID() %>)</div>
 				</td>
 				<td class="comment">
-					<div class="text_wrapper">
+					<div class="text_wrapper" commentID="<%= comments.get(i).getCommentID() %>">
 						<span><%= comments.get(i).getComment() %></span>
 						<button class="btn-reply"><i class="fas fa-reply fa-rotate-180"></i>답글</button>
-						<div class="comment-input disable" id="<%= comments.get(i).getCommentID() %>">
+						<% if(user != null && user.getUserID().equals(comments.get(i).getUserID())) { %>
+						<button class="btn-edit" onclick="edit_comment(this)"><i class="fas fa-edit"></i>수정</button>
+						<button class="btn-delete" onclick="delete_comment(this)"><i class="fas fa-trash"></i>삭제</button>
+						<% } %>
+						<div class="comment-input disable" commentID="<%= comments.get(i).getCommentID() %>" parentID="<%= comments.get(i).getParentID() != 0 ? comments.get(i).getParentID() : comments.get(i).getCommentID() %>">
 							<textarea name="comment_input"></textarea>
-							<a href="javascript:;" class="comment-btn">등록</a>
+							<a href="javascript:void(0)" onclick="create_comment(this)" class="comment-btn">등록</a>
 						</div>
 					</div>
 				</td>
 			</tr>
 			<% } %>
 			<tr>
-				<td class="comment-input" colspan="2" id="0">
+				<td class="comment-input" colspan="2" parentID="0">
 					<textarea name="comment_input"></textarea>
-					<a href="javascript:;" class="comment-btn">등록</a>
+					<a href="javascript:void(0)" onclick="create_comment(this)" class="comment-btn">등록</a>
 				</td>
 			</tr>
 			</tbody>
@@ -139,6 +144,72 @@
 	    $(this).siblings('.comment-input').toggleClass('disable')
     })
 
+    function create_comment(registerBox) {
+        let form = document.createElement("form")
+        form.method = "post"
+        form.action = '/cmntyCommentAction'
+
+        let input = document.createElement("input")
+        input.setAttribute("type", "hidden")
+        input.setAttribute("name", "method")
+        input.setAttribute("value", "create")
+        form.appendChild(input)
+
+        input = document.createElement("input")
+        input.setAttribute("type", "hidden")
+        input.setAttribute("name", "bbsID")
+        input.setAttribute("value", "<%= bbsID %>")
+        form.appendChild(input)
+
+        input = document.createElement("input")
+        input.setAttribute("type", "hidden")
+        input.setAttribute("name", "parentID")
+        input.setAttribute("value", registerBox.parentNode.getAttribute("parentID"))
+        form.appendChild(input)
+
+        input = document.createElement("input")
+        input.setAttribute("type", "hidden")
+        input.setAttribute("name", "comment")
+        input.setAttribute("value", registerBox.parentNode.querySelector("textarea").value)
+        form.appendChild(input)
+
+        document.body.appendChild(form)
+        form.submit()
+    }
+
+    function edit_comment(editBtn) {
+        let commentID = editBtn.parentNode.getAttribute("commentID")
+	    let comment = editBtn.parentNode.querySelector("span").innerText
+	    window.name = "댓글 수정"
+	    let openWin = window.open("/editComment", 'childForm', "width=570px, height=350px, resizable = no, scrollbars = no")
+	    openWin.onload = () => {
+            openWin.document.getElementById("commentID").value = commentID
+            openWin.document.getElementById("comment").value = comment
+        }
+    }
+
+    function delete_comment(deleteBtn) {
+        if(confirm("정말로 댓글을 삭제하시겠습니까?")) {
+            let form = document.createElement("form")
+            form.method = "post"
+            form.action = '/cmntyCommentAction'
+
+            let input = document.createElement("input")
+            input.setAttribute("type", "hidden")
+            input.setAttribute("name", "method")
+            input.setAttribute("value", "delete")
+            form.appendChild(input)
+
+            input = document.createElement("input")
+            input.setAttribute("type", "hidden")
+            input.setAttribute("name", "commentID")
+            input.setAttribute("value", deleteBtn.parentNode.getAttribute("commentID"))
+            form.appendChild(input)
+
+            document.body.appendChild(form)
+            form.submit()
+        }
+    }
 
 </script>
 <jsp:include page="view/footer"/>

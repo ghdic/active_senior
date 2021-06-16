@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class CommunityCommentDAO {
     private static DataSource dataSource;
@@ -56,7 +58,7 @@ public class CommunityCommentDAO {
     }
 
     public static ArrayList<CommunityComment> getComments(int bbsID) {
-        String SQL = "select * from communityComment where bbsID = ?";
+        String SQL = "select * from communityComment where bbsID = ? order by commentID";
         ArrayList<CommunityComment> list = new ArrayList<>();
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -71,18 +73,56 @@ public class CommunityCommentDAO {
             e.printStackTrace();
         }
 
+        HashMap<Integer, ArrayList<CommunityComment>> ordered_dict = new HashMap<Integer, ArrayList<CommunityComment>>();
         ArrayList<CommunityComment> ordered_list = new ArrayList<>();
+
         for(int i = 0; i < list.size(); i++) {
             if(list.get(i).getParentID() == 0) {
                 ordered_list.add(list.get(i));
             } else {
                 int pos = getPos(ordered_list, list.get(i).getParentID());
                 if(pos != -1) {
-                    ordered_list.add(pos + 1, list.get(i));
+                    if(!ordered_dict.containsKey(list.get(i).getParentID())) {
+                        ArrayList<CommunityComment> arrayList = new ArrayList<CommunityComment>();
+                        arrayList.add(list.get(i));
+                        ordered_dict.put(list.get(i).getParentID(), arrayList);
+                    } else {
+                        ordered_dict.get(list.get(i).getParentID()).add(list.get(i));
+                    }
                 }
             }
         }
+        Iterator<Integer> keys = ordered_dict.keySet().iterator();
+        while(keys.hasNext()) {
+            Integer key = keys.next();
+            ArrayList<CommunityComment> arrayList = ordered_dict.get(key);
+            for(int i = 0; i < arrayList.size(); i++) {
+                int pos = getPos(ordered_list, arrayList.get(i).getParentID());
+                ordered_list.add(pos + i + 1, arrayList.get(i));
+            }
+        }
         return ordered_list;
+    }
+
+
+    public static int insertComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.insertData(comment, "communityComment");
+    }
+
+    public static int updateComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException {
+        return DataBaseManager.updateData(comment, "communityComment");
+    }
+
+    public static int deleteComment(int commentID) {
+        String SQL = "delete from communityComment where commentID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, commentID);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 }

@@ -1,13 +1,13 @@
 package model.dto;
 
 public class CommunityComment {
-    private int commentID;
-    private int bbsID;
-    private String userID;
-    private String userName;
-    private int parentID;
-    private String commentDate;
-    private String comment;
+    private int commentID = -1;
+    private int bbsID = -1;
+    private String userID = "";
+    private String userName = "";
+    private int parentID = -1;
+    private String commentDate = "";
+    private String comment = "";
 
     public int getCommentID() {
         return commentID;

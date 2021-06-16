@@ -3356,6 +3356,22 @@ input#search-bar:focus::-webkit-input-placeholder {
     cursor: pointer;
 }
 
+.btn-delete {
+    background: none;
+    border: 0;
+    color: rgb(49, 59, 59);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: none;
+    border: 0;
+    color: #79cd8c;
+    font-size: 11px;
+    cursor: pointer;
+}
+
 .comment-input {
     margin: 10px 0px;
 }
@@ -3378,6 +3394,29 @@ input#search-bar:focus::-webkit-input-placeholder {
     font-size: 20px;
     text-align: center;
     line-height: 150px;
+}
+
+.comment-edit {
+    margin: 10px;
+}
+
+.comment-edit textarea {
+    width: 400px;
+    height: 300px;
+    float: left;
+    padding: 10px;
+    font-size: 20px;
+    resize: none;
+}
+
+.comment-edit input[type='submit'] {
+    width: 75px;
+    background-color: #2d69b8;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    line-height: 300px;
+    cursor: pointer;
 }
 
 .disable {

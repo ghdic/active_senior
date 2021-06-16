@@ -259,6 +259,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>editComment</servlet-name>
+        <jsp-file>/WEB-INF/cmnty/editComment.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editComment</servlet-name>
+        <url-pattern>/editComment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>navbar</servlet-name>
         <jsp-file>/WEB-INF/view/navbar.jsp</jsp-file>
     </servlet>
