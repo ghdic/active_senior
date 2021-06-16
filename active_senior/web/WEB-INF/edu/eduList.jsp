@@ -38,12 +38,17 @@
 	<% } %>
 </section>
 
-<button type="button" onclick="location.href='/eduWrite?category=<%= category %>'">글쓰기</button>
-<br>
-<% if (pageNumber > 1) { %>
-<button onclick="location.href='/eduList?pageNumber=<%= pageNumber - 1 %>&category=<%= category %>'">이전</button>
-<% } if (EduBbsDAO.nextPage(pageNumber, 20, category)) { %>
-<button onclick="location.href='/eduList?pageNumber=<%= pageNumber + 1 %>&category=<%= category %>'">다음</button>
+<% if(userID != null) { %>
+<div class="bottom">
+	<button class="write-button" type="button" onclick="location.href='/eduWrite?category=<%= category %>'">글쓰기</button>
+</div>
 <% } %>
+<div class="botton2">
+	<% if (pageNumber > 1) { %>
+	<button class="prev-button" onclick="location.href='/eduList?pageNumber=<%= pageNumber - 1 %>&category=<%= category %>'">이전</button>
+	<% } if (EduBbsDAO.nextPage(pageNumber, 20, category)) { %>
+	<button class="next-button" onclick="location.href='/eduList?pageNumber=<%= pageNumber + 1 %>&category=<%= category %>'">다음</button>
+	<% } %>
+</div>
 <jsp:include page="view/footer"/>
 

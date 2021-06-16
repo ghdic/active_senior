@@ -43,12 +43,17 @@
 	<% } %>
 	</tbody>
 </table>
-<button type="button" onclick="location.href='/cmntyWrite'">글쓰기</button>
-<br>
-<% if (pageNumber > 1) { %>
-<button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber - 1 %>'">이전</button>
-<% } if (CommunityBbsDAO.nextPage(pageNumber, 20, 0)) { %>
-<button onclick="location.href='/cmntyList?pageNumber=<%= pageNumber + 1 %>'">다음</button>
+<% if(userID != null) { %>
+<div class="bottom">
+	<button class="write-button" type="button" onclick="location.href='/cmntyWrite'">글쓰기</button>
+</div>
 <% } %>
+<div class="botton2">
+	<% if (pageNumber > 1) { %>
+	<button class="prev-button" onclick="location.href='/cmntyList?pageNumber=<%= pageNumber - 1 %>'">이전</button>
+	<% } if (CommunityBbsDAO.nextPage(pageNumber, 20, 0)) { %>
+	<button class="next-button" onclick="location.href='/cmntyList?pageNumber=<%= pageNumber + 1 %>'">다음</button>
+	<% } %>
+</div>
 <jsp:include page="view/footer"/>
 

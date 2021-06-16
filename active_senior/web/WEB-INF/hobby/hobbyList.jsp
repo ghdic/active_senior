@@ -15,13 +15,13 @@
 	int category = ScriptManager.categoryCheck(request, response, false);
 %>
 
-<div style="width: 100%;background-color: #EFEFEF;">
-	<% if(userID != null) { %>
-	<button type="button" onclick="location.href='/hobbyWrite?category=<%= category %>'">글쓰기</button>
-	<% } %>
-	<br>
-</div>
+
 <section id="response-grid" class="response-grid">
+	<div style="width: 100%;position: relative;top: -45px;left: 20px">
+		<% if(userID != null) { %>
+		<button class="hobby-write-button" type="button" onclick="location.href='/hobbyWrite?category=<%= category %>'">글쓰기</button>
+		<% } %>
+	</div>
 	<%
 		ArrayList<HobbyBbs> list = HobbyBbsDAO.getPostList(pageNumber, 20, category);
 		for(int i = 0; i < list.size(); i++) {

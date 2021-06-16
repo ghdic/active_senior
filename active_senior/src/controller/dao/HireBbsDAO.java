@@ -111,4 +111,14 @@ public class HireBbsDAO{
         return DataBaseManager.updateData(hireBbs, "hireBbs");
     }
 
+    public static void viewIncrease(int bbsID) {
+        String SQL = "update hireBbs set bbsView = bbsView + 1 where bbsID = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, bbsID);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

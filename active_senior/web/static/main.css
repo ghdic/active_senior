@@ -3087,6 +3087,57 @@ slider-container .bg-4 h2,
     color: #4376f3;
     font-weight: bold;
 }
+
+.bottom {
+    width: 1200px;
+    text-align: center;
+    margin: 0rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.botton2 {
+    width: 1200px;
+    text-align: center;
+    margin: 0rem auto 3rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.write-button {
+    width: 55px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.hobby-write-button {
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.prev-button {
+    width: 55px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.next-button {
+    width: 55px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
 /* --- cmntyBbs table End --- */
 
 /* --- Admin Section Start --- */
@@ -3297,6 +3348,31 @@ input#search-bar:focus::-webkit-input-placeholder {
 
 .board .tags span {
     font-weight: normal;
+}
+
+.board .tb-row {
+    font-size: 18px;
+    border-bottom:1px solid #dbddbd;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin: 1rem auto;
+    width: 40%;
+    padding: 10px;
+
+}
+.board .tb-row tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #fcf1f4;
+}
+.board .tb-row td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
 }
 /* --- bbs-view section End --- */
 

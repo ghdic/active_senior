@@ -71,7 +71,9 @@ public class PostFormManager {
                                 uploadFile = new File(realPath + separator + "profile_pic" + separator + fileName);
                             }
                             item.write(uploadFile);
-                            ImageManager.imageResize(realPath + separator + "profile_pic", fileName, 200, 200);
+                            if(!item.getName().substring(item.getName().lastIndexOf(".")).equals(".gif")) {
+                                ImageManager.imageResize(realPath + separator + "profile_pic", fileName, 200, 200);
+                            }
                             String sName = DtoListener.toSetMethodName("userProfile");
                             Method sMethod = DtoListener.returnMethod(c, sName);
                             sMethod.invoke(data, fileName);
