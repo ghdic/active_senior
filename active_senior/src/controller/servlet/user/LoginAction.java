@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/loginAction")
 public class LoginAction extends HttpServlet {
@@ -29,7 +30,12 @@ public class LoginAction extends HttpServlet {
         user.setUserPW((String)req.getParameter("userPW"));
 
         ScriptManager.alreadyLogin(session, resp);
-        int result = UserDAO.login(user.getUserID(), user.getUserPW());
+        int result = 0;
+        try {
+            result = UserDAO.login(user.getUserID(), user.getUserPW());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         ScriptManager.loginResult(session, resp, user, result);
     }
 }

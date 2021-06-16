@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 @WebServlet("/accountAction")
 public class AccountAction extends HttpServlet {
@@ -42,6 +43,8 @@ public class AccountAction extends HttpServlet {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
             ScriptManager.userInfoUpdate(resp, result);
         }

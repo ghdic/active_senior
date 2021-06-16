@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/cmntyDeleteAction")
 public class CmntyDeleteAction extends HttpServlet {
@@ -26,9 +27,18 @@ public class CmntyDeleteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        CommunityBbs communityBbs = CommunityBbsDAO.getPost(bbsID);
+        CommunityBbs communityBbs = null;
+        try {
+            communityBbs = CommunityBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if(ScriptManager.userMatchCheck(resp, userID, communityBbs.getUserID())) {
-            CommunityBbsDAO.deletePost(bbsID);
+            try {
+                CommunityBbsDAO.deletePost(bbsID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             resp.sendRedirect("/cmntyList");
         }
     }

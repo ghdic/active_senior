@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 @WebServlet("/registerAction")
 public class RegisterAction extends HttpServlet {
@@ -33,6 +34,8 @@ public class RegisterAction extends HttpServlet {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
             ScriptManager.registerResult(resp, result);
         }

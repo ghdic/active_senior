@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet("/cancelRecommend")
 public class CancelRecommend extends HttpServlet {
@@ -24,7 +25,11 @@ public class CancelRecommend extends HttpServlet {
         int bbsID = ScriptManager.checkBbs(req, resp);
         int result = -2;
         if(ScriptManager.userMatchCheck(resp, userID, pUserID)) {
-            result = RecommendTableDAO.cancelRecommend(bbsID, userID);
+            try {
+                result = RecommendTableDAO.cancelRecommend(bbsID, userID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         ScriptManager.recommendCheck(resp, result);

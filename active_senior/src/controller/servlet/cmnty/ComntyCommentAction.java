@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 @WebServlet("/cmntyCommentAction")
 public class ComntyCommentAction extends HttpServlet {
@@ -29,7 +30,12 @@ public class ComntyCommentAction extends HttpServlet {
         HttpSession session = req.getSession();
         PrintWriter out = resp.getWriter();
         String userID = ScriptManager.loginCheck(session, resp, true);
-        User user = UserDAO.getUser(userID);
+        User user = null;
+        try {
+            user = UserDAO.getUser(userID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         String method = req.getParameter("method");
         CommunityComment comment = new CommunityComment();
         if(method.equals("create")) {
@@ -44,9 +50,15 @@ public class ComntyCommentAction extends HttpServlet {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         } else if(method.equals("delete")) {
-            CommunityCommentDAO.deleteComment(Integer.parseInt(req.getParameter("commentID")));
+            try {
+                CommunityCommentDAO.deleteComment(Integer.parseInt(req.getParameter("commentID")));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         } else if(method.equals("update")) {
             comment.setCommentID(Integer.parseInt(req.getParameter("commentID")));
             comment.setComment(req.getParameter("comment"));
@@ -56,6 +68,8 @@ public class ComntyCommentAction extends HttpServlet {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
             out.println("<script>");
             out.println("window.opener.location.reload()");

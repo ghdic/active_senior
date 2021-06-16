@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/infoDeleteAction")
 class InfoDeleteAction extends HttpServlet {
@@ -26,9 +27,18 @@ class InfoDeleteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        InfoBbs infoBbs = InfoBbsDAO.getPost(bbsID);
+        InfoBbs infoBbs = null;
+        try {
+            infoBbs = InfoBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if(ScriptManager.userMatchCheck(resp, userID, infoBbs.getUserID())) {
-            InfoBbsDAO.deletePost(bbsID);
+            try {
+                InfoBbsDAO.deletePost(bbsID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             resp.sendRedirect("/infoList");
         }
     }

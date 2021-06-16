@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/hobbyUpdateAction")
 public class HobbyUpdateAction extends HttpServlet {
@@ -28,7 +29,12 @@ public class HobbyUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HobbyBbs post = HobbyBbsDAO.getPost(bbsID);
+        HobbyBbs post = null;
+        try {
+            post = HobbyBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         ScriptManager.checkPost(resp, post);
 
         HobbyBbs hobbyBbs = PostFormManager.getPostData(req, "hobbyBbs", "/static/hobby_bbs");

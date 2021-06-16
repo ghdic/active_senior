@@ -12,7 +12,6 @@
 	request.setCharacterEncoding("utf-8");
 	ScriptManager.checkResetForm(response, request.getParameter("userID"), request.getParameter("userEmail"));
 	User user = UserDAO.getUser(request.getParameter("userID"));
-	System.out.println(user.getUserEmail() + " " + request.getParameter("userEmail"));
 	ScriptManager.emailCheck(response, user.getUserEmail(), request.getParameter("userEmail"));
 	String newPassword = EmailManager.getRandomPassword(20);
 	int result = UserDAO.resetPassword(user.getUserID(), newPassword);

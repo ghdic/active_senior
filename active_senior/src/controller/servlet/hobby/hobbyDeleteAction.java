@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/hobbyDeleteAction")
 public class hobbyDeleteAction extends HttpServlet {
@@ -26,9 +27,18 @@ public class hobbyDeleteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HobbyBbs hobbyBbs = HobbyBbsDAO.getPost(bbsID);
+        HobbyBbs hobbyBbs = null;
+        try {
+            hobbyBbs = HobbyBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if(ScriptManager.userMatchCheck(resp, userID, hobbyBbs.getUserID())) {
-            HobbyBbsDAO.deletePost(bbsID);
+            try {
+                HobbyBbsDAO.deletePost(bbsID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             resp.sendRedirect("/hobbyList");
         }
     }

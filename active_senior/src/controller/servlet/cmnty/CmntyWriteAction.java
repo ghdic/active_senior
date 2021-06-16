@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/cmntyWriteAction")
 public class CmntyWriteAction extends HttpServlet {
@@ -29,7 +30,12 @@ public class CmntyWriteAction extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
-        User user = UserDAO.getUser(userID);
+        User user = null;
+        try {
+            user = UserDAO.getUser(userID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         CommunityBbs communityBbs = PostFormManager.getPostData(req, "communityBbs", "/static/cmnty_bbs");
         int result = -2;
         try {

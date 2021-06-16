@@ -15,30 +15,30 @@ import java.util.ArrayList;
 public class CommunityBbsDAO{
 
     private static DataSource dataSource;
-    private static Connection conn;
 
     static {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
             dataSource = (DataSource) context.lookup("jdbc/mysql");
-            conn = dataSource.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // start 지점으로부터 require 개의 게시글 리스트를 가져옴
-    public static ArrayList<CommunityBbs> getPostList(int pageNumber, int require, int category) {
+    public static ArrayList<CommunityBbs> getPostList(int pageNumber, int require, int category) throws SQLException {
         String SQL = "select * from communityBbs where bbsAvailable = 1 and bbsCategory= ? order by bbsID desc limit ?, ?";
         ArrayList<CommunityBbs> list = new ArrayList<>();
+        Connection conn = null;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, category);
             pstmt.setInt(2, (pageNumber - 1) * require);
             pstmt.setInt(3, require);
-
             ResultSet rs = pstmt.executeQuery();
+
             while(rs.next()) {
                 CommunityBbs bbs = DataBaseManager.getData(rs, "communityBbs");
                 list.add(bbs);
@@ -46,82 +46,104 @@ public class CommunityBbsDAO{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        conn.close();
+
         return list; // 리스트가 비어있을 경우 더이상 조회 x
     }
 
     // 다음 페이지 존재하는지 확인
-    public static boolean nextPage(int pageNumber, int require, int category) {
+    public static boolean nextPage(int pageNumber, int require, int category) throws SQLException {
         String SQL = "select bbsID from communityBbs where bbsAvailable = 1 and bbsCategory = ? order by bbsID desc limit ?, 1";
+        Connection conn = null;
+        boolean result = false;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, category);
             pstmt.setInt(2, pageNumber * require);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next())
-                return true;
+                result = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        conn.close();
+        return result;
     }
 
     // bbsID 로부터 post 가져옴
-    public static CommunityBbs getPost(int bbsID) {
+    public static CommunityBbs getPost(int bbsID) throws SQLException {
         String SQL = "select * from communityBbs where bbsID = ?";
+        Connection conn = null;
+        CommunityBbs bbs = null;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return DataBaseManager.getData(rs, "communityBbs");
+                bbs = DataBaseManager.getData(rs, "communityBbs");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        conn.close();
+        return bbs;
     }
 
-    public static int deletePost(int bbsID) {
+    public static int deletePost(int bbsID) throws SQLException {
         String SQL = "update communityBbs set bbsAvailable = 0 where bbsID = ?";
+        Connection conn = null;
+        int result = -1;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
-            return pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -1;
+        conn.close();
+        return result;
     }
 
-    public static String getUserID(int bbsID) {
+    public static String getUserID(int bbsID) throws SQLException {
         String SQL = "select userID from communityBbs where bbsID = ?";
+        Connection conn = null;
+        String userID = null;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
             ResultSet rs = pstmt.executeQuery();
-            return rs.getString(1);
+            userID = rs.getString(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // DB error
+        conn.close();
+        return userID; // DB error null
     }
 
-    public static int insertCommunityBbs(CommunityBbs communityBbs) throws InvocationTargetException, IllegalAccessException {
+    public static int insertCommunityBbs(CommunityBbs communityBbs) throws InvocationTargetException, IllegalAccessException, SQLException {
         return DataBaseManager.insertData(communityBbs, "communityBbs");
     }
 
-    public static int updateCommunityBbs(CommunityBbs communityBbs) throws InvocationTargetException, IllegalAccessException {
+    public static int updateCommunityBbs(CommunityBbs communityBbs) throws InvocationTargetException, IllegalAccessException, SQLException {
         return DataBaseManager.updateData(communityBbs, "communityBbs");
     }
 
-    public static void viewIncrease(int bbsID) {
+    public static void viewIncrease(int bbsID) throws SQLException {
         String SQL = "update communityBbs set bbsView = bbsView + 1 where bbsID = ?";
+        Connection conn = null;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
             pstmt.executeUpdate();
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
+            conn.close();
         }
     }
 

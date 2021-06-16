@@ -13,14 +13,12 @@ import java.util.ArrayList;
 public class DataBaseManager {
 
     private static DataSource dataSource;
-    private static Connection conn;
 
     static {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
             dataSource = (DataSource) context.lookup("jdbc/mysql");
-            conn = dataSource.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +41,7 @@ public class DataBaseManager {
         return data;
     }
 
-    public static <T> int updateData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException {
+    public static <T> int updateData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException, SQLException {
         String primaryKey = DtoListener.primaryColumnName.get(tableName);
         String gName = DtoListener.toGetMethodName(primaryKey);
         Method gMethod = DtoListener.returnMethod(DtoListener.dtoDict.get(tableName), gName);
@@ -68,18 +66,22 @@ public class DataBaseManager {
         }
         String update_col = String.join(", ", update_list);
         String SQL = String.format("update %s set %s where %s = ?", tableName, update_col, primaryKey);
+        Connection conn = null;
+        int result = -2;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setObject(1, gMethod.invoke(dto));
-            return pstmt.executeUpdate();
+            result =  pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -2; // db error
+        conn.close();
+        return result;
     }
 
 
-    public static <T> int insertData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException {
+    public static <T> int insertData(T dto, String tableName) throws InvocationTargetException, IllegalAccessException, SQLException {
         ArrayList<String> insert_attr = new ArrayList<String>();
         ArrayList<String> insert_value = new ArrayList<String>();
         for (Method method : DtoListener.getMethodList.get(tableName)) {
@@ -103,13 +105,17 @@ public class DataBaseManager {
         String attr = String.join(", ", insert_attr);
         String value = String.join(", ", insert_value);
         String SQL = String.format("insert into %s (%s) values (%s)", tableName, attr, value);
+        Connection conn = null;
+        int result = -2;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            return pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -2; // db error
+        conn.close();
+        return result;
     }
 
     public static String htmlSpecialCharacterToCode(String html) {

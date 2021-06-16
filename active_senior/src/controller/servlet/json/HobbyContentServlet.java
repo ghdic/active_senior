@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/hobbyContent")
@@ -29,10 +30,14 @@ public class HobbyContentServlet extends HttpServlet {
         int category = 0;
         if(req.getParameter("category") != null)
             category = Integer.parseInt(req.getParameter("category"));
-        resp.getWriter().write(getJSON(pageNumber, 20, category));
+        try {
+            resp.getWriter().write(getJSON(pageNumber, 20, category));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public String getJSON(int pageNumber, int require, int category) {
+    public String getJSON(int pageNumber, int require, int category) throws SQLException {
         ArrayList<HobbyBbs> list = HobbyBbsDAO.getPostList(pageNumber, require, category);
         for(int i = 0; i < list.size(); i++) {
             list.get(i).setSummary(list.get(i).getSummarySlice(50));

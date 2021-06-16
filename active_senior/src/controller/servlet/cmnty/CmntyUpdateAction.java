@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/cmntyUpdateAction")
 public class CmntyUpdateAction extends HttpServlet {
@@ -28,7 +29,12 @@ public class CmntyUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        CommunityBbs post = CommunityBbsDAO.getPost(bbsID);
+        CommunityBbs post = null;
+        try {
+            post = CommunityBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         ScriptManager.checkPost(resp, post);
 
         CommunityBbs cmntyBbs = PostFormManager.getPostData(req, "communityBbs", "/static/cmnty_bbs");

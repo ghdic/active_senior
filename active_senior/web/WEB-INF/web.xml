@@ -294,8 +294,6 @@
         <url-pattern>/introduce</url-pattern>
     </servlet-mapping>
 
-
-
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>controller.filter.CharsetEncodingFilter</filter-class>

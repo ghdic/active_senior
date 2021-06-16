@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/appDeleteAction")
 public class AppDeleteAction extends HttpServlet {
@@ -26,9 +27,18 @@ public class AppDeleteAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        HireBbs hireBbs = HireBbsDAO.getPost(bbsID);
+        HireBbs hireBbs = null;
+        try {
+            hireBbs = HireBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         if(ScriptManager.userMatchCheck(resp, userID, hireBbs.getUserID())) {
-            HireBbsDAO.deletePost(bbsID);
+            try {
+                HireBbsDAO.deletePost(bbsID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             resp.sendRedirect("/appList");
         }
     }

@@ -498,6 +498,9 @@ li.dropdown {
     background-color: white;
     color: #707070;
     margin: 0 auto;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 2px 2px 7px #f7f7f7;
 }
 
 .site__wrapper {

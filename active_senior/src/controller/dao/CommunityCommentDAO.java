@@ -18,34 +18,37 @@ import java.util.Iterator;
 
 public class CommunityCommentDAO {
     private static DataSource dataSource;
-    private static Connection conn;
 
     static {
         try {
             Context context = new InitialContext();
             context = (Context) context.lookup("java:/comp/env");
             dataSource = (DataSource) context.lookup("jdbc/mysql");
-            conn = dataSource.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static int getCommentCount(int bbsID) {
+    public static int getCommentCount(int bbsID) throws SQLException {
         String SQL = "select count(*) from communityComment where bbsID = ?";
+        Connection conn = null;
+        int result = -2;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
 
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
-                return rs.getInt(1);
+                result = rs.getInt(1);
+            } else {
+                result = -1;
             }
-            return -1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return -2;
+        conn.close();
+        return result;
     }
 
     private static int getPos(ArrayList<CommunityComment> comments, int pid) {
@@ -57,10 +60,12 @@ public class CommunityCommentDAO {
         return -1;
     }
 
-    public static ArrayList<CommunityComment> getComments(int bbsID) {
+    public static ArrayList<CommunityComment> getComments(int bbsID) throws SQLException {
         String SQL = "select * from communityComment where bbsID = ? order by commentID";
         ArrayList<CommunityComment> list = new ArrayList<>();
+        Connection conn = null;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, bbsID);
 
@@ -72,7 +77,7 @@ public class CommunityCommentDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        conn.close();
         HashMap<Integer, ArrayList<CommunityComment>> ordered_dict = new HashMap<Integer, ArrayList<CommunityComment>>();
         ArrayList<CommunityComment> ordered_list = new ArrayList<>();
 
@@ -105,24 +110,28 @@ public class CommunityCommentDAO {
     }
 
 
-    public static int insertComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException {
+    public static int insertComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException, SQLException {
         return DataBaseManager.insertData(comment, "communityComment");
     }
 
-    public static int updateComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException {
+    public static int updateComment(CommunityComment comment) throws InvocationTargetException, IllegalAccessException, SQLException {
         return DataBaseManager.updateData(comment, "communityComment");
     }
 
-    public static int deleteComment(int commentID) {
+    public static int deleteComment(int commentID) throws SQLException {
         String SQL = "delete from communityComment where commentID = ?";
+        Connection conn = null;
+        int result = -1;
         try {
+            conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, commentID);
-            return pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -1;
+        conn.close();
+        return result;
     }
 
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/eduUpdateAction")
 public class EduUpdateAction extends HttpServlet {
@@ -28,7 +29,12 @@ public class EduUpdateAction extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = ScriptManager.loginCheck(session, resp, true);
         int bbsID = ScriptManager.checkBbs(req, resp);
-        EduBbs post = EduBbsDAO.getPost(bbsID);
+        EduBbs post = null;
+        try {
+            post = EduBbsDAO.getPost(bbsID);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         ScriptManager.checkPost(resp, post);
 
         EduBbs eduBbs = PostFormManager.getPostData(req, "eduBbs", "/static/edu_bbs");
