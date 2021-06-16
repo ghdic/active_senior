@@ -11,25 +11,37 @@
 	User user = UserDAO.getUser(userID);
 	ScriptManager.userInfoCheck(response, user);
 %>
-<form action="/accountAction" method="post" enctype="multipart/form-data">
-	<h3>회원가입 화면</h3>
-	<label for="userID">아이디:</label>
-	<input type="text" placeholder="아이디" name="userID" id="userID" maxlength="30" value="<%= user.getUserID() %>" readonly><br>
-	<label for="userPW">비밀번호:</label>
-	<input type="password" placeholder="비밀번호" name="userPW" id="userPW" maxlength="30"><br>
-	<label for="userName">닉네임:</label>
-	<input type="text" placeholder="이름" name="userName" id="userName" value="<%= user.getUserName() %>" maxlength="30"><br>
-	<div>
-		<input type="radio" name="userGender" value="남자" <%= user.getUserGender().equals("남자") ? "checked":"" %>>남자
-		<input type="radio" name="userGender" value="여자" <%= user.getUserGender().equals("여자") ? "checked":"" %>>여자
+<form action="/accountAction" onsubmit="return registerSubmit()" method="post" enctype="multipart/form-data">
+	<div class="register-form">
+		<h1>회원정보수정</h1>
+		<input type="text" placeholder="아이디" name="userID" id="userID" maxlength="30" value="<%= user.getUserID() %>" readonly />
+		<input type="password" placeholder="비밀번호" name="userPW" id="userPW" maxlength="30" />
+		<input type="password" placeholder="비밀번호 확인" id="verifyPW" maxlength="30">
+		<input type="text" placeholder="닉네임" name="userName" id="userName" value="<%= user.getUserName() %>" maxlength="30" />
+		<div>
+			<input type="radio" name="userGender" id="boy" value="남자" <%= user.getUserGender().equals("남자") ? "checked":"" %>/>
+			<label for="boy">남자</label>
+			<input type="radio" name="userGender" id="girl" value="여자" <%= user.getUserGender().equals("여자") ? "checked":"" %>/>
+			<label for="girl">여자</label>
+		</div>
+		<input type="email" placeholder="이메일" name="userEmail" id="userEmail" value="<%= user.getUserEmail() %>" maxlength="50" />
+		<p>프로필사진</p><input type="file" name="userProfile" id="profile" maxlength="50" accept="image/*" />
+		<img src="<%= user.getUserProfilePath() %>" alt="프로필" id="profilePreview" />
+		<input type="submit" value="수정" />
 	</div>
-	<label for="userEmail">이메일:</label>
-	<input type="text" placeholder="이메일" name="userEmail" id="userEmail" maxlength="50" value="<%= user.getUserEmail() %>"><br>
-	<label for="profile">프로필사진:</label>
-	<input type="file" name="userProfile" id="profile" maxlength="50" accept="image/*"><br>
-	<img src="<%= user.getUserProfilePath() %>" alt="프로필" id="profilePreview" width="100px" height="100px">
-
-	<input type="submit" value="업데이트">
 </form>
 <script src="/static/js/profilePreview.js"></script>
+<script>
+    function registerSubmit() {
+        let userPW = document.getElementById('userPW').value
+        let verifyPW = document.getElementById('verifyPW').value
+
+        if (userPW === verifyPW) {
+            return true
+        } else {
+            alert('비밀번호가 일치하지 않습니다!')
+            return false;
+        }
+    }
+</script>
 <jsp:include page="/view/footer"/>

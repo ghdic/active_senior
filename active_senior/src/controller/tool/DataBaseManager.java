@@ -119,8 +119,7 @@ public class DataBaseManager {
     }
 
     public static String htmlSpecialCharacterToCode(String html) {
-        return html.replace("\"", "&#34;")
-                .replace("'", "&#39;")
+        return html.replace("'", "\"")
                 .replace("\\", "&#92;")
                 .replace("/", "&#47;")
                 .replace("<", "&#60;")
@@ -128,8 +127,7 @@ public class DataBaseManager {
     }
 
     public static String htmlSpecialCharacterToCodeContent(String html) {
-        return html.replace("\"", "&#34;")
-                .replace("'", "&#39;")
+        return html.replace("'", "\"")
                 .replace("\\", "&#92;")
                 .replace("<script>", "<block>")
                 .replace("</script>", "</block>");

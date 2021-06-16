@@ -3396,6 +3396,7 @@ input#search-bar:focus::-webkit-input-placeholder {
     border: 1px solid #c2c2c2;
     width: 1000px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 .comment_table td {
@@ -3501,4 +3502,250 @@ input#search-bar:focus::-webkit-input-placeholder {
 .disable {
     display: none;
 }
-/* --- comment section End */
+/* --- comment section End --- */
+
+/* -- write bbs section Start -- */
+.file-uploader {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    color: #242424;
+    width: 80%;
+    padding: 1rem 1rem 2rem 1rem;
+    margin: 1rem auto;
+}
+.file-uploader__message-area {
+    font-size: 18px;
+    padding: 1em;
+    text-align: center;
+    color: #377a65;
+    width: 100%;
+}
+.file-list {
+    background-color: #fff;
+    font-size: 16px;
+}
+.file-list__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.file-list li {
+    height: 50px;
+    line-height: 50px;
+    margin-left: 0.5em;
+    border: none;
+    overflow: hidden;
+}
+.file-uploader .removal-button {
+    width: 20%;
+    border: none;
+    background-color: #d65d38;
+    color: white;
+}
+.file-uploader .removal-button::before {
+    content: 'X';
+}
+.file-uploader .removal-button:focus {
+    outline: 0;
+    cursor: pointer;
+}
+.file-uploader .file-chooser {
+    padding: 1em;
+    transition: background-color 1s, height 1s;
+}
+.file-uploader .file-chooser p {
+    font-size: 18px;
+    padding-top: 1em;
+}
+.file-uploader .file-uploader {
+    max-width: 800px;
+    height: auto;
+    margin: 2em auto;
+}
+.file-uploader .file-uploader * {
+    display: block;
+}
+.file-uploader .file-uploader input[type='submit'] {
+    margin-top: 2em;
+    float: right;
+}
+.file-uploader .file-list {
+    margin: 0 auto;
+    max-width: 90%;
+}
+.file-uploader .file-list__name {
+    max-width: 70%;
+    float: left;
+}
+.file-uploader .removal-button {
+    display: inline-block;
+    height: 100%;
+    float: right;
+}
+.file-uploader .file-chooser {
+    width: 90%;
+    margin: 0.5em auto;
+}
+.file-uploader .file-chooser__input {
+    margin: 0 auto;
+}
+.file-uploader .file-list li:after,
+.file-uploader .file-uploader:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.file-uploader .hidden {
+    display: none;
+}
+.file-uploader .hidden input {
+    display: none;
+}
+.file-uploader .error {
+    background-color: #d65d38;
+    color: white;
+}
+
+.file-downloader {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    color: #242424;
+    width: 100%;
+    padding: 1rem 1rem 2rem 1rem;
+    margin: 3rem auto;
+}
+
+.file-downloader .download-button {
+    display: block;
+    cursor: pointer;
+    height: 100%;
+    width: 20%;
+    border: none;
+    color: #f2f2f2;
+    background-color: #2186df;
+    float: right;
+    text-align: center;
+}
+
+.file-downloader .download-button::after {
+    content: '\f019';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.write-title h2 {
+    font-size: 30px;
+    margin: 10px;
+}
+
+input#bbsTitle {
+    display: block;
+    font-size: 30px;
+    width: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 50px;
+    padding: 0.5rem;
+    margin: 1rem auto;
+}
+
+.note-editor.note-frame {
+    margin: .5rem 1rem;
+}
+
+form#form table {
+    margin: 3rem auto;
+    width: 1200px;
+}
+
+.note-editor.note-frame {
+    margin: 0.5rem auto;
+
+}
+
+.submit-btn {
+    width: 140px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.submit-btn:hover {
+    background-color: #2186df;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+
+.blue-button {
+    float: right;
+    margin: 2px;
+    padding: 0.5rem;
+    background-color: #A5CBF0;
+    border-radius: 8px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+.blue-button:hover {
+    background-color: #DEE1E6;
+}
+
+
+.collocate-input .thumbnailSetting {
+    display: inline-block;
+}
+
+.collocate-input .thumbnailSetting div input {
+    margin: 0.3rem 1rem 1rem 1rem;
+}
+
+
+.collocate-input .thumbnailSetting label {
+    margin: 1rem;
+}
+
+.collocate-input .thumbnailSetting img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 1rem;
+}
+
+.collocate-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+
+
+.collocate-input .info-input ul li{
+    list-style: none;
+    margin: 1rem 4rem 1rem 1rem;
+}
+
+.collocate-input .info-input ul li input,
+.collocate-input .info-input ul li select {
+    margin-top: 0.3rem;
+}
+
+.input-date {
+    display: flex;
+    flex-wrap: nowrap;
+}
+/* -- write bbs section End -- */

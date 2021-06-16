@@ -211,7 +211,12 @@ public class HireBbs{
     }
 
     public ArrayList<String> getRealFileNameArrayList() {
-        ArrayList<String> list = (ArrayList<String>) Arrays.asList(realFileName.split(","));
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(realFileName.trim().split(",")));
+        if(list.size() == 1 && list.get(0).equals(""))
+            list.remove(0);
+        for(int i = 0; i < list.size(); i++) {
+            list.set(i, "downloadAction?filepath=/static/hire_bbs/upload/" + list.get(i));
+        }
         return list;
     }
 
@@ -224,7 +229,9 @@ public class HireBbs{
     }
 
     public ArrayList<String> getOriginalFileNameArrayList() {
-        ArrayList<String> list = (ArrayList<String>) Arrays.asList(originalFileName.split(","));
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList(originalFileName.trim().split(",")));
+        if(list.size() == 1 && list.get(0).equals(""))
+            list.remove(0);
         return list;
     }
 

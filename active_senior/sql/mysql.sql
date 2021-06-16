@@ -178,3 +178,4 @@ create table recommendTable(
     bbsID int,
     userID varchar(20) not null
 );
+

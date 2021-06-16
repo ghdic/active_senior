@@ -59,6 +59,26 @@
 		<a href="javascript:recommend(true)" onclick="return confirm('이 게시글을 추천하시겠습니까?')"><span><%= recommendTable.size() %></span><br><span><i class="far fa-thumbs-up"></i></span></a>
 		<% } %>
 	</div>
+
+	<%
+		ArrayList<String> realFileNameArrayList = infoBbs.getRealFileNameArrayList();
+		ArrayList<String> originalFileNameArrayList = infoBbs.getOriginalFileNameArrayList();
+		if(realFileNameArrayList.size() != 0) {
+	%>
+	<div class="file-downloader">
+		<div class="file-uploader__message-area">첨부파일 다운로드</div>
+		<ul class="file-list">
+			<%
+				for(int i = 0; i < realFileNameArrayList.size(); i++) {
+			%>
+			<li><span class="file-list__name"><%= originalFileNameArrayList.get(i) %></span><a href="<%= realFileNameArrayList.get(i) %>" class="download-button" download="<%= originalFileNameArrayList.get(i) %>"></a></li>
+			<%
+				}
+			%>
+		</ul>
+	</div>
+	<% } %>
+
 	<div>
 		<p class="keywords">
 			키워드: <span><%= infoBbs.getKeyword() %></span>

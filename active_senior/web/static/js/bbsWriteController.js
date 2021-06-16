@@ -2,8 +2,8 @@
 $('#summernote').summernote({
     placeholder: '',
     tabsize: 2,
-    width: '80vw',
-    height: '60vh',
+    width: '80%',
+    height: '800px',
     toolbar: [
     ['style', ['style']],
     ['font', ['bold', 'underline', 'clear']],
@@ -31,19 +31,6 @@ $(window).on('beforeunload', () => {
 $('#form').submit(() => {
     $(window).unbind('beforeunload');
 })
-
-window.onbeforeunload = function (e) {
-    localStorage.setItem(url_name + "ContentAuto", $('#summernote').summernote('code'))
-};
-
-window.onload = (e) => {
-    let getValue = localStorage.getItem(url_name + "ContentAuto")
-
-    if(getValue !== null && getValue !== "" && getValue !== "<p><br></p>" && confirm("이전에 작성했던 글이 있습니다. 불러오시겠습니까?")){
-        $('#summernote').summernote('code', '')
-        $('#summernote').summernote('pasteHTML', getValue)
-    }
-}
 
 function setContent() {
     if($("#bbsTitle").length)
