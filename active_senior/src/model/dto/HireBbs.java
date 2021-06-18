@@ -6,6 +6,8 @@ import controller.tool.DateManger;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HireBbs{
     private int bbsID = -1;
@@ -74,6 +76,17 @@ public class HireBbs{
     }
 
     public String getBbsContent() { return bbsContent; }
+
+    public String getRemoveRemarkBbsContent() {
+        Pattern pattern = Pattern.compile("<!--[^(-->)]*-->");
+        Matcher matcher = pattern.matcher(bbsContent);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, "");
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
 
     public void setBbsContent(String bbsContent) {
         this.bbsContent = bbsContent;

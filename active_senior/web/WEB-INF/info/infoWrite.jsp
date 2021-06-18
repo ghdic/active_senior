@@ -8,12 +8,11 @@
 	String userID = ScriptManager.loginCheck(session, response, true);
 	int category = ScriptManager.categoryCheck(request, response, true);
 %>
-
 <form action="/infoWriteAction" id="form" method="post" enctype="multipart/form-data">
 	<table style="border: 1px solid #dddddd">
 		<thead>
 		<tr>
-			<th>공지 게시판 글쓰기</th>
+			<th class="write-title"><h2>정보 게시판 글쓰기</h2></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -25,25 +24,30 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="button" value="임시 저장" onclick="setContent()">
-				<input type="button" value="불러오기" onclick="getContent()">
+				<input type="button" style="margin-right: 100px;" class="blue-button" value="임시 저장" onclick="setContent()">
+				<input type="button" class="blue-button" value="불러오기" onclick="getContent()">
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<label for="profile">썸네일:</label><input type="file" id="profile" name="bbsThumbnail" accept="image/*">
-				<img src="/static/image/default/default-image.png" alt="프로필" id="profilePreview" width="100px" height="100px">
+				<div class="collocate-input">
+					<div class="thumbnailSetting">
+						<img src="/static/image/default/default-image.png" alt="프로필" id="profilePreview">
+						<div><label for="profile">썸네일</label></div><div><input type="file" id="profile" name="bbsThumbnail" accept="image/*"></div>
+					</div>
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<td><input type="hidden" name="bbsCategory" value="<%= category %>"></td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="완료"></td>
+			<td><input type="submit" class="submit-btn" value="완료"></td>
 		</tr>
 		</tbody>
 	</table>
 </form>
+
 <script src="/static/js/profilePreview.js"></script>
-<script src="/static/js/infoBbsWrite.js"></script>
+<script src="/static/js/bbsWriteController.js"></script>
 <jsp:include page="/view/footer"/>

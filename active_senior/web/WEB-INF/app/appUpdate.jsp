@@ -20,7 +20,7 @@
 	<table style="border: 1px solid #dddddd">
 		<thead>
 		<tr>
-			<th class="write-title"><h2>고용 게시판 글쓰기</h2></th>
+			<th class="write-title"><h2>고용 게시판 업데이트</h2></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -145,11 +145,13 @@
 </form>
 
 <script>
-    $('#summernote').summernote('code', '')
-    $('#summernote').summernote('pasteHTML', '<%= hireBbs.getBbsContent() %>')
-    $('#bbsState').val('<%= hireBbs.getBbsState() %>')
+    window.onload = function () {
+        $('#summernote').summernote('code', '')
+        $('#summernote').summernote('pasteHTML', '<%= hireBbs.getBbsContent() %>')
+        $('#bbsState').val('<%= hireBbs.getBbsState() %>')
+    }
 </script>
 <script src="/static/js/profilePreview.js"></script>
-<script src="/static/js/hireBbsUpdate.js"></script>
+<script src="/static/js/bbsWriteController.js"></script>
 
 <jsp:include page="/view/footer"/>
