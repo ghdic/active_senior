@@ -27,7 +27,7 @@
 
 # 시연 영상
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SW67P3Ao2ak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![active_senior_video](https://img.youtube.com/vi/SW67P3Ao2ak/0.jpg)](https://www.youtube.com/watch?v=SW67P3Ao2ak)
 
 
 # 사이트 구성
