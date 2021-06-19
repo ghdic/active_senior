@@ -25,6 +25,11 @@
 -   Tomcat 8.5
 -   Mysql 8.0.24
 
+# 시연 영상
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SW67P3Ao2ak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 # 사이트 구성
 
 ![Active Senior Structure](images/Active%20Senior.png)
@@ -234,3 +239,22 @@
 - [☆static다운★](https://drive.google.com/file/d/1HJJSRtEKWdNK4mShRmWqbYbaLAAzdTnb/view?usp=sharing)을 다운받아 `actvie_senior/web/static` 폴더 안에 내용을 옮겨줌(덮어 씌워주고 깃에 바뀐내용 있다면 pull)
 - out폴더 artifact부분에 넣으면 초기 deployment 과정의 시간을 단축시킬 수 있음
 - 가끔 인텔리제이에 model.dto -> Model.dto로 바뀌는 버그가 있음 확인후 대문자로 되어있다면 refactor을 사용하여 model.dto로 다시 바꿔줌
+  ![tomcat](images/tomcat_server.png)
+- server.xml 수정, 인텔리제이는 톰캣 인스턴스를 따로 생성하지 않기 때문에 conf경로에 server.xml을 수정해주어야 합니다. `C:\Program Files\Apache Software Foundation\Tomcat 8.5\conf\server.xml` 파일을 열어서 해당부분의 `URIEncoding='utf-8'`로 변경하여줍니다.
+  ![artifact](images/artifacts.png)
+- artifact는 Tomcat Local Server를  선택하여 주시고 아티팩스는 fix를 눌러 자동 생성해줍니다 Application context 부분만 `/`으로 바꿔주시면 됩니다.
+- `active_senior/web/META_INF/context.xml`에 mysql 아이디 비밀번호를 알맞게 맞춰주세요. 기본세팅은 root/root입니다.(username, password 바꿔주면 됩니다)
+
+# 프로젝트 참고문헌
+* https://stackoverflow.com/ -> 문제해결
+* https://heropy.blog/ -> html, css
+* https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=freesemo&logNo=100129406557 -> JAI 사용법
+* https://www.youtube.com/watch?v=wEIBDHfoMBg&list=PLRx0vPvlEmdAZv_okJzox5wj2gG_fNh_6 나동빈 게시판 강좌
+* https://www.youtube.com/watch?v=bWbyhYUkwDQ&list=PLRx0vPvlEmdD2mcWus8hakX103PwcSJe8 -> 나동빈 ajax & json 강좌
+* https://codepen.io/ -> 디자인 참고
+* https://summernote.org/getting-started/ -> summernote docs
+* https://ihatetomatoes.net/simple-scrollmagic-tutorial/ -> scrollMagic tutorial
+* https://webkimsora.tistory.com/30 -> TweenMax 사용법
+* https://masonry.desandro.com/methods.html -> Mansonry docs
+* http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&linkClass=331411&barcode=9788958972914 -> 공부할 때 사용한 책
+* https://ktko.tistory.com/entry/JAVA-SMTP%EC%99%80-Mail-%EB%B0%9C%EC%86%A1%ED%95%98%EA%B8%B0Google-Naver -> javax mail 보내는법

@@ -20,7 +20,7 @@ public class downloadAction extends HttpServlet {
         String filepath = req.getParameter("filepath");
         ServletContext context = req.getServletContext();
         String realPath = context.getRealPath(filepath);
-        System.out.println(realPath);
+
         File file = new File(realPath);
 
         FileInputStream fileInputStream = new FileInputStream(file);
